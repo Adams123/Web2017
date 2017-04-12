@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import Items from './items'
-import './index.css';
+import FormAdmin from './formAdmin';
+import FormCliente from './formCliente';
+import login from './login';
 
 ReactDOM.render(
-  <App />,
+  <FormAdmin />,
+    /*<FormCliente />,
+    <login/>*/
   document.getElementById('root')
 );

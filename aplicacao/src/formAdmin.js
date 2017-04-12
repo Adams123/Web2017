@@ -1,5 +1,33 @@
 import React from 'react';
 
+var FormAdmin = React.createClass({
+    render: function()
+    {
+        return (
+            <div>
+            Form Admin
+            <div id="form">
+                <form>
+                    <input type="text" placeholder="Nome"></input>
+                    <br></br>
+                    <input type="text" placeholder="Senha"></input>
+                    <br></br>
+                    <input type="text" placeholder="Telefone"></input>
+                    <br></br>
+                    <input type="text" placeholder="Email"></input>
+                    <br></br>
+                    Foto: <input type="file" name="pic" accept="image/*"></input>
+                    <br></br>
+                    <input type="submit" value="Cadastrar"></input>
+                </form>
+            </div>
+            </div>
+            )
+    }
+});
+
+export default FormAdmin;
+/*
 var Itens = React.createClass({
     createTasks: function (item)
     {
@@ -95,3 +123,4 @@ var App = React.createClass({
 });
 
 export default App;
+*/
