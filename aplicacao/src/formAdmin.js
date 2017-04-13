@@ -1,22 +1,42 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 var FormAdmin = React.createClass({
+var cadastros = {
+    {nome: "admin", senha: "admin", id: "0", telefone:"123123", email: "teste@teste.com", imagem: "teste"}
+};
+
+    getInitialState: function() {
+      return {
+        nome: null,
+        senha: null,
+        telefone: null,
+        email: null,
+        imagem: null
+      };
+    },
+
+    onChildChange: function(childName, childValue){
+      let newState = {};
+      newState[childName] = childValue;
+      this.setState(newState)
+    },
+
     render: function()
     {
         return (
             <div>
             Form Admin
-            <div id="form">
+            <div id="formAdmin">
                 <form>
-                    <input type="text" placeholder="Nome"></input>
+                    <InternalForm name="nome" type="text" placeholder="Nome"/>
                     <br></br>
-                    <input type="text" placeholder="Senha"></input>
+                    <input name="senha" type="text" placeholder="Senha"></input>
                     <br></br>
-                    <input type="text" placeholder="Telefone"></input>
+                    <input name="telefone" type="text" placeholder="Telefone"></input>
                     <br></br>
-                    <input type="text" placeholder="Email"></input>
+                    <input name="email" type="text" placeholder="Email"></input>
                     <br></br>
-                    Foto: <input type="file" name="pic" accept="image/*"></input>
+                    Foto: <input name="imagem" type="file" name="pic" accept="image/*"></input>
                     <br></br>
                     <input type="submit" value="Cadastrar"></input>
                 </form>
@@ -25,6 +45,19 @@ var FormAdmin = React.createClass({
             )
     }
 });
+
+class InternalForm extends React.Component{
+    onFormChange(e) {
+        this.props.onFormChange(this.props.name, e.target.value);
+    };
+
+    render() {
+        return (
+                <input type="text" onChange={this.onFormChange}/>
+    );
+  }
+};
+
 
 export default FormAdmin;
 /*
