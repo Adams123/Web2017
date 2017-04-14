@@ -1,7 +1,7 @@
 import React from 'react';
 
 var Login = React.createClass({
-    
+
     render: function()
     {
         return (
@@ -10,7 +10,7 @@ var Login = React.createClass({
                 <form>
                     <input type="text" placeholder="Usuário"></input>
                     <br></br>
-                    <input type="text" placeholder="Senha"></input>
+                    <input type="password" placeholder="Senha"></input>
                     <br></br>
                     <input type="submit" value="Cadastrar"></input>
                 </form>
