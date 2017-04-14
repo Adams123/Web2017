@@ -1,7 +1,6 @@
 import React from 'react';
 
-var Login = React.createClass({
-    
+var login = React.createClass({
     render: function()
     {
         return (
@@ -19,4 +18,4 @@ var Login = React.createClass({
             )
     }
 });
-export default Login;
+export default login;

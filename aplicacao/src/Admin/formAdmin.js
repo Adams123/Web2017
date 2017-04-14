@@ -1,14 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 var FormAdmin = React.createClass({
-var cadastros = {
-    {nome: "admin", senha: "admin", id: "0", telefone:"123123", email: "teste@teste.com", imagem: "teste"}
-};
+    // var cadastros = {'nome': "admin", 'senha': "admin",
+    //      'id': "0", 'telefone':"123123",
+    //      'email': "teste@teste.com", 'imagem': "teste"
+    // },
 
     getInitialState: function() {
       return {
-        nome: null,
-        senha: null,
+        nome: 'admin',
+        senha: 'admin',
         telefone: null,
         email: null,
         imagem: null
@@ -28,16 +29,16 @@ var cadastros = {
             Form Admin
             <div id="formAdmin">
                 <form>
-                    <InternalForm name="nome" type="text" placeholder="Nome"/>
-                    <br></br>
-                    <input name="senha" type="text" placeholder="Senha"></input>
-                    <br></br>
+                    <input name="nome" type="text" placeholder="Nome"/>
+                    <br />
+                    <input name="senha" type="password" placeholder="Senha"></input>
+                    <br />
                     <input name="telefone" type="text" placeholder="Telefone"></input>
-                    <br></br>
+                    <br />
                     <input name="email" type="text" placeholder="Email"></input>
-                    <br></br>
-                    Foto: <input name="imagem" type="file" name="pic" accept="image/*"></input>
-                    <br></br>
+                    <br />
+                    Foto: <input name="imagem" type="file" accept="image/"></input>
+                    <br />
                     <input type="submit" value="Cadastrar"></input>
                 </form>
             </div>
