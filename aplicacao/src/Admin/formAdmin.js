@@ -1,12 +1,12 @@
 import React from 'react';
 
-var FormAdmin = React.createClass({
+class FormAdmin extends React.Component{
     // var cadastros = {'nome': "admin", 'senha': "admin",
     //      'id': "0", 'telefone':"123123",
     //      'email': "teste@teste.com", 'imagem': "teste"
     // },
 
-    getInitialState: function() {
+    getInitialState() {
       return {
         nome: 'admin',
         senha: 'admin',
@@ -14,15 +14,15 @@ var FormAdmin = React.createClass({
         email: null,
         imagem: null
       };
-    },
+    }
 
-    onChildChange: function(childName, childValue){
+    onChildChange(childName, childValue){
       let newState = {};
       newState[childName] = childValue;
       this.setState(newState)
-    },
+    }
 
-    render: function()
+    render()
     {
         return (
             <div>
@@ -45,7 +45,7 @@ var FormAdmin = React.createClass({
             </div>
             )
     }
-});
+};
 
 class InternalForm extends React.Component{
     onFormChange(e) {

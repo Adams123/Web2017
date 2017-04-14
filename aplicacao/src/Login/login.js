@@ -1,8 +1,15 @@
 import React from 'react';
 import Tema from './tema';
 
-var login = React.createClass({
-    render: function(){
+class login extends React.Component{
+    constructor(props)
+    {
+        super(props);
+    }
+    handleSubmit(event){
+        alert('Tudo ' + this.state.value);
+    };
+    render(){
         const tema = Tema;
         const styles = {
             form: {
@@ -12,6 +19,7 @@ var login = React.createClass({
                 backgroundColor: tema.backgroundColor,
             }
         };
+    
         return (
             <div>
             <div id="form">
@@ -26,5 +34,5 @@ var login = React.createClass({
             </div>
             )
     }
-});
+};
 export default login;

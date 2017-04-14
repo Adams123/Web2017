@@ -1,7 +1,7 @@
 import React from 'react';
 
-var FormCliente = React.createClass({
-    render: function()
+class FormCliente extends React.Component{
+    render()
     {
         return (
             <div>
@@ -26,5 +26,5 @@ var FormCliente = React.createClass({
             </div>
             )
     }
-});
+};
 export default FormCliente;

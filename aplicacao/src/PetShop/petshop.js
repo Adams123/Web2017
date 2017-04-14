@@ -1,8 +1,8 @@
 import React from 'react';
 import Login from '../Login/login';
 
-var PetShop = React.createClass({
-    render: function()
+class PetShop extends React.Component{
+    render()
     {
         return (
             <div>
@@ -11,5 +11,5 @@ var PetShop = React.createClass({
             </div>
             )
     }
-});
+};
 export default PetShop;
