@@ -55,6 +55,17 @@ $(document).ready(function() {
 
 	toggable.hide();
 	$("#home").show();
+	
+	var toggable2 = $("[data-toggable2]");
+	$("[data-toggle2]").each(function(){
+		var tab = $($( this ).attr('href'));
+		$( this ).click(function(){
+		  toggable2.hide();
+		  tab.show();
+		});
+	});
+
+	toggable2.hide();
   
 	$('.calendar').fullCalendar({
 		weekends: false,

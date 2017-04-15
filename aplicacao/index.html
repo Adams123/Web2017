@@ -12,11 +12,6 @@
 </head>
 
 <body>
-    <!--
-   EXPLICAÇÃO DO Q Q EU FIZ!
-   tirei praticamente todos os displays e deixei apenas nas divs "mães", q são as divs q contem cada navBar. Fiz o tab-content de acordo com as specs do bootstrap, q é vc colocar um href='X' e depois referencia em outra div da classe tab-content com id='X' e MAGICAMENTE quando vc clicar na tab vai aparecer o conteudo, não precisa ficar dando display=none.
-   -->
-
     <div id="navBarHome" style="display:block">
         <ul>
             <li><a data-toggle href="#home">Home</a></li>
@@ -25,11 +20,9 @@
         <div>
             <div data-toggable id="home">
                 Olá! Bem vindo ao nosso site!
-                <!-- MEU DEUS DO CEU FAZ ESSA MERDA DESAPARECER PFV -->
             </div>
             <div data-toggable id="login">
                 <form id="formLogin" onsubmit="return false;">
-                    <!-- return false senao vai recarregar a pagina VAI SE FUDE DEMOREI PRA DESCOBRIR ISSO-->
                     Login:
                     <input type="text" name="login" id="user">
                     <br> Senha:
@@ -54,38 +47,91 @@
         <div>
             <div data-toggable id=homeAdm>
                 Olá! Bem vindo ao nosso site!
-                <!-- MEU DEUS DO CEU FAZ ESSA MERDA DESAPARECER PFV -->
             </div>
+			
             <div data-toggable id="produtosAdm">
-                produtos!
-            </div>
+                <h2> O que deseja fazer? </h2>
+				<a data-toggle2 href="#addProd">Adicionar Produto</a>
+				<a data-toggle2 href="#attProd">Atualizar Produto</a>
+				<a data-toggle2 href="#delProd">Apagar Produto</a>
+				<a data-toggle2 href="#listProd">Consultar Produto</a>
+				
+				<div data-toggable2 id="addProd">
+				</div>
+				
+				<div data-toggable2 id="attProd">
+				</div>
+				
+				<div data-toggable2 id="delProd">
+				</div>
+				
+				<div data-toggable2 id="listProd">
+				</div>
+			</div>
+			
             <div data-toggable id="calendarioAdm">
                 <div id="Agenda">
                     <div class="calendar"></div>
                 </div>
             </div>
+			
             <div data-toggable id="cadastrar">
-                cadastrar!
+                <h2> O que deseja fazer? </h2>
+				<a data-toggle2 href="#cadastrarCli">Cadastrar Cliente</a>
+				<a data-toggle2 href="#cadastrarAdm">Cadastrar Administrador</a>
+				<a data-toggle2 href="#cadastrarProd">Cadastrar Produto</a>
+				<a data-toggle2 href="#cadastrarSer">Cadastrar Serviço</a>
+				
+				<div data-toggable2 id="cadastrarCli">
+				</div>
+				
+				<div data-toggable2 id="cadastrarAdm">
+				</div>
+				
+				<div data-toggable2 id="cadastrarProd">
+				</div>
+				
+				<div data-toggable2 id="cadastrarSer">
+				</div>
             </div>
+			
             <div data-toggable id="servicosAdm">
-                servicos!
+                <h2> O que deseja fazer? </h2>
+				<a data-toggle2 href="#assocServ">Associar serviço a horário</a>
+				<a data-toggle2 href="#releaseServ">Liberar horário reservado</a>
+				
+				<div data-toggable2 id="assocServ">
+				</div>
+				
+				<div data-toggable2 id="releaseServ">
+				</div>
             </div>
+			
             <div data-toggable id="profileAdm">
-                <div id="pets">
-                    <h1> Cadastro de Pets: </h1>
-                    <form action="" onsubmit="return false;">
-                        Nome do Pet:
-                        <input type="text" name="NomePet" value="Ex: Pipoca">
-                        <br> Raça:
-                        <input type="text" name="RacaPet" value="Ex: Dalmata">
-                        <br>Idade:
-                        <input type="number" name="IdadePet" value="7">
+				<h2> O que deseja fazer? </h2>
+				<a data-toggle2 href="#editPerfilAdm">Editar Perfil</a>
+				<a data-toggle2 href="#listGainsAdm">Listar Ganhos</a>
+
+				<div data-toggable2 id="editPerfilAdm">
+				    <h2> Editar Perfil: </h2>
+                    <!-- <form action="" onsubmit="return false;"> -->
+                        Nome:
+                        <input type="text" name="NomeCli" value="Ex: Giovane Medusa Mocellin">
+                        <br>CPF:
+                        <input type="text" name="CPFCli" value="Ex: 13552134360">
                         <br>Foto:
-                        <input type="file" name="FotoPet">
+                        <input type="file" name="FotoCli">
+						<br>Telefone:
+                        <input type="text" name="TelCli" value="Ex: (16) 3418-2341">
+						<br>Email:
+                        <input type="text" name="TelCli" value="Ex: didiomedusa@gmail.com">
                         <br><br>
-                        <input type="submit" value="Cadastrar">
-                    </form>
-                </div>
+                        <input type="submit" value="Salvar">
+                    <!-- </form> -->
+				</div>
+				
+				<div data-toggable2 id="listGainsAdm">
+				</div>
             </div>
             <div data-toggable id="logoutAdm">
                 <div id="confirmacao" class="confirm">
@@ -109,11 +155,8 @@
         <div>
             <div data-toggable id=homeCliente>
                 Olá! Bem vindo ao nosso site!
-                <!-- MEU DEUS DO CEU FAZ ESSA MERDA DESAPARECER PFV -->
             </div>
             <div data-toggable id="produtosCli">
-                produtos!
-                <br><br>
                 <table>
                     <tr>
                         <td><img src="https://staticpetz.stoom.com.br/fotos/1469467300065.jpg" alt="" style="width:150px;height:150px;"></td>
@@ -165,9 +208,14 @@
                 </div>
             </div>
             <div data-toggable id="profileCli">
-                <div id="pets">
+				<h2> O que deseja fazer? </h2>
+				<a data-toggle2 href="#editPetsCli">Cadastrar Animais</a>
+				<a data-toggle2 href="#listPetsCli">Listar Animais</a>
+				<a data-toggle2 href="#editPerfilCli">Editar Perfil</a>
+				
+                <div data-toggable2 id="editPetsCli">
                     <h2> Cadastro de Pets: </h2>
-                    <form action="" onsubmit="return false;">
+                    <!-- <form action="" onsubmit="return false;"> -->
                         Nome do Pet:
                         <input type="text" name="NomePet" value="Ex: Pipoca">
                         <br> Raça:
@@ -178,8 +226,31 @@
                         <input type="file" name="FotoPet">
                         <br><br>
                         <input type="submit" value="Cadastrar">
-                    </form>
+                    <!-- </form> -->
                 </div>
+				
+				<div data-toggable2 id="listPetsCli">
+				</div>
+				
+				<div data-toggable2 id="editPerfilCli">
+				    <h2> Editar Perfil: </h2>
+                    <!-- <form action="" onsubmit="return false;"> -->
+                        Nome:
+                        <input type="text" name="NomeCli" value="Ex: Giovane Medusa Mocellin">
+                        <br>CPF:
+                        <input type="text" name="CPFCli" value="Ex: 13552134360">
+                        <br>Endereço:
+                        <input type="text" name="EnderecoCli" value="Ex: Av. São Carlos 1200">
+                        <br>Foto:
+                        <input type="file" name="FotoCli">
+						<br>Telefone:
+                        <input type="text" name="TelCli" value="Ex: (16) 3418-2341">
+						<br>Email:
+                        <input type="text" name="TelCli" value="Ex: didiomedusa@gmail.com">
+                        <br><br>
+                        <input type="submit" value="Salvar">
+                    <!-- </form> -->
+				</div>
             </div>
             <div data-toggable id="logoutCli">
                 <div id="confirmacao" class="confirm">

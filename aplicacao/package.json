@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Antonio Pedro Lavezzo Mazzarolo <antoniop.lm@hotmail.com>",
+  "author": "Adams Vietro Codignotto da Silva <adamsvcs@gmail.com>, Antonio Pedro Lavezzo Mazzarolo <antoniop.lm@hotmail.com>, Gustavo Dutra Santana <gustavods@email.com>, Veronica Vannini <veronicav@email.com>",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
