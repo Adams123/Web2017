@@ -69,3 +69,38 @@ li a:hover {
 img {
   border-radius: 15px 15px;
 }
+
+.navBarSup{ /* barras maiores superiores (as pretas)*/
+
+}
+.navBarInf{ /* barras menores quando tem várias opções (vários opções de cadastros, serviços e afins)*/
+
+}
+.logout{ /*div da tela de logout*/
+
+}
+
+.tabelas{ /*todas as tabelas*/
+
+}
+.divTables{ /*div de cada tabela*/
+    float: left;
+}
+#multTabelas{ /*div contendo mais de uma tabela*/
+    float:left; width:100%;
+}
+.exibeInput{ /*todos os inputs q são usados apenas para exibição de valores (nos listar por exemplo)*/
+
+}
+.inputText{ /*todos os texts contendo input (nome, cpf, qualquer coisa)*/
+
+}
+.inputFile{ /*todos os inputs de foto (área + botão)*/
+
+}
+.submits{ /*botões no geral (exceto de enviar arquivo)*/
+
+}
+.forms{ /*todas as div contendo um form*/
+
+}

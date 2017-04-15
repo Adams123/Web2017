@@ -13,7 +13,7 @@
 
 <body>
     <!-- Navegação antes de login -->
-    <div id="navBarHome" style="display:block">
+    <div class="navBarSup" id="navBarHome" style="display:block">
         <ul>
             <li><a data-toggle href="#home">Home</a></li>
             <li><a data-toggle href="#login">Login</a></li>
@@ -27,18 +27,18 @@
             <div data-toggable id="login">
                 <form id="formLogin" onsubmit="return false;">
                     Login:
-                    <input type="text" name="login" id="user">
+                    <input class="inputText" type="text" name="login" id="user">
                     <br> Senha:
-                    <input type="password" id="senha">
+                    <input class="inputText" type="password" id="senha">
                     <br>
-                    <button onclick="logon(document.getElementById('user').value, document.getElementById('senha').value)">Entrar</button>
+                    <button class="submits" onclick="logon(document.getElementById('user').value, document.getElementById('senha').value)">Entrar</button>
                 </form>
             </div>
         </div>
     </div>
 
     <!-- Navegação do Administrador -->
-    <div id="navBarAdmin" style="display:none">
+    <div class="navBarSup" id="navBarAdmin" style="display:none">
         <ul>
             <li><a data-toggle href="#homeAdm">Home</a></li>
             <li><a data-toggle href="#produtosAdm">Produtos</a></li>
@@ -54,7 +54,7 @@
                 Olá! Bem vindo ao nosso site!
             </div>
             <!-- Produtos -->
-            <div data-toggable id="produtosAdm">
+            <div class="navBarInf" data-toggable id="produtosAdm">
                 <h2> O que deseja fazer? </h2>
                 <a data-toggle2 href="#addProd">Adicionar Produto</a>
                 <a data-toggle2 href="#attProd">Atualizar Produto</a>
@@ -64,67 +64,67 @@
                 <!-- Adicionar Produto -->
                 <div data-toggable2 id="addProd">
                     <h2>Adicionar produto:</h2>
-                    Nome:<input type="text" name="nomeProdAdd" Placeholder="Ração"></input>
+                    Nome:<input class="inputText" type="text" name="nomeProdAdd" Placeholder="Ração"></input>
                     <br>ID:
-                    <input type="number" name="idProdAdd" Placeholder="1"></input>
+                    <input class="inputText" type="number" name="idProdAdd" Placeholder="1"></input>
                     <br>Foto:
-                    <input type="file" name="fotoProdAdd"></input>
+                    <input class="inputFile" type="file" name="fotoProdAdd"></input>
                     <br>Descricao:
-                    <input type="textarea" name="descricaoProdAdd" Placeholder="Ração pra porco" style="width: 300px;"></input>
+                    <input class="inputText" type="textarea" name="descricaoProdAdd" Placeholder="Ração pra porco" style="width: 300px;"></input>
                     <br>Preço:
-                    <input type="number" name="precoProdAdd" step="0.01" Placeholder="3.54"></input>
+                    <input class="inputText" type="number" name="precoProdAdd" step="0.01" Placeholder="3.54"></input>
                     <br>Quantidade em estoque:
-                    <input type="number" name="quantProdAdd" Placeholder="23"></input>
+                    <input class="inputText" type="number" name="quantProdAdd" Placeholder="23"></input>
                     <br>Quantidade vendida:
-                    <input type="number" name="vendasProdAdd" Placeholder="11"></input>
+                    <input class="inputText" type="number" name="vendasProdAdd" Placeholder="11"></input>
                     <br><br>
-                    <input type="submit" value="Cadastrar">
+                    <input class="submits" type="submit" value="Cadastrar">
                 </div>
                 <!-- Atualizar Produto -->
                 <div data-toggable2 id="attProd">
                     <h2>Atualizar produto:</h2>
                     ID:
-                    <input type="number" name="idProdAtt" Placeholder="1"></input>
+                    <input class="inputText" type="number" name="idProdAtt" Placeholder="1"></input>
                     <br><br>
-                    <input type="submit" value="Pesquisar">
+                    <input class="submits" type="submit" value="Pesquisar">
                     <br> Nome:
-                    <input type="text" name="nomeProdAtt"></input>
+                    <input class="inputText" type="text" name="nomeProdAtt"></input>
                     <br>Foto:
-                    <input type="file" name="fotoProdAtt"></input>
+                    <input class="inputFile" type="file" name="fotoProdAtt"></input>
                     <br>Descricao:
-                    <input type="textarea" name="descricaoProdAtt" style="width: 300px;"></input>
+                    <input class="inputText" type="textarea" name="descricaoProdAtt" style="width: 300px;"></input>
                     <br>Preço:
-                    <input type="number" name="precoProdAtt" step="0.01"></input>
+                    <input class="inputText" type="number" name="precoProdAtt" step="0.01"></input>
                     <br>Quantidade em estoque:
-                    <input type="number" name="quantProdAtt"></input>
+                    <input class="inputText" type="number" name="quantProdAtt"></input>
                     <br>Quantidade vendida:
-                    <input type="number" name="vendasProdAtt"></input>
+                    <input class="inputText" type="number" name="vendasProdAtt"></input>
                     <br><br>
-                    <input type="submit" value="Remover">
+                    <input class="submits" type="submit" value="Remover">
                 </div>
                 <!-- Remover Produto -->
                 <div data-toggable2 id="delProd">
                     <h2>Apagar produto:</h2>
                     ID:
-                    <input type="number" name="idProdDel" Placeholder="1"></input>
+                    <input class="inputText" type="number" name="idProdDel" Placeholder="1"></input>
                     <br><br>
-                    <input type="submit" value="Pesquisar">
+                    <input class="submits" type="submit" value="Pesquisar">
                     <br> Nome:
 
-                    <input type="text" name="nomeProdDel" Placeholder="Ração"></input>
+                    <input class="inputText" type="text" name="nomeProdDel" Placeholder="Ração"></input>
                     <br>Foto:
-                    <input type="file" name="fotoProdDel"></input>
+                    <input class="inputFile" type="file" name="fotoProdDel"></input>
                     <br>Descricao:
-                    <input type="textarea" name="descricaoProdDel" Placeholder="Ração pra porco" style="width: 300px;"></input>
+                    <input class="inputText" type="textarea" name="descricaoProdDel" Placeholder="Ração pra porco" style="width: 300px;"></input>
                     <br>Preço:
-                    <input type="number" name="precoProdDel" step="0.01" Placeholder="3.54"></input>
+                    <input class="inputText" type="number" name="precoProdDel" step="0.01" Placeholder="3.54"></input>
                     <br>Quantidade em estoque:
-                    <input type="number" name="quantProdDel" Placeholder="23"></input>
+                    <input class="inputText" type="number" name="quantProdDel" Placeholder="23"></input>
                     <br>Quantidade vendida:
-                    <input type="number" name="vendasProdDel" Placeholder="11"></input>
+                    <input class="inputText" type="number" name="vendasProdDel" Placeholder="11"></input>
                     <br>
                     <br>
-                    <input type="submit" value="Remover">
+                    <input class="submits" type="submit" value="Remover">
                 </div>
                 <!-- Listar Produtos -->
                 <div data-toggable2 id="listProd">
@@ -143,9 +143,9 @@
                                 <h3>R$897,78</h3>
                             </td>
                             <td>Quantidade:
-                                <input type="number" name="QtdProduto" value="10"></td>
+                                <input class="exibeInput" type="number" name="QtdProduto" value="10"></td>
                             <td>Vendidos:
-                                <input type="number" name="QtdProduto" value="0"></td>
+                                <input class="exibeInput" type="number" name="QtdProduto" value="0"></td>
                         </tr>
                         <tr>
                             <td>1</td>
@@ -160,21 +160,21 @@
                                 <h3>R$24,00</h3>
                             </td>
                             <td>Quantidade:
-                                <input type="number" name="QtdProduto" value="50"></td>
+                                <input class="exibeInput" type="number" name="QtdProduto" value="50"></td>
                             <td>Vendidos:
-                                <input type="number" name="QtdProduto" value="1"></td>
+                                <input class="exibeInput" type="number" name="QtdProduto" value="1"></td>
                         </tr>
                     </table>
                 </div>
             </div>
             <!-- Calendário -->
-            <div data-toggable id="calendarioAdm">
+            <div  class="navBarInf" data-toggable id="calendarioAdm">
                 <div id="Agenda">
                     <div class="calendar"></div>
                 </div>
             </div>
             <!-- Cadastrar -->
-            <div data-toggable id="cadastrar">
+            <div  class="navBarInf" data-toggable id="cadastrar">
                 <h2> O que deseja fazer? </h2>
                 <a data-toggle2 href="#cadastrarCli">Cadastrar Cliente</a>
                 <a data-toggle2 href="#cadastrarAdm">Cadastrar Administrador</a>
@@ -185,75 +185,75 @@
                 <div data-toggable2 id="cadastrarCli">
                     <h2> Cadastrar Cliente: </h2>
                     Nome:
-                    <input type="text" name="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
+                    <input class="inputText" type="text" name="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
                     <br>CPF:
-                    <input type="text" name="CPFCli" placeholder="Ex: 13552134360">
+                    <input class="inputText" type="text" name="CPFCli" placeholder="Ex: 13552134360">
                     <br>Endereço:
-                    <input type="text" name="EnderecoCli" placeholder="Ex: Av. São Carlos 1200">
+                    <input class="inputText" type="text" name="EnderecoCli" placeholder="Ex: Av. São Carlos 1200">
                     <br>Foto:
-                    <input type="file" name="FotoCli">
+                    <input class="inputFile" type="file" name="FotoCli">
                     <br>Telefone:
-                    <input type="tel" name="TelCli" placeholder="Ex: (16) 3418-2341">
+                    <input class="inputText" type="tel" name="TelCli" placeholder="Ex: (16) 3418-2341">
                     <br>Email:
-                    <input type="email" name="TelCli" placeholder="Ex: didiomedusa@gmail.com">
+                    <input class="inputText" type="email" name="TelCli" placeholder="Ex: didiomedusa@gmail.com">
                     <br><br>
-                    <input type="submit" value="Salvar">
+                    <input class="submits" type="submit" value="Salvar">
                 </div>
                 <!-- Cadastrar Administrador -->
                 <div data-toggable2 id="cadastrarAdm">
                     <h2> Cadastrar Administrador: </h2>
                     Nome:
-                    <input type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
+                    <input class="inputText" type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
                     <br>CPF:
-                    <input type="text" name="CPFAdm" placeholder="Ex: 13552134360">
+                    <input class="inputText" type="text" name="CPFAdm" placeholder="Ex: 13552134360">
                     <br>Foto:
-                    <input type="file" name="FotoAdm">
+                    <input class="inputFile" type="file" name="FotoAdm">
                     <br>Telefone:
-                    <input type="tel" name="TelAdm" placeholder="Ex: (16) 3418-2341">
+                    <input class="inputText" type="tel" name="TelAdm" placeholder="Ex: (16) 3418-2341">
                     <br>Email:
-                    <input type="email" name="TelAdm" placeholder="Ex: didiomedusa@gmail.com">
+                    <input class="inputText" type="email" name="TelAdm" placeholder="Ex: didiomedusa@gmail.com">
                     <br><br>
-                    <input type="submit" value="Salvar">
+                    <input class="submits" type="submit" value="Salvar">
                 </div>
                 <!-- Cadastrar Produto -->
                 <div data-toggable2 id="cadastrarProd">
                     <h2> Cadastrar Produto: </h2>
                     Nome:
-                    <input type="text" name="NomeProd" placeholder="Ex: Bolinha de cachorro">
+                    <input class="inputText" type="text" name="NomeProd" placeholder="Ex: Bolinha de cachorro">
                     <br>Código de Barras:
-                    <input type="text" name="CodBarras" placeholder="Ex: 7897900310604">
+                    <input class="inputText" type="text" name="CodBarras" placeholder="Ex: 7897900310604">
                     <br>Foto:
-                    <input type="file" name="FotoProd">
+                    <input class="inputFile" type="file" name="FotoProd">
                     <br>Descrição:
                     <textarea name="DescProd" rows="4" cols="50" placeholder="Ex: Essa bolinha de cachorro espetacular e muito divertida vai fazer com que seu animal tenha muitas horas de alegria."></textarea>
                     <br>Preço:
-                    <input type="number" step="0.01" name="PrecProd" placeholder="Ex: 15.00">
+                    <input class="inputText" type="number" step="0.01" name="PrecProd" placeholder="Ex: 15.00">
                     <br>Quantidade em Estoque:
-                    <input type="number" name="QtdEstProd" placeholder="Ex: 10">
+                    <input class="inputText" type="number" name="QtdEstProd" placeholder="Ex: 10">
                     <br>Quantidade Vendida:
-                    <input type="number" name="QtdVendProd" placeholder="Ex: 10">
+                    <input class="inputText" type="number" name="QtdVendProd" placeholder="Ex: 10">
                     <br><br>
-                    <input type="submit" value="Salvar">
+                    <input class="submits" type="submit" value="Salvar">
                 </div>
                 <!-- Cadastrar Serviço -->
                 <div data-toggable2 id="cadastrarSer">
                     <h2> Cadastrar Serviço: </h2>
                     Nome:
-                    <input type="text" name="NomeServ" placeholder="Ex: Banho">
+                    <input class="inputText" type="text" name="NomeServ" placeholder="Ex: Banho">
                     <br>ID do Serviço:
-                    <input type="text" name="IdServ" placeholder="Ex: PC0000001">
+                    <input class="inputText" type="text" name="IdServ" placeholder="Ex: PC0000001">
                     <br>Foto:
-                    <input type="file" name="FotoServ">
+                    <input class="inputFile" type="file" name="FotoServ">
                     <br>Descrição:
                     <textarea name="DescServ" rows="4" cols="50" placeholder="Ex: Uma incrível chuva de limpeza que deixará seu animal limpinho e cheiroso."></textarea>
                     <br>Preço:
-                    <input type="number" step="0.01" name="PrecServ" placeholder="Ex: 15.00">
+                    <input class="inputText" type="number" step="0.01" name="PrecServ" placeholder="Ex: 15.00">
                     <br><br>
-                    <input type="submit" value="Salvar">
+                    <input class="submits" type="submit" value="Salvar">
                 </div>
             </div>
             <!-- Serviços -->
-            <div data-toggable id="servicosAdm">
+            <div  class="navBarInf" data-toggable id="servicosAdm">
                 <h2> O que deseja fazer? </h2>
                 <a data-toggle2 href="#assocServ">Associar serviço a horário</a>
                 <a data-toggle2 href="#releaseServ">Liberar horário reservado</a>
@@ -266,33 +266,33 @@
                 </div>
             </div>
             <!-- Perfil Administrador -->
-            <div data-toggable id="profileAdm">
+            <div  class="navBarInf" data-toggable id="profileAdm">
                 <h2> O que deseja fazer? </h2>
                 <a data-toggle2 href="#editPerfilAdm">Editar Perfil</a>
                 <a data-toggle2 href="#listGainsAdm">Listar Ganhos</a>
 
                 <!-- Editar Perfil -->
-                <div data-toggable2 id="editPerfilAdm">
+                <div class="forms" data-toggable2 id="editPerfilAdm">
                     <h2> Editar Perfil: </h2>
                     Nome:
-                    <input type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
+                    <input class="inputText" type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
                     <br>CPF:
-                    <input type="text" name="CPFAdm" placeholder="Ex: 13552134360">
+                    <input class="inputText" type="text" name="CPFAdm" placeholder="Ex: 13552134360">
                     <br>Foto:
-                    <input type="file" name="FotoAdm">
+                    <input class="inputFile" type="file" name="FotoAdm">
                     <br>Telefone:
-                    <input type="tel" name="TelAdm" placeholder="Ex: (16) 3418-2341">
+                    <input class="inputText" type="tel" name="TelAdm" placeholder="Ex: (16) 3418-2341">
                     <br>Email:
-                    <input type="email" name="TelAdm" placeholder="Ex: didiomedusa@gmail.com">
+                    <input class="inputText" type="email" name="TelAdm" placeholder="Ex: didiomedusa@gmail.com">
                     <br><br>
-                    <input type="submit" value="Salvar">
+                    <input class="submits" type="submit" value="Salvar">
                 </div>
                 <!-- Listar Ganhos -->
                 <div data-toggable2 id="listGainsAdm">
-                    <div style="float:left; width:100%;">
-                        <div style="float: left">
+                    <div id="multTabelas">
+                        <div class="divTables">
                             <h1>Serviços</h1>
-                            <table>
+                            <table class="tabelas">
                                 <tr>
                                     <td>
                                         <h2>Tosas</h2>
@@ -319,9 +319,9 @@
                                 </tr>
                             </table>
                         </div>
-                        <div style="float: left">
+                        <div class="divTables">
                             <h1>Produtos</h1>
-                            <table style="float: left">
+                            <table class="tabelas">
                                 <tr>
                                     <td>
                                         <h2>0</h2>
@@ -340,26 +340,26 @@
                                 </tr>
                             </table>
                         </div>
-                        <div style="position: absolute; bottom: 0;">
-                            Lucro total: <input type="text" value="R$1000,00"></input>
+                        <div class="forms" style="position: absolute; bottom: 0;">
+                            Lucro total: <input class="exibeInput" type="text" value="R$1000,00"></input>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Logout -->
-            <div data-toggable id="logoutAdm">
+            <div  class="logout" data-toggable id="logoutAdm">
                 <div id="confirmacao" class="confirm">
                     Tem certeza?
                     <br>
-                    <button onclick="confirmLogout(true)">Sim</button>
-                    <button onclick="confirmLogout(false)">Não</button>
+                    <button class="submits" onclick="confirmLogout(true)">Sim</button>
+                    <button class="submits" onclick="confirmLogout(false)">Não</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Navegação Cliente -->
-    <div id="navBarCliente" style="display:none">
+    <div  class="navBarSup" id="navBarCliente" style="display:none">
         <ul>
             <li><a data-toggle href="#homeCliente">Home</a></li>
             <li><a data-toggle href="#produtosCli">Produtos</a></li>
@@ -386,9 +386,9 @@
                         </td>
                         <td>
                             Quantidade:
-                            <input type="number" name="QtdProduto" value="1">
+                            <input class="exibeInput" type="number" name="QtdProduto" value="1">
                         </td>
-                        <td><input type="submit" value="Adicionar ao Carrinho"> </td>
+                        <td><input class="submits" type="submit" value="Adicionar ao Carrinho"> </td>
                     </tr>
                     <tr>
                         <td><img src="https://staticpetz.stoom.com.br/fotos/1450897784351.jpg" alt="" style="width:150px;height:150px;"></td>
@@ -401,9 +401,9 @@
                         </td>
                         <td>
                             Quantidade:
-                            <input type="number" name="QtdProduto" value="1">
+                            <input class="exibeInput" type="number" name="QtdProduto" value="1">
                         </td>
-                        <td><input type="submit" value="Adicionar ao Carrinho"> </td>
+                        <td><input class="submits" type="submit" value="Adicionar ao Carrinho"> </td>
                     </tr>
                 </table>
             </div>
@@ -415,19 +415,19 @@
                     <!-- Modal content -->
                     <div class="modal-content">
                         <span class="close">&times;</span>
-                        <form action="" onsubmit="return false;">
+                        <!--<form action="" onsubmit="return false;">-->
                             Nome do Pet:
-                            <input type="text" name="NomePet" placeholder="Ex: Pipoca">
+                            <input class="inputText" type="text" name="NomePet" placeholder="Ex: Pipoca">
                             <br> Serviço:
-                            <input type="text" name="Servico" placeholder="Ex: Tosa">
+                            <input class="inputText" type="text" name="Servico" placeholder="Ex: Tosa">
                             <br><br>
-                            <input type="submit" value="Agendar">
-                        </form>
+                            <input class="submits" type="submit" value="Agendar">
+                        <!--</form>-->
                     </div>
                 </div>
             </div>
             <!-- Perfil Cliente -->
-            <div data-toggable id="profileCli">
+            <div  class="navBarInf" data-toggable id="profileCli">
                 <h2> O que deseja fazer? </h2>
                 <a data-toggle2 href="#editPetsCli">Cadastrar Animais</a>
                 <a data-toggle2 href="#listPetsCli">Listar Animais</a>
@@ -437,15 +437,15 @@
                 <div data-toggable2 id="editPetsCli">
                     <h2> Cadastro de Pets: </h2>
                     Nome do Pet:
-                    <input type="text" name="NomePet" placeholder="Ex: Pipoca">
+                    <input class="inputText" type="text" name="NomePet" placeholder="Ex: Pipoca">
                     <br> Raça:
-                    <input type="text" name="RacaPet" placeholder="Ex: Dalmata">
+                    <input class="inputText" type="text" name="RacaPet" placeholder="Ex: Dalmata">
                     <br>Idade:
-                    <input type="number" name="IdadePet" placeholder="7">
+                    <input class="inputText" type="number" name="IdadePet" placeholder="7">
                     <br>Foto:
-                    <input type="file" name="FotoPet">
+                    <input class="inputFile" type="file" name="FotoPet">
                     <br><br>
-                    <input type="submit" value="Cadastrar">
+                    <input class="inputSubmit" type="submit" value="Cadastrar">
                 </div>
                 <!-- Listar Pets -->
                 <div data-toggable2 id="listPetsCli">
@@ -458,12 +458,16 @@
                                 <td><h2>Dalmata</h2></td>
                                 <td><h2>7 anos</h2></td>
                                 <td><img src="http://tudosobrecachorros.com.br/wp-content/uploads/dalmata.png" alt="" style="width:150px;height:150px;"></img></td>
+                                <td><h3>Serviços: Nenhum</h3></td>
+                                <td><input class="exibeInput" type="text" name="precoProdAtt" value="R$0,00"></input></td>
                             </tr>
                             <tr>
                                 <td><h1>Plínio</h1></td>
                                 <td><h2>Rottweiler</h2></td>
                                 <td><h2>3 anos</h2></td>
                                 <td><img src="http://tudosobrecachorros.com.br/wp-content/uploads/2012/05/Rottweiler_1.jpg" alt="" style="width:150px;height:150px;"></img></td>
+                                <td><h3>Serviços: Banho, Tosa, Vacina</h3></td>
+                                <td><input class="exibeInput" type="text" name="precoProdAtt" value="R$120,00"></input></td>
                             </tr>
                             </table>
                         </div>
@@ -474,31 +478,31 @@
             <div data-toggable2 id="editPerfilCli">
                 <h2> Editar Perfil: </h2>
                 Nome:
-                <input type="text" name="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
+                <input class="exibeInput" type="text" name="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
                 <br>CPF:
-                <input type="text" name="CPFCli" placeholder="Ex: 13552134360">
+                <input class="exibeInput" type="text" name="CPFCli" placeholder="Ex: 13552134360">
                 <br>Endereço:
-                <input type="text" name="EnderecoCli" placeholder="Ex: Av. São Carlos 1200">
+                <input class="exibeInput" type="text" name="EnderecoCli" placeholder="Ex: Av. São Carlos 1200">
                 <br>Foto:
-                <input type="file" name="FotoCli">
+                <input class="inputFile" type="file" name="FotoCli">
                 <br>Telefone:
-                <input type="text" name="TelCli" placeholder="Ex: (16) 3418-2341">
+                <input class="exibeInput" type="text" name="TelCli" placeholder="Ex: (16) 3418-2341">
                 <br>Email:
-                <input type="email" name="TelCli" placeholder="Ex: didiomedusa@gmail.com">
+                <input class="exibeInput" type="email" name="TelCli" placeholder="Ex: didiomedusa@gmail.com">
                 <br><br>
-                <input type="submit" value="Salvar">
+                <input class="submits" type="submit" value="Salvar">
             </div>
-        </div>
-        <!-- Logout -->
-        <div data-toggable id="logoutCli">
+            <!-- Logout -->
+        <div class="logout" data-toggable id="logoutCli">
             <div id="confirmacao" class="confirm">
                 Tem certeza?
                 <br>
-                <button onclick="confirmLogout(true)">Sim</button>
-                <button onclick="confirmLogout(false)">Não</button>
+                <button class="submits" onclick="confirmLogout(true)">Sim</button>
+                <button class="submits" onclick="confirmLogout(false)">Não</button>
             </div>
         </div>
-    </div>
+        </div>
+
     </div>
 </body>
 
