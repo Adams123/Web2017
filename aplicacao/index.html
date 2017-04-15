@@ -30,12 +30,18 @@
     <body>
 		<nav>
 			<ul id="navigationBar">
-				<li><a href="#home">Home</a></li>
-				<li><a id="profile" onclick="showLogin()" href="#">Login</a></li>
+				<li><a id="home" onclick="showHome()" href="#">Home</a></li>
+				<li><a id="produtos" onclick="showHome()" href="#" style="display: none">Produtos</a></li>
+				<li><a id="calendario" onclick="showHome()" href="#" style="display: none">Calendário</a></li>
+				<li><a id="cadastrar" onclick="showHome()" href="#" style="display: none">Cadastrar</a></li>
+				<li><a id="servicos" onclick="showHome()" href="#" style="display: none">Serviços</a></li>
+				<li><a id="login" onclick="showLogin()" href="#">Login</a></li>
+				<li><a id="profile" onclick="showHome()" href="#" style="display: none">Profile</a></li>
 			</ul>
 		</nav>
-		<div id="login">
-			<form id="formLogin">
+		<p id="bemvindo"> Olá! Bem vindo ao nosso site! </p>
+		<div id="loginPage">
+			<form id="formLogin" style="display: none">
 				Login:
 				<input type="text" name="login" id="user">
 				<br>
@@ -46,10 +52,10 @@
 			</form>
 		</div>
 
-        <div id="admin">
+        <div id="admin" style="display: none">
         </div>
 
-        <div id="cliente">
+        <div id="cliente" style="display: none">
         </div>
         <script type="text/javascript" src="index.js"></script>
     </body>
