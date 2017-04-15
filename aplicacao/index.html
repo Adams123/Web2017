@@ -2,9 +2,13 @@
 <html>
 
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href= 'node_modules/fullcalendar/dist/fullcalendar.css'/>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>-->
+    <script src='node_modules/jquery/dist/jquery.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+    
     <script src='node_modules/moment/min/moment.min.js'></script>
     <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
     <script src='index.js'></script>
@@ -130,13 +134,29 @@
                 produtos!
             </div>
             <div id="calendarioCli" class="tab-pane fade">
-                <div id="Agenda">
-                    <div class="calendar"></div>
+                <div class="calendar"></div>
+
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <form action="" onsubmit="return false;">
+                        Nome do Pet:
+                        <input type="text" name="NomePet" value="Ex: Pipoca">
+                        <br> Serviço:
+                        <input type="text" name="Servico" value="Ex: Tosa">
+                        <br><br>
+                        <input type="submit" value="Agendar">
+                    </form>
+                </div>
+
                 </div>
             </div>
             <div id="profileCli" class="tab-pane fade">
                 <div id="pets">
-                    <h1> Cadastro de Pets: </h1>
+                    <h2> Cadastro de Pets: </h2>
                     <form action="" onsubmit="return false;">
                         Nome do Pet:
                         <input type="text" name="NomePet" value="Ex: Pipoca">

@@ -53,7 +53,7 @@ $(document).ready(function() {
                     end: '18:00',
                 },
                 allDaySlot: false,
-                slotDuration: '01:00:00',
+               // slotDuration: '01:00:00',
                 events: [{
                         title: 'Vacina Pet',
                         start: '2017-04-12T08:00:00',
@@ -62,20 +62,26 @@ $(document).ready(function() {
                     },
                     {
                         title: 'Banho Pet',
-                        start: '2017-04-10T12:00:00',
-                        end: '2017-04-10T13:00:00',
-                        allDay: false // will make the time show
-                    }
+                       start: '2017-04-10T12:00:00',
+                       end: '2017-04-10T13:00:00',
+                       allDay: false // will make the time show
+                   }
                 ],
                 dayClick: function(date, jsEvent, view) {
                     alert('Clicked on: ' + date.format('DD/MM/YYYY HH:mm'));
-                    //events.push({title  : 'Banho Pet',
-                    //    start  : '2017-04-13T12:00:00',
-                    //   end    : '2017-04-13T13:00:00'});
-                    //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-                    //alert('Current view: ' + view.name);
-                    // change the day's background color just for fun
-                    //$(this).css('background-color', 'red');
+                    
+                    // Get the modal
+                    var modal = document.getElementById('myModal');
+                   // modal.getElementB('p').innerHTML = date.format('DD/MM/YYYY HH:mm');​
+                    modal.style.display = "block";
+
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName("close")[0];
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+
                 }
             })
         });
+
