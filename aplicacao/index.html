@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src='node_modules/jquery/dist/jquery.min.js'></script>
+        <script src='node_modules/moment/min/moment.min.js'></script>
+        script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
+        <script>
+            $(document).ready(function(){
+                $('#calendar').fullCalendar({
+                    weekends: false,
+                    view: agendaWeek
+                })
+            });
+        </script>
 		<style>
 		ul {
 			list-style-type: none;
@@ -79,9 +90,13 @@
                 Foto:
                 <input type="file" name="FotoPet">
                 <br><br>
-                <input type="submit" value="Submit">
+                <input type="submit" value="Cadastrar">
             </form> 
         </div>
         <script type="text/javascript" src="index.js"></script>
+        
+        <div id="calendario" style="display: none">
+            <div id="calendar"></div>
+        </div>
     </body>
 </html>
