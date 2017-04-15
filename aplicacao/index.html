@@ -83,15 +83,73 @@
 				<a data-toggle2 href="#cadastrarSer">Cadastrar Serviço</a>
 				
 				<div data-toggable2 id="cadastrarCli">
+					<h2> Cadastrar Cliente: </h2>
+					Nome:
+					<input type="text" name="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
+					<br>CPF:
+					<input type="text" name="CPFCli" placeholder="Ex: 13552134360">
+					<br>Endereço:
+					<input type="text" name="EnderecoCli" placeholder="Ex: Av. São Carlos 1200">
+					<br>Foto:
+					<input type="file" name="FotoCli">
+					<br>Telefone:
+					<input type="tel" name="TelCli" placeholder="Ex: (16) 3418-2341">
+					<br>Email:
+					<input type="email" name="TelCli" placeholder="Ex: didiomedusa@gmail.com">
+					<br><br>
+					<input type="submit" value="Salvar">
 				</div>
 				
 				<div data-toggable2 id="cadastrarAdm">
+					<h2> Cadastrar Administrador: </h2>
+					Nome:
+					<input type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
+					<br>CPF:
+					<input type="text" name="CPFAdm" placeholder="Ex: 13552134360">
+					<br>Foto:
+					<input type="file" name="FotoAdm">
+					<br>Telefone:
+					<input type="tel" name="TelAdm" placeholder="Ex: (16) 3418-2341">
+					<br>Email:
+					<input type="email" name="TelAdm" placeholder="Ex: didiomedusa@gmail.com">
+					<br><br>
+					<input type="submit" value="Salvar">
 				</div>
 				
 				<div data-toggable2 id="cadastrarProd">
+					<h2> Cadastrar Produto: </h2>
+					Nome:
+					<input type="text" name="NomeProd" placeholder="Ex: Bolinha de cachorro">
+					<br>Código de Barras:
+					<input type="text" name="CodBarras" placeholder="Ex: 7897900310604">
+					<br>Foto:
+					<input type="file" name="FotoProd">
+					<br>Descrição:
+					<textarea name="DescProd" rows="4" cols="50" placeholder="Ex: Essa bolinha de cachorro espetacular e muito divertida vai fazer com que seu animal tenha muitas horas de alegria."></textarea>
+					<br>Preço:
+					<input type="number" step="0.01" name="PrecProd" placeholder="Ex: 15.00">
+					<br>Quantidade em Estoque:
+					<input type="number" name="QtdEstProd" placeholder="Ex: 10">
+					<br>Quantidade Vendida:
+					<input type="number" name="QtdVendProd" placeholder="Ex: 10">
+					<br><br>
+					<input type="submit" value="Salvar">
 				</div>
 				
 				<div data-toggable2 id="cadastrarSer">
+					<h2> Cadastrar Serviço: </h2>
+					Nome:
+					<input type="text" name="NomeServ" placeholder="Ex: Banho">
+					<br>ID do Serviço:
+					<input type="text" name="IdServ" placeholder="Ex: PC0000001">
+					<br>Foto:
+					<input type="file" name="FotoServ">
+					<br>Descrição:
+					<textarea name="DescServ" rows="4" cols="50" placeholder="Ex: Uma incrível chuva de limpeza que deixará seu animal limpinho e cheiroso."></textarea>
+					<br>Preço:
+					<input type="number" step="0.01" name="PrecServ" placeholder="Ex: 15.00">
+					<br><br>
+					<input type="submit" value="Salvar">
 				</div>
             </div>
 			
@@ -114,20 +172,18 @@
 
 				<div data-toggable2 id="editPerfilAdm">
 				    <h2> Editar Perfil: </h2>
-                    <!-- <form action="" onsubmit="return false;"> -->
                         Nome:
-                        <input type="text" name="NomeCli" value="Ex: Giovane Medusa Mocellin">
+                        <input type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
                         <br>CPF:
-                        <input type="text" name="CPFCli" value="Ex: 13552134360">
+                        <input type="text" name="CPFAdm" placeholder="Ex: 13552134360">
                         <br>Foto:
-                        <input type="file" name="FotoCli">
+                        <input type="file" name="FotoAdm">
 						<br>Telefone:
-                        <input type="text" name="TelCli" value="Ex: (16) 3418-2341">
+                        <input type="tel" name="TelAdm" placeholder="Ex: (16) 3418-2341">
 						<br>Email:
-                        <input type="text" name="TelCli" value="Ex: didiomedusa@gmail.com">
+                        <input type="email" name="TelAdm" placeholder="Ex: didiomedusa@gmail.com">
                         <br><br>
                         <input type="submit" value="Salvar">
-                    <!-- </form> -->
 				</div>
 				
 				<div data-toggable2 id="listGainsAdm">
@@ -197,9 +253,9 @@
                     <span class="close">&times;</span>
                     <form action="" onsubmit="return false;">
                         Nome do Pet:
-                        <input type="text" name="NomePet" value="Ex: Pipoca">
+                        <input type="text" name="NomePet" placeholder="Ex: Pipoca">
                         <br> Serviço:
-                        <input type="text" name="Servico" value="Ex: Tosa">
+                        <input type="text" name="Servico" placeholder="Ex: Tosa">
                         <br><br>
                         <input type="submit" value="Agendar">
                     </form>
@@ -217,11 +273,11 @@
                     <h2> Cadastro de Pets: </h2>
                     <!-- <form action="" onsubmit="return false;"> -->
                         Nome do Pet:
-                        <input type="text" name="NomePet" value="Ex: Pipoca">
+                        <input type="text" name="NomePet" placeholder="Ex: Pipoca">
                         <br> Raça:
-                        <input type="text" name="RacaPet" value="Ex: Dalmata">
+                        <input type="text" name="RacaPet" placeholder="Ex: Dalmata">
                         <br>Idade:
-                        <input type="number" name="IdadePet" value="7">
+                        <input type="number" name="IdadePet" placeholder="7">
                         <br>Foto:
                         <input type="file" name="FotoPet">
                         <br><br>
@@ -236,17 +292,17 @@
 				    <h2> Editar Perfil: </h2>
                     <!-- <form action="" onsubmit="return false;"> -->
                         Nome:
-                        <input type="text" name="NomeCli" value="Ex: Giovane Medusa Mocellin">
+                        <input type="text" name="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
                         <br>CPF:
-                        <input type="text" name="CPFCli" value="Ex: 13552134360">
+                        <input type="text" name="CPFCli" placeholder="Ex: 13552134360">
                         <br>Endereço:
-                        <input type="text" name="EnderecoCli" value="Ex: Av. São Carlos 1200">
+                        <input type="text" name="EnderecoCli" placeholder="Ex: Av. São Carlos 1200">
                         <br>Foto:
                         <input type="file" name="FotoCli">
 						<br>Telefone:
-                        <input type="text" name="TelCli" value="Ex: (16) 3418-2341">
+                        <input type="text" name="TelCli" placeholder="Ex: (16) 3418-2341">
 						<br>Email:
-                        <input type="text" name="TelCli" value="Ex: didiomedusa@gmail.com">
+                        <input type="email" name="TelCli" placeholder="Ex: didiomedusa@gmail.com">
                         <br><br>
                         <input type="submit" value="Salvar">
                     <!-- </form> -->
