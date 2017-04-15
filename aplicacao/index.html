@@ -1,102 +1,166 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src='node_modules/jquery/dist/jquery.min.js'></script>
-        <script src='node_modules/moment/min/moment.min.js'></script>
-        <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
-        <script>
-            $(document).ready(function(){
-                $('#calendar').fullCalendar({
-                    weekends: false,
-                    view: agendaWeek
-                })
-            });
-        </script>
-		<style>
-		ul {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-			background-color: #333;
-		}
-		
-		li {
-			float: left;
-		}
-		
-		li a {
-			display: block;
-			color: white;
-			text-align: center;
-			padding: 14px 16px;
-			text-decoration: none;
-		}
-		
-		li a:hover {
-			background-color #111;
-		}
-		</style>
-    </head>
-    <body>
-		<nav>
-			<ul id="navigationBar">
-				<li><a id="home" onclick="showHome()" href="#">Home</a></li>
-				<li><a id="produtos" onclick="" href="#" style="display: none">Produtos</a></li>
-				<li><a id="calendario" onclick="" href="#" style="display: none">Calendário</a></li>
-				<li><a id="cadastrar" onclick="" href="#" style="display: none">Cadastrar</a></li>
-				<li><a id="servicos" onclick="" href="#" style="display: none">Serviços</a></li>
-				<li><a id="login" onclick="showLogin()" href="#">Login</a></li>
-				<li><a id="profile" onclick="showProfile()" href="#" style="display: none">Profile</a></li>
-				<li><a id="logout" onclick="showLogout()" href="#" style="display: none">Logout</a></li>
-			</ul>
-		</nav>
-		<p id="bemvindo"> Olá! Bem vindo ao nosso site! </p>
-		<div id="loginPage">
-			<form id="formLogin" style="display: none">
-				Login:
-				<input type="text" name="login" id="user">
-				<br>
-				Senha:
-				<input type="password" id="senha">
-				<br>
-				<button onclick="logon(document.getElementById('user').value, document.getElementById('senha').value)">Entrar</button>
-			</form>
-		</div>
-		
-		<div id="confirmacao" style="display: none">
-			Tem certeza?
-			<br>
-			<button onclick="confirmLogout(true)">Sim</button>
-			<button onclick="confirmLogout(false)">Não</button>
-		</div>
 
-        <div id="admin" style="display: none">
-        </div>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='node_modules/moment/min/moment.min.js'></script>
+    <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
+    <script src='index.js'></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
 
-        <div id="cliente" style="display: none">
+</head>
+
+<body>
+    <!--
+   EXPLICAÇÃO DO Q Q EU FIZ!
+   tirei praticamente todos os displays e deixei apenas nas divs "mães", q são as divs q contem cada navBar. Fiz o tab-content de acordo com as specs do bootstrap, q é vc colocar um href='X' e depois referencia em outra div da classe tab-content com id='X' e MAGICAMENTE quando vc clicar na tab vai aparecer o conteudo, não precisa ficar dando display=none.
+   -->
+
+    <div class="container-fluid" id="navBarHome" style="display:block">
+        <ul class="nav nav-tabs">
+            <li><a data-toggle="tab" href="#home">Home</a></li>
+            <li><a data-toggle="tab" href="#login">Login</a></li>
+        </ul>
+        <div class="tab-content" class="tab-pane fade">
+            <div id=home>
+                Olá! Bem vindo ao nosso site!
+                <!-- MEU DEUS DO CEU FAZ ESSA MERDA DESAPARECER PFV -->
+            </div>
+            <div id="login" class="tab-pane fade">
+                <form id="formLogin" onsubmit="return false;">
+                    <!-- return false senao vai recarregar a pagina VAI SE FUDE DEMOREI PRA DESCOBRIR ISSO-->
+                    Login:
+                    <input type="text" name="login" id="user">
+                    <br> Senha:
+                    <input type="password" id="senha">
+                    <br>
+                    <button onclick="logon(document.getElementById('user').value, document.getElementById('senha').value)">Entrar</button>
+                </form>
+            </div>
         </div>
-		
-        <div id="pets" style="display: none">
-            <h1> Cadastro de Pets: </h1>
-            <form action="">
-                Nome do Pet:
-                <input type="text" name="NomePet" placeholder="Ex: Pipoca">
-                <br>
-                Raça:
-                <input type="text" name="RacaPet" placeholder="Ex: Dalmata">
-                Idade:
-                <input type="number" name="IdadePet" placeholder="7">
-                Foto:
-                <input type="file" name="FotoPet">
-                <br><br>
-                <input type="submit" value="Cadastrar">
-            </form> 
+    </div>
+
+    <div class="container-fluid" id="navBarAdmin" style="display:none">
+        <ul class="nav nav-tabs">
+            <li><a data-toggle="tab" href="#homeAdm">Home</a></li>
+            <li><a data-toggle="tab" href="#produtosAdm">Produtos</a></li>
+            <li><a data-toggle="tab" href="#calendarioAdm">Calendário</a></li>
+            <div class="dropdown">
+               <li>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastrar
+                <span class="caret"></span> <!-- serve so pra criar a seta pra baixo-->
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#cadAdmins" data-toggle="tab">Admins</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#cadCli" data-toggle="tab">Clientes</a></li>
+                </ul>
+                </li>
+            </div>
+            <li><a data-toggle="tab" href="#servicosAdm">Serviços</a></li>
+            <li><a data-toggle="tab" href="#profileAdm">Profile</a></li>
+            <li><a data-toggle="tab" href="#logoutAdm" onclick="$('.confirm').show()">Logout</a></li>
+        </ul>
+        <div class="tab-content" class="tab-pane fade">
+            <div id=homeAdm>
+                Olá! Bem vindo ao nosso site!
+                <!-- MEU DEUS DO CEU FAZ ESSA MERDA DESAPARECER PFV -->
+            </div>
+            <div id="produtosAdm" class="tab-pane fade">
+                produtos!
+            </div>
+            <div id="calendarioAdm" class="tab-pane fade">
+                <div id="Agenda">
+                    <div class="calendar"></div>
+                </div>
+            </div>
+            <div id="cadAdmins" class="tab-pane fade">
+                cadastrar Admin!
+            </div>
+            <div id="cadCli" class="tab-pane fade">
+                cadastrar Cliente!
+            </div>
+            <div id="servicosAdm" class="tab-pane fade">
+                servicos!
+            </div>
+            <div id="profileAdm" class="tab-pane fade">
+                <div id="pets">
+                    <h1> Cadastro de Pets: </h1>
+                    <form action="" onsubmit="return false;">
+                        Nome do Pet:
+                        <input type="text" name="NomePet" value="Ex: Pipoca">
+                        <br> Raça:
+                        <input type="text" name="RacaPet" value="Ex: Dalmata">
+                        <br>Idade:
+                        <input type="number" name="IdadePet" value="7">
+                        <br>Foto:
+                        <input type="file" name="FotoPet">
+                        <br><br>
+                        <input type="submit" value="Cadastrar">
+                    </form>
+                </div>
+            </div>
+            <div id="logoutAdm" class="tab-pane fade">
+                <div id="confirmacao" class="confirm">
+                    Tem certeza?
+                    <br>
+                    <button onclick="confirmLogout(true)">Sim</button>
+                    <button onclick="confirmLogout(false)">Não</button>
+                </div>
+            </div>
         </div>
-        <script type="text/javascript" src="index.js"></script>
-        
-        <div id="calendario" style="display: none">
-            <div id="calendar"></div>
+    </div>
+
+    <div class="container-fluid" id="navBarCliente" style="display:none">
+        <ul class="nav nav-tabs">
+            <li><a data-toggle="tab" href="#homeCliente">Home</a></li>
+            <li><a data-toggle="tab" href="#produtosCli">Produtos</a></li>
+            <li><a data-toggle="tab" href="#calendarioCli">Calendário</a></li>
+            <li><a data-toggle="tab" href="#profileCli">Profile</a></li>
+            <li><a data-toggle="tab" href="#logoutCli" onclick="$('.confirm').show()">Logout</a></li>
+        </ul>
+        <div class="tab-content" class="tab-pane fade">
+            <div id=homeCliente>
+                Olá! Bem vindo ao nosso site!
+                <!-- MEU DEUS DO CEU FAZ ESSA MERDA DESAPARECER PFV -->
+            </div>
+            <div id="produtosCli" class="tab-pane fade">
+                produtos!
+            </div>
+            <div id="calendarioCli" class="tab-pane fade">
+                <div id="Agenda">
+                    <div class="calendar"></div>
+                </div>
+            </div>
+            <div id="profileCli" class="tab-pane fade">
+                <div id="pets">
+                    <h1> Cadastro de Pets: </h1>
+                    <form action="" onsubmit="return false;">
+                        Nome do Pet:
+                        <input type="text" name="NomePet" value="Ex: Pipoca">
+                        <br> Raça:
+                        <input type="text" name="RacaPet" value="Ex: Dalmata">
+                        <br>Idade:
+                        <input type="number" name="IdadePet" value="7">
+                        <br>Foto:
+                        <input type="file" name="FotoPet">
+                        <br><br>
+                        <input type="submit" value="Cadastrar">
+                    </form>
+                </div>
+            </div>
+            <div id="logoutCli" class="tab-pane fade">
+                <div id="confirmacao" class="confirm">
+                    Tem certeza?
+                    <br>
+                    <button onclick="confirmLogout(true)">Sim</button>
+                    <button onclick="confirmLogout(false)">Não</button>
+                </div>
+            </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
