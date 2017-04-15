@@ -4,6 +4,7 @@ function closeAll() {
 	document.getElementById("cliente").style.display = 'none';
 	document.getElementById("admin").style.display = 'none';
 	document.getElementById("confirmacao").style.display = 'none';
+	document.getElementById("pets").style.display = 'none';
 }
 
 function showLogin() {
@@ -23,6 +24,11 @@ function confirmLogout(choice) {
 	}
 	
 	showHome();
+}
+
+function showProfile() {
+	closeAll();
+	document.getElementById("pets").style.display = 'inline-block';
 }
 
 function showLogout() {
