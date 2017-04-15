@@ -1,6 +1,14 @@
+function closeAll() {
+	document.getElementById("formLogin").style.display = 'none';
+	document.getElementById("bemvindo").style.display = 'none';	
+	document.getElementById("cliente").style.display = 'none';
+	document.getElementById("admin").style.display = 'none';
+	document.getElementById("confirmacao").style.display = 'none';
+}
+
 function showLogin() {
+	closeAll();
 	document.getElementById("formLogin").style.display = 'inline-block';
-	document.getElementById("bemvindo").style.display = 'none';
 }
 
 function confirmLogout(choice) {
@@ -14,22 +22,17 @@ function confirmLogout(choice) {
 		document.getElementById("logout").style.display = 'none';
 	}
 	
-	document.getElementById("confirmacao").style.display = 'none';
 	showHome();
 }
 
 function showLogout() {
+	closeAll();
 	document.getElementById("confirmacao").style.display = 'inline-block';
-	document.getElementById("admin").style.display = 'none';
-	document.getElementById("cliente").style.display = 'none';
-	document.getElementById("bemvindo").style.display = 'none';
 }
 
 function showHome() {
-	document.getElementById("formLogin").style.display = 'none';
+	closeAll();
 	document.getElementById("bemvindo").style.display = 'inline-block';
-	document.getElementById("cliente").style.display = 'none';
-	document.getElementById("admin").style.display = 'none';
 }
 
 function navCliente() {
@@ -49,7 +52,7 @@ function navAdmin() {
 }
 
 function logon(nomeCliente, senhaCliente) {
-	document.getElementById("formLogin").style.display = 'none';
+	closeAll();
 
 	if (nomeCliente == 'admin' && senhaCliente == 'admin'){
 		loginAdmin();
