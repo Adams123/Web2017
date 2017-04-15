@@ -3,12 +3,7 @@
 
 <head>
     <link rel="stylesheet" href= 'node_modules/fullcalendar/dist/fullcalendar.css'/>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>-->
     <script src='node_modules/jquery/dist/jquery.min.js'></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   
-    
     <script src='node_modules/moment/min/moment.min.js'></script>
     <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
     <script src='index.js'></script>
@@ -22,17 +17,17 @@
    tirei praticamente todos os displays e deixei apenas nas divs "mães", q são as divs q contem cada navBar. Fiz o tab-content de acordo com as specs do bootstrap, q é vc colocar um href='X' e depois referencia em outra div da classe tab-content com id='X' e MAGICAMENTE quando vc clicar na tab vai aparecer o conteudo, não precisa ficar dando display=none.
    -->
 
-    <div class="container-fluid" id="navBarHome" style="display:block">
-        <ul class="nav nav-tabs">
-            <li><a data-toggle="tab" href="#home">Home</a></li>
-            <li><a data-toggle="tab" href="#login">Login</a></li>
+    <div id="navBarHome" style="display:block">
+        <ul>
+            <li><a data-toggle href="#home">Home</a></li>
+            <li><a data-toggle href="#login">Login</a></li>
         </ul>
-        <div class="tab-content" class="tab-pane fade">
-            <div id=home>
+        <div>
+            <div data-toggable id="home">
                 Olá! Bem vindo ao nosso site!
                 <!-- MEU DEUS DO CEU FAZ ESSA MERDA DESAPARECER PFV -->
             </div>
-            <div id="login" class="tab-pane fade">
+            <div data-toggable id="login">
                 <form id="formLogin" onsubmit="return false;">
                     <!-- return false senao vai recarregar a pagina VAI SE FUDE DEMOREI PRA DESCOBRIR ISSO-->
                     Login:
@@ -46,50 +41,36 @@
         </div>
     </div>
 
-    <div class="container-fluid" id="navBarAdmin" style="display:none">
-        <ul class="nav nav-tabs">
-            <li><a data-toggle="tab" href="#homeAdm">Home</a></li>
-            <li><a data-toggle="tab" href="#produtosAdm">Produtos</a></li>
-            <li><a data-toggle="tab" href="#calendarioAdm">Calendário</a></li>
-            <div class="dropdown">
-               <li>
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastrar
-                <span class="caret"></span> <!-- serve so pra criar a seta pra baixo-->
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#cadAdmins" data-toggle="tab">Admins</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#cadCli" data-toggle="tab">Clientes</a></li>
-                </ul>
-                </li>
-            </div>
-            <li><a data-toggle="tab" href="#servicosAdm">Serviços</a></li>
-            <li><a data-toggle="tab" href="#profileAdm">Profile</a></li>
-            <li><a data-toggle="tab" href="#logoutAdm" onclick="$('.confirm').show()">Logout</a></li>
+    <div id="navBarAdmin" style="display:none">
+        <ul>
+            <li><a data-toggle href="#homeAdm">Home</a></li>
+            <li><a data-toggle href="#produtosAdm">Produtos</a></li>
+            <li><a data-toggle href="#calendarioAdm">Calendário</a></li>
+			<li><a data-toggle href="#cadastrar">Cadastrar</a></li>
+            <li><a data-toggle href="#servicosAdm">Serviços</a></li>
+            <li><a data-toggle href="#profileAdm">Profile</a></li>
+            <li><a data-toggle href="#logoutAdm" onclick="$('.confirm').show()">Logout</a></li>
         </ul>
-        <div class="tab-content" class="tab-pane fade">
-            <div id=homeAdm>
+        <div>
+            <div data-toggable id=homeAdm>
                 Olá! Bem vindo ao nosso site!
                 <!-- MEU DEUS DO CEU FAZ ESSA MERDA DESAPARECER PFV -->
             </div>
-            <div id="produtosAdm" class="tab-pane fade">
+            <div data-toggable id="produtosAdm">
                 produtos!
             </div>
-            <div id="calendarioAdm" class="tab-pane fade">
+            <div data-toggable id="calendarioAdm">
                 <div id="Agenda">
                     <div class="calendar"></div>
                 </div>
             </div>
-            <div id="cadAdmins" class="tab-pane fade">
-                cadastrar Admin!
+            <div data-toggable id="cadastrar">
+                cadastrar!
             </div>
-            <div id="cadCli" class="tab-pane fade">
-                cadastrar Cliente!
-            </div>
-            <div id="servicosAdm" class="tab-pane fade">
+            <div data-toggable id="servicosAdm">
                 servicos!
             </div>
-            <div id="profileAdm" class="tab-pane fade">
+            <div data-toggable id="profileAdm">
                 <div id="pets">
                     <h1> Cadastro de Pets: </h1>
                     <form action="" onsubmit="return false;">
@@ -106,7 +87,7 @@
                     </form>
                 </div>
             </div>
-            <div id="logoutAdm" class="tab-pane fade">
+            <div data-toggable id="logoutAdm">
                 <div id="confirmacao" class="confirm">
                     Tem certeza?
                     <br>
@@ -117,20 +98,20 @@
         </div>
     </div>
 
-    <div class="container-fluid" id="navBarCliente" style="display:none">
-        <ul class="nav nav-tabs">
-            <li><a data-toggle="tab" href="#homeCliente">Home</a></li>
-            <li><a data-toggle="tab" href="#produtosCli">Produtos</a></li>
-            <li><a data-toggle="tab" href="#calendarioCli">Calendário</a></li>
-            <li><a data-toggle="tab" href="#profileCli">Profile</a></li>
-            <li><a data-toggle="tab" href="#logoutCli" onclick="$('.confirm').show()">Logout</a></li>
+    <div id="navBarCliente" style="display:none">
+        <ul>
+            <li><a data-toggle href="#homeCliente">Home</a></li>
+            <li><a data-toggle href="#produtosCli">Produtos</a></li>
+            <li><a data-toggle href="#calendarioCli">Calendário</a></li>
+            <li><a data-toggle href="#profileCli">Profile</a></li>
+            <li><a data-toggle href="#logoutCli" onclick="$('.confirm').show()">Logout</a></li>
         </ul>
-        <div class="tab-content" class="tab-pane fade">
-            <div id=homeCliente>
+        <div>
+            <div data-toggable id=homeCliente>
                 Olá! Bem vindo ao nosso site!
                 <!-- MEU DEUS DO CEU FAZ ESSA MERDA DESAPARECER PFV -->
             </div>
-            <div id="produtosCli" class="tab-pane fade">
+            <div data-toggable id="produtosCli">
                 produtos!
                 <br><br>
                 <table>
@@ -162,7 +143,7 @@
                     </tr>
                 </table>
             </div>
-            <div id="calendarioCli" class="tab-pane fade">
+            <div data-toggable id="calendarioCli">
                 <div class="calendar"></div>
 
                 <!-- The Modal -->
@@ -183,7 +164,7 @@
 
                 </div>
             </div>
-            <div id="profileCli" class="tab-pane fade">
+            <div data-toggable id="profileCli">
                 <div id="pets">
                     <h2> Cadastro de Pets: </h2>
                     <form action="" onsubmit="return false;">
@@ -200,7 +181,7 @@
                     </form>
                 </div>
             </div>
-            <div id="logoutCli" class="tab-pane fade">
+            <div data-toggable id="logoutCli">
                 <div id="confirmacao" class="confirm">
                     Tem certeza?
                     <br>

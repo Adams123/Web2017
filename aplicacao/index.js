@@ -44,44 +44,56 @@ function loginCliente(nomeCliente) {
 
 
 $(document).ready(function() {
-            $('.calendar').fullCalendar({
-                weekends: false,
-                defaultView: 'agendaWeek',
-                businessHours: {
-                    dow: [1, 2, 3, 4, 5], // Monday - Friday
-                    start: '08:00',
-                    end: '18:00',
-                },
-                allDaySlot: false,
-               // slotDuration: '01:00:00',
-                events: [{
-                        title: 'Vacina Pet',
-                        start: '2017-04-12T08:00:00',
-                        end: '2017-04-12T09:00:00',
-                        allDay: false // will make the time show
-                    },
-                    {
-                        title: 'Banho Pet',
-                       start: '2017-04-10T12:00:00',
-                       end: '2017-04-10T13:00:00',
-                       allDay: false // will make the time show
-                   }
-                ],
-                dayClick: function(date, jsEvent, view) {
-                    alert('Clicked on: ' + date.format('DD/MM/YYYY HH:mm'));
-                    
-                    // Get the modal
-                    var modal = document.getElementById('myModal');
-                   // modal.getElementB('p').innerHTML = date.format('DD/MM/YYYY HH:mm');​
-                    modal.style.display = "block";
+	var toggable = $("[data-toggable]");
+	$("[data-toggle]").each(function(){
+		var tab = $($( this ).attr('href'));
+		$( this ).click(function(){
+		  toggable.hide();
+		  tab.show();
+		});
+	});
 
-                    // Get the <span> element that closes the modal
-                    var span = document.getElementsByClassName("close")[0];
-                    span.onclick = function() {
-                        modal.style.display = "none";
-                    }
+	toggable.hide();
+	$("#home").show();
+  
+	$('.calendar').fullCalendar({
+		weekends: false,
+		defaultView: 'agendaWeek',
+		businessHours: {
+			dow: [1, 2, 3, 4, 5], // Monday - Friday
+			start: '08:00',
+			end: '18:00',
+		},
+		allDaySlot: false,
+	   // slotDuration: '01:00:00',
+		events: [{
+				title: 'Vacina Pet',
+				start: '2017-04-12T08:00:00',
+				end: '2017-04-12T09:00:00',
+				allDay: false // will make the time show
+			},
+			{
+				title: 'Banho Pet',
+			   start: '2017-04-10T12:00:00',
+			   end: '2017-04-10T13:00:00',
+			   allDay: false // will make the time show
+		   }
+		],
+		dayClick: function(date, jsEvent, view) {
+			alert('Clicked on: ' + date.format('DD/MM/YYYY HH:mm'));
+			
+			// Get the modal
+			var modal = document.getElementById('myModal');
+		   // modal.getElementB('p').innerHTML = date.format('DD/MM/YYYY HH:mm');​
+			modal.style.display = "block";
 
-                }
-            })
-        });
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+			span.onclick = function() {
+				modal.style.display = "none";
+			}
+
+		}
+	})
+});
 
