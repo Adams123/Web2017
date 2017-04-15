@@ -10,19 +10,13 @@
     <script src='index.js'></script>
     <link rel="stylesheet" type="text/css" href="index.css">
 
-
-    <script>
-        $(document).ready(function() {
-            $('#calendar').fullCalendar({
-                weekends: false
-            })
-        });
-
-    </script>
-
 </head>
 
 <body>
+    <!--
+   EXPLICAÇÃO DO Q Q EU FIZ!
+   tirei praticamente todos os displays e deixei apenas nas divs "mães", q são as divs q contem cada navBar. Fiz o tab-content de acordo com as specs do bootstrap, q é vc colocar um href='X' e depois referencia em outra div da classe tab-content com id='X' e MAGICAMENTE quando vc clicar na tab vai aparecer o conteudo, não precisa ficar dando display=none.
+   -->
 
     <div class="container-fluid" id="navBarHome" style="display:block">
         <ul class="nav nav-tabs">
@@ -53,10 +47,21 @@
             <li><a data-toggle="tab" href="#homeAdm">Home</a></li>
             <li><a data-toggle="tab" href="#produtosAdm">Produtos</a></li>
             <li><a data-toggle="tab" href="#calendarioAdm">Calendário</a></li>
-            <li><a data-toggle="tab" href="#cadastrarAdm">Cadastrar</a></li>
+            <div class="dropdown">
+               <li>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastrar
+                <span class="caret"></span> <!-- serve so pra criar a seta pra baixo-->
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#cadAdmins" data-toggle="tab">Admins</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#cadCli" data-toggle="tab">Clientes</a></li>
+                </ul>
+                </li>
+            </div>
             <li><a data-toggle="tab" href="#servicosAdm">Serviços</a></li>
             <li><a data-toggle="tab" href="#profileAdm">Profile</a></li>
-            <li><a data-toggle="tab" href="#logoutAdm"  onclick="$('.confirm').show()">Logout</a></li>
+            <li><a data-toggle="tab" href="#logoutAdm" onclick="$('.confirm').show()">Logout</a></li>
         </ul>
         <div class="tab-content" class="tab-pane fade">
             <div id=homeAdm>
@@ -67,16 +72,35 @@
                 produtos!
             </div>
             <div id="calendarioAdm" class="tab-pane fade">
-                calendario!
+                <div id="Agenda">
+                    <div class="calendar"></div>
+                </div>
             </div>
-            <div id="cadastrarAdm" class="tab-pane fade">
-                cadastrar!
+            <div id="cadAdmins" class="tab-pane fade">
+                cadastrar Admin!
+            </div>
+            <div id="cadCli" class="tab-pane fade">
+                cadastrar Cliente!
             </div>
             <div id="servicosAdm" class="tab-pane fade">
                 servicos!
             </div>
             <div id="profileAdm" class="tab-pane fade">
-                profile!
+                <div id="pets">
+                    <h1> Cadastro de Pets: </h1>
+                    <form action="" onsubmit="return false;">
+                        Nome do Pet:
+                        <input type="text" name="NomePet" value="Ex: Pipoca">
+                        <br> Raça:
+                        <input type="text" name="RacaPet" value="Ex: Dalmata">
+                        <br>Idade:
+                        <input type="number" name="IdadePet" value="7">
+                        <br>Foto:
+                        <input type="file" name="FotoPet">
+                        <br><br>
+                        <input type="submit" value="Cadastrar">
+                    </form>
+                </div>
             </div>
             <div id="logoutAdm" class="tab-pane fade">
                 <div id="confirmacao" class="confirm">
@@ -106,10 +130,26 @@
                 produtos!
             </div>
             <div id="calendarioCli" class="tab-pane fade">
-                calendario!
+                <div id="Agenda">
+                    <div class="calendar"></div>
+                </div>
             </div>
             <div id="profileCli" class="tab-pane fade">
-                profile!
+                <div id="pets">
+                    <h1> Cadastro de Pets: </h1>
+                    <form action="" onsubmit="return false;">
+                        Nome do Pet:
+                        <input type="text" name="NomePet" value="Ex: Pipoca">
+                        <br> Raça:
+                        <input type="text" name="RacaPet" value="Ex: Dalmata">
+                        <br>Idade:
+                        <input type="number" name="IdadePet" value="7">
+                        <br>Foto:
+                        <input type="file" name="FotoPet">
+                        <br><br>
+                        <input type="submit" value="Cadastrar">
+                    </form>
+                </div>
             </div>
             <div id="logoutCli" class="tab-pane fade">
                 <div id="confirmacao" class="confirm">
@@ -121,26 +161,6 @@
             </div>
         </div>
     </div>
-    <!--
-
-    <div id="pets" style="display: none">
-        <h1> Cadastro de Pets: </h1>
-        <form action="">
-            Nome do Pet:
-            <input type="text" name="NomePet" value="Ex: Pipoca">
-            <br> Raça:
-            <input type="text" name="RacaPet" value="Ex: Dalmata"> Idade:
-            <input type="number" name="IdadePet" value="7"> Foto:
-            <input type="file" name="FotoPet">
-            <br><br>
-            <input type="submit" value="Cadastrar">
-        </form>
-    </div>
-    <script type="text/javascript" src="index.js"></script>
-
-    <div id="Agenda" style="display: inline-block">
-        <div id="calendar"></div>
-    </div>-->
 </body>
 
 </html>
