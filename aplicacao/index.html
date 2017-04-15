@@ -8,11 +8,49 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color #111;
+        }
+
+    </style>
 </head>
 
 <body>
-    <div id="login" style="display: block">
-        <form id="formLogin">
+    <nav>
+        <ul id="navigationBar">
+            <li><a id="home" onclick="showHome()" href="#">Home</a></li>
+            <li><a id="produtos" onclick="showHome()" href="#" style="display: none">Produtos</a></li>
+            <li><a id="calendario" onclick="showHome()" href="#" style="display: none">Calendário</a></li>
+            <li><a id="cadastrar" onclick="showHome()" href="#" style="display: none">Cadastrar</a></li>
+            <li><a id="servicos" onclick="showHome()" href="#" style="display: none">Serviços</a></li>
+            <li><a id="login" onclick="showLogin()" href="#">Login</a></li>
+            <li><a id="profile" onclick="showHome()" href="#" style="display: none">Profile</a></li>
+        </ul>
+    </nav>
+    <p id="bemvindo"> Olá! Bem vindo ao nosso site! </p>
+    <div id="loginPage">
+        <form id="formLogin" style="display: none">
             Login:
             <input type="text" name="login" id="user">
             <br> Senha:
@@ -37,7 +75,7 @@
                         </div>
                         <div class="tab-pane" id="cliente">
                             <table id="tableClientes" border="1">
-                              </table>
+                            </table>
                         </div>
                         <div class="tab-pane" id="produto">
                             Produto
@@ -46,6 +84,9 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="cliente" style="display: none">
     </div>
     <div id="cliente">
     </div>
