@@ -31,12 +31,13 @@
 		<nav>
 			<ul id="navigationBar">
 				<li><a id="home" onclick="showHome()" href="#">Home</a></li>
-				<li><a id="produtos" onclick="showHome()" href="#" style="display: none">Produtos</a></li>
-				<li><a id="calendario" onclick="showHome()" href="#" style="display: none">Calendário</a></li>
-				<li><a id="cadastrar" onclick="showHome()" href="#" style="display: none">Cadastrar</a></li>
-				<li><a id="servicos" onclick="showHome()" href="#" style="display: none">Serviços</a></li>
+				<li><a id="produtos" onclick="" href="#" style="display: none">Produtos</a></li>
+				<li><a id="calendario" onclick="" href="#" style="display: none">Calendário</a></li>
+				<li><a id="cadastrar" onclick="" href="#" style="display: none">Cadastrar</a></li>
+				<li><a id="servicos" onclick="" href="#" style="display: none">Serviços</a></li>
 				<li><a id="login" onclick="showLogin()" href="#">Login</a></li>
-				<li><a id="profile" onclick="showHome()" href="#" style="display: none">Profile</a></li>
+				<li><a id="profile" onclick="" href="#" style="display: none">Profile</a></li>
+				<li><a id="logout" onclick="showLogout()" href="#" style="display: none">Logout</a></li>
 			</ul>
 		</nav>
 		<p id="bemvindo"> Olá! Bem vindo ao nosso site! </p>
@@ -50,6 +51,13 @@
 				<br>
 				<button onclick="logon(document.getElementById('user').value, document.getElementById('senha').value)">Entrar</button>
 			</form>
+		</div>
+		
+		<div id="confirmacao" style="display: none">
+			Tem certeza?
+			<br>
+			<button onclick="confirmLogout(true)">Sim</button>
+			<button onclick="confirmLogout(false)">Não</button>
 		</div>
 
         <div id="admin" style="display: none">

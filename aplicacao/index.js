@@ -3,6 +3,28 @@ function showLogin() {
 	document.getElementById("bemvindo").style.display = 'none';
 }
 
+function confirmLogout(choice) {
+	if (choice == true) {
+		document.getElementById("produtos").style.display = 'none';
+		document.getElementById("calendario").style.display = 'none';
+		document.getElementById("cadastrar").style.display = 'none';
+		document.getElementById("servicos").style.display = 'none';
+		document.getElementById("login").style.display = 'inline-block';
+		document.getElementById("profile").style.display = 'none';
+		document.getElementById("logout").style.display = 'none';
+	}
+	
+	document.getElementById("confirmacao").style.display = 'none';
+	showHome();
+}
+
+function showLogout() {
+	document.getElementById("confirmacao").style.display = 'inline-block';
+	document.getElementById("admin").style.display = 'none';
+	document.getElementById("cliente").style.display = 'none';
+	document.getElementById("bemvindo").style.display = 'none';
+}
+
 function showHome() {
 	document.getElementById("formLogin").style.display = 'none';
 	document.getElementById("bemvindo").style.display = 'inline-block';
@@ -15,6 +37,7 @@ function navCliente() {
 	document.getElementById("calendario").style.display = 'inline-block';
 	document.getElementById("login").style.display = 'none';
 	document.getElementById("profile").style.display = 'inline-block';
+	document.getElementById("logout").style.display = 'inline-block';
 }
 
 function navAdmin() {
@@ -22,11 +45,11 @@ function navAdmin() {
 	document.getElementById("servicos").style.display = 'inline-block';
 	document.getElementById("login").style.display = 'none';
 	document.getElementById("profile").style.display = 'inline-block';
+	document.getElementById("logout").style.display = 'inline-block';
 }
 
 function logon(nomeCliente, senhaCliente) {
-	let divLogin = document.getElementById("formLogin");
-	divLogin.outerHTML = "";
+	document.getElementById("formLogin").style.display = 'none';
 
 	if (nomeCliente == 'admin' && senhaCliente == 'admin'){
 		loginAdmin();
