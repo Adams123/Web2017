@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href= 'node_modules/fullcalendar/dist/fullcalendar.css'/>
+    <link rel="stylesheet" href='node_modules/fullcalendar/dist/fullcalendar.css' />
     <script src='node_modules/jquery/dist/jquery.min.js'></script>
     <script src='node_modules/moment/min/moment.min.js'></script>
     <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
@@ -39,7 +39,7 @@
             <li><a data-toggle href="#homeAdm">Home</a></li>
             <li><a data-toggle href="#produtosAdm">Produtos</a></li>
             <li><a data-toggle href="#calendarioAdm">Calendário</a></li>
-			<li><a data-toggle href="#cadastrar">Cadastrar</a></li>
+            <li><a data-toggle href="#cadastrar">Cadastrar</a></li>
             <li><a data-toggle href="#servicosAdm">Serviços</a></li>
             <li><a data-toggle href="#profileAdm">Profile</a></li>
             <li><a data-toggle href="#logoutAdm" onclick="$('.confirm').show()">Logout</a></li>
@@ -48,90 +48,186 @@
             <div data-toggable id=homeAdm>
                 Olá! Bem vindo ao nosso site!
             </div>
-			
+
             <div data-toggable id="produtosAdm">
                 <h2> O que deseja fazer? </h2>
-				<a data-toggle2 href="#addProd">Adicionar Produto</a>
-				<a data-toggle2 href="#attProd">Atualizar Produto</a>
-				<a data-toggle2 href="#delProd">Apagar Produto</a>
-				<a data-toggle2 href="#listProd">Consultar Produto</a>
-				
-				<div data-toggable2 id="addProd">
-				</div>
-				
-				<div data-toggable2 id="attProd">
-				</div>
-				
-				<div data-toggable2 id="delProd">
-				</div>
-				
-				<div data-toggable2 id="listProd">
-				</div>
-			</div>
-			
+                <a data-toggle2 href="#addProd">Adicionar Produto</a>
+                <a data-toggle2 href="#attProd">Atualizar Produto</a>
+                <a data-toggle2 href="#delProd">Apagar Produto</a>
+                <a data-toggle2 href="#listProd">Consultar Produto</a>
+
+                <div data-toggable2 id="addProd">
+                    <h2>Adicionar produto:</h2>
+                    Nome:<input type="text" name="nomeProdAdd" Placeholder="Ração"></input>
+                    <br>ID:
+                    <input type="number" name="idProdAdd" Placeholder="1"></input>
+                    <br>Foto:
+                    <input type="file" name="fotoProdAdd"></input>
+                    <br>Descricao:
+                    <input type="textarea" name="descricaoProdAdd" Placeholder="Ração pra porco" style="width: 300px;"></input>
+                    <br>Preço:
+                    <input type="number" name="precoProdAdd" step="0.01" Placeholder="3.54"></input>
+                    <br>Quantidade em estoque:
+                    <input type="number" name="quantProdAdd" Placeholder="23"></input>
+                    <br>Quantidade vendida:
+                    <input type="number" name="vendasProdAdd" Placeholder="11"></input>
+                    <br><br>
+                    <input type="submit" value="Cadastrar">
+                </div>
+
+                <div data-toggable2 id="attProd">
+                    <h2>Atualizar produto:</h2>
+                    ID:
+                    <input type="number" name="idProdAtt" Placeholder="1"></input>
+                    <br><br>
+                    <input type="submit" value="Pesquisar">
+                    <br> Nome:
+
+                    <input type="text" name="nomeProdAtt"></input>
+                    <br>Foto:
+                    <input type="file" name="fotoProdAtt"></input>
+                    <br>Descricao:
+                    <input type="textarea" name="descricaoProdAtt" style="width: 300px;"></input>
+                    <br>Preço:
+                    <input type="number" name="precoProdAtt" step="0.01"></input>
+                    <br>Quantidade em estoque:
+                    <input type="number" name="quantProdAtt"></input>
+                    <br>Quantidade vendida:
+                    <input type="number" name="vendasProdAtt"></input>
+                    <br><br>
+                    <input type="submit" value="Remover">
+                </div>
+
+                <div data-toggable2 id="delProd">
+                    <h2>Apagar produto:</h2>
+                    ID:
+                    <input type="number" name="idProdDel" Placeholder="1"></input>
+                    <br><br>
+                    <input type="submit" value="Pesquisar">
+                    <br> Nome:
+
+                    <input type="text" name="nomeProdDel" Placeholder="Ração"></input>
+                    <br>Foto:
+                    <input type="file" name="fotoProdDel"></input>
+                    <br>Descricao:
+                    <input type="textarea" name="descricaoProdDel" Placeholder="Ração pra porco" style="width: 300px;"></input>
+                    <br>Preço:
+                    <input type="number" name="precoProdDel" step="0.01" Placeholder="3.54"></input>
+                    <br>Quantidade em estoque:
+                    <input type="number" name="quantProdDel" Placeholder="23"></input>
+                    <br>Quantidade vendida:
+                    <input type="number" name="vendasProdDel" Placeholder="11"></input>
+                    <br>
+                    <br>
+                    <input type="submit" value="Remover">
+                </div>
+
+                <div data-toggable2 id="listProd">
+                    <h2>Listar produtos</h2>
+                    <table class="tg">
+                        <tr>
+                            <th class="tg-yw4l">Nome</th>
+                            <th class="tg-yw4l">ID</th>
+                            <th class="tg-yw4l">Foto</th>
+                            <th class="tg-yw4l">Descrição</th>
+                            <th class="tg-yw4l">Preço (kg)</th>
+                            <th class="tg-yw4l">Quantidade em estoque</th>
+                            <th class="tg-yw4l">Vendidos</th>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">Ração pra porco</td>
+                            <td class="tg-yw4l">0</td>
+                            <td class="tg-yw4l"><img src="http://www.feednavigator.com/var/plain_site/storage/images/publications/feed/feednavigator.com/r-d/canola-pig-growth/9227928-1-eng-GB/Canola-pig-growth_strict_xxl.jpg" style="width:100px;height:100px;"></img></td>
+                            <td class="tg-yw4l">Ração pronta para consumo de porcos em geral</td>
+                            <td class="tg-yw4l">98.00</td>
+                            <td class="tg-yw4l">100</td>
+                            <td class="tg-yw4l">2</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">Alpiste</td>
+                            <td class="tg-yw4l">1</td>
+                            <td class="tg-yw4l"><img src="http://www.inkanatural.com/public/imgarticulos/Image/Alpiste-blog.jpg" style="width:100px;height:100px;"></img></td>
+                            <td class="tg-yw4l">Alpiste para todos os tipos de aves</td>
+                            <td class="tg-yw4l">12.00</td>
+                            <td class="tg-yw4l">50</td>
+                            <td class="tg-yw4l">11</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">Insetos pra sapos</td>
+                            <td class="tg-yw4l">2</td>
+                            <td class="tg-yw4l"><img src="http://img.aws.ehowcdn.com/intl-620/ds-photo/getty/article/120/132/dv031020.jpg" style="width:100px;height:100px;"></img></td>
+                            <td class="tg-yw4l">Insetos semi-vivos para sapos e insetívoros</td>
+                            <td class="tg-yw4l">30.00</td>
+                            <td class="tg-yw4l">25</td>
+                            <td class="tg-yw4l">8</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
             <div data-toggable id="calendarioAdm">
                 <div id="Agenda">
                     <div class="calendar"></div>
                 </div>
             </div>
-			
+
             <div data-toggable id="cadastrar">
                 <h2> O que deseja fazer? </h2>
-				<a data-toggle2 href="#cadastrarCli">Cadastrar Cliente</a>
-				<a data-toggle2 href="#cadastrarAdm">Cadastrar Administrador</a>
-				<a data-toggle2 href="#cadastrarProd">Cadastrar Produto</a>
-				<a data-toggle2 href="#cadastrarSer">Cadastrar Serviço</a>
-				
-				<div data-toggable2 id="cadastrarCli">
-				</div>
-				
-				<div data-toggable2 id="cadastrarAdm">
-				</div>
-				
-				<div data-toggable2 id="cadastrarProd">
-				</div>
-				
-				<div data-toggable2 id="cadastrarSer">
-				</div>
+                <a data-toggle2 href="#cadastrarCli">Cadastrar Cliente</a>
+                <a data-toggle2 href="#cadastrarAdm">Cadastrar Administrador</a>
+                <a data-toggle2 href="#cadastrarProd">Cadastrar Produto</a>
+                <a data-toggle2 href="#cadastrarSer">Cadastrar Serviço</a>
+
+                <div data-toggable2 id="cadastrarCli">
+                </div>
+
+                <div data-toggable2 id="cadastrarAdm">
+                </div>
+
+                <div data-toggable2 id="cadastrarProd">
+                </div>
+
+                <div data-toggable2 id="cadastrarSer">
+                </div>
             </div>
-			
+
             <div data-toggable id="servicosAdm">
                 <h2> O que deseja fazer? </h2>
-				<a data-toggle2 href="#assocServ">Associar serviço a horário</a>
-				<a data-toggle2 href="#releaseServ">Liberar horário reservado</a>
-				
-				<div data-toggable2 id="assocServ">
-				</div>
-				
-				<div data-toggable2 id="releaseServ">
-				</div>
-            </div>
-			
-            <div data-toggable id="profileAdm">
-				<h2> O que deseja fazer? </h2>
-				<a data-toggle2 href="#editPerfilAdm">Editar Perfil</a>
-				<a data-toggle2 href="#listGainsAdm">Listar Ganhos</a>
+                <a data-toggle2 href="#assocServ">Associar serviço a horário</a>
+                <a data-toggle2 href="#releaseServ">Liberar horário reservado</a>
 
-				<div data-toggable2 id="editPerfilAdm">
-				    <h2> Editar Perfil: </h2>
+                <div data-toggable2 id="assocServ">
+                </div>
+
+                <div data-toggable2 id="releaseServ">
+                </div>
+            </div>
+
+            <div data-toggable id="profileAdm">
+                <h2> O que deseja fazer? </h2>
+                <a data-toggle2 href="#editPerfilAdm">Editar Perfil</a>
+                <a data-toggle2 href="#listGainsAdm">Listar Ganhos</a>
+
+                <div data-toggable2 id="editPerfilAdm">
+                    <h2> Editar Perfil: </h2>
                     <!-- <form action="" onsubmit="return false;"> -->
-                        Nome:
-                        <input type="text" name="NomeCli" value="Ex: Giovane Medusa Mocellin">
-                        <br>CPF:
-                        <input type="text" name="CPFCli" value="Ex: 13552134360">
-                        <br>Foto:
-                        <input type="file" name="FotoCli">
-						<br>Telefone:
-                        <input type="text" name="TelCli" value="Ex: (16) 3418-2341">
-						<br>Email:
-                        <input type="text" name="TelCli" value="Ex: didiomedusa@gmail.com">
-                        <br><br>
-                        <input type="submit" value="Salvar">
+                    Nome:
+                    <input type="text" name="NomeCli" value="Ex: Giovane Medusa Mocellin">
+                    <br>CPF:
+                    <input type="text" name="CPFCli" value="Ex: 13552134360">
+                    <br>Foto:
+                    <input type="file" name="FotoCli">
+                    <br>Telefone:
+                    <input type="text" name="TelCli" value="Ex: (16) 3418-2341">
+                    <br>Email:
+                    <input type="text" name="TelCli" value="Ex: didiomedusa@gmail.com">
+                    <br><br>
+                    <input type="submit" value="Salvar">
                     <!-- </form> -->
-				</div>
-				
-				<div data-toggable2 id="listGainsAdm">
-				</div>
+                </div>
+
+                <div data-toggable2 id="listGainsAdm">
+                </div>
             </div>
             <div data-toggable id="logoutAdm">
                 <div id="confirmacao" class="confirm">
@@ -164,8 +260,10 @@
                             <h3>Brinquedo Latoy Leitão Látex para Cães</h3>
                             <p>O Brinquedo Latoy Leitão Látex para Cães possui formato atrativo e cores vibrantes para diversão do seu amigo, e ainda é totalmente seguro, sua a matéria prima é 100% natural e a pintura é atóxica, além de resistente á mordidas. </p>
                         </td>
-                        <td><h3> R$24,00 </h3></td>
-                        <td> 
+                        <td>
+                            <h3> R$24,00 </h3>
+                        </td>
+                        <td>
                             Quantidade:
                             <input type="number" name="QtdProduto" value="1">
                         </td>
@@ -177,8 +275,10 @@
                             <h3>Tapete Gelado Jambo Mat Cool</h3>
                             <p>O Tapete Gelado Jambo Mat Cool é um colchonete de nylon, espuma e gel que funciona como uma opção refrescante para os Pets nos dias quentes. O gel interno que existe dentro do tapete é ativado com o peso do Pet deixando o produto com uma temperatura de até 6° abaixo da temperatura ambiente. A refrescância do tapetinho dura de 3 a 4 horas e após esse período basta deixar o tapetinho descansar por 30 minutos que ele estará novamente pronto para o uso. Não é necessário eletricidade, refrigeração ou repor água. Após um período prolongado de uso, deixe o tapete descansar por 30 minutos. </p>
                         </td>
-                        <td><h3> R$897,78 </h3></td>
-                        <td> 
+                        <td>
+                            <h3> R$897,78 </h3>
+                        </td>
+                        <td>
                             Quantidade:
                             <input type="number" name="QtdProduto" value="1">
                         </td>
@@ -192,65 +292,65 @@
                 <!-- The Modal -->
                 <div id="myModal" class="modal">
 
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <form action="" onsubmit="return false;">
-                        Nome do Pet:
-                        <input type="text" name="NomePet" value="Ex: Pipoca">
-                        <br> Serviço:
-                        <input type="text" name="Servico" value="Ex: Tosa">
-                        <br><br>
-                        <input type="submit" value="Agendar">
-                    </form>
-                </div>
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <form action="" onsubmit="return false;">
+                            Nome do Pet:
+                            <input type="text" name="NomePet" value="Ex: Pipoca">
+                            <br> Serviço:
+                            <input type="text" name="Servico" value="Ex: Tosa">
+                            <br><br>
+                            <input type="submit" value="Agendar">
+                        </form>
+                    </div>
 
                 </div>
             </div>
             <div data-toggable id="profileCli">
-				<h2> O que deseja fazer? </h2>
-				<a data-toggle2 href="#editPetsCli">Cadastrar Animais</a>
-				<a data-toggle2 href="#listPetsCli">Listar Animais</a>
-				<a data-toggle2 href="#editPerfilCli">Editar Perfil</a>
-				
+                <h2> O que deseja fazer? </h2>
+                <a data-toggle2 href="#editPetsCli">Cadastrar Animais</a>
+                <a data-toggle2 href="#listPetsCli">Listar Animais</a>
+                <a data-toggle2 href="#editPerfilCli">Editar Perfil</a>
+
                 <div data-toggable2 id="editPetsCli">
                     <h2> Cadastro de Pets: </h2>
                     <!-- <form action="" onsubmit="return false;"> -->
-                        Nome do Pet:
-                        <input type="text" name="NomePet" value="Ex: Pipoca">
-                        <br> Raça:
-                        <input type="text" name="RacaPet" value="Ex: Dalmata">
-                        <br>Idade:
-                        <input type="number" name="IdadePet" value="7">
-                        <br>Foto:
-                        <input type="file" name="FotoPet">
-                        <br><br>
-                        <input type="submit" value="Cadastrar">
+                    Nome do Pet:
+                    <input type="text" name="NomePet" value="Ex: Pipoca">
+                    <br> Raça:
+                    <input type="text" name="RacaPet" value="Ex: Dalmata">
+                    <br>Idade:
+                    <input type="number" name="IdadePet" value="7">
+                    <br>Foto:
+                    <input type="file" name="FotoPet">
+                    <br><br>
+                    <input type="submit" value="Cadastrar">
                     <!-- </form> -->
                 </div>
-				
-				<div data-toggable2 id="listPetsCli">
-				</div>
-				
-				<div data-toggable2 id="editPerfilCli">
-				    <h2> Editar Perfil: </h2>
+
+                <div data-toggable2 id="listPetsCli">
+                </div>
+
+                <div data-toggable2 id="editPerfilCli">
+                    <h2> Editar Perfil: </h2>
                     <!-- <form action="" onsubmit="return false;"> -->
-                        Nome:
-                        <input type="text" name="NomeCli" value="Ex: Giovane Medusa Mocellin">
-                        <br>CPF:
-                        <input type="text" name="CPFCli" value="Ex: 13552134360">
-                        <br>Endereço:
-                        <input type="text" name="EnderecoCli" value="Ex: Av. São Carlos 1200">
-                        <br>Foto:
-                        <input type="file" name="FotoCli">
-						<br>Telefone:
-                        <input type="text" name="TelCli" value="Ex: (16) 3418-2341">
-						<br>Email:
-                        <input type="text" name="TelCli" value="Ex: didiomedusa@gmail.com">
-                        <br><br>
-                        <input type="submit" value="Salvar">
+                    Nome:
+                    <input type="text" name="NomeCli" value="Ex: Giovane Medusa Mocellin">
+                    <br>CPF:
+                    <input type="text" name="CPFCli" value="Ex: 13552134360">
+                    <br>Endereço:
+                    <input type="text" name="EnderecoCli" value="Ex: Av. São Carlos 1200">
+                    <br>Foto:
+                    <input type="file" name="FotoCli">
+                    <br>Telefone:
+                    <input type="text" name="TelCli" value="Ex: (16) 3418-2341">
+                    <br>Email:
+                    <input type="text" name="TelCli" value="Ex: didiomedusa@gmail.com">
+                    <br><br>
+                    <input type="submit" value="Salvar">
                     <!-- </form> -->
-				</div>
+                </div>
             </div>
             <div data-toggable id="logoutCli">
                 <div id="confirmacao" class="confirm">
