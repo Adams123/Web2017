@@ -1,20 +1,26 @@
 function logon(nomeCliente, senhaCliente) {
-	let divLogin = document.getElementById("formLogin");
-	divLogin.outerHTML = "";
+    let divLogin = document.getElementById("formLogin");
+    divLogin.outerHTML = "";
 
-	if (nomeCliente == 'admin' && senhaCliente == 'admin'){
-		loginAdmin();
-	}else{
-		loginCliente(nomeCliente);
-	}
+    if (nomeCliente == 'admin' && senhaCliente == 'admin') {
+        loginAdmin();
+    } else {
+        loginCliente(nomeCliente);
+    }
 }
 
-function loginAdmin(){
-	let divAdmin = document.getElementById("admin");
-	divAdmin.innerHTML = "<h1>Bem vindo, Admin</h1>";
+function loginAdmin() {
+    let divAdmin = document.getElementById("admin");
+    divAdmin.style.visibility = 'visible';
 }
 
-function loginCliente(nomeCliente){
-	let divCliente = document.getElementById("cliente");
-	divCliente.innerHTML = "<h1>Bem vindo, "+ nomeCliente + "</h1>";
+function loginCliente(nomeCliente) {
+    let divCliente = document.getElementById("cliente");
+    divCliente.innerHTML = "<h1>Bem vindo, " + nomeCliente + "</h1>";
 }
+
+//faz com que quando clique em uma tab do admin ela exiba o conteudo
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    var target = this.href.split('#');
+    $('.nav a').filter('[href="#' + target[1] + '"]').tab('show');
+})
