@@ -2,7 +2,8 @@
 <html>
 
 <head>
-<script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="admin.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,7 +11,7 @@
 </head>
 
 <body>
-    <div id="login" style="visibility: visible">
+    <div id="login" style="display: block">
         <form id="formLogin">
             Login:
             <input type="text" name="login" id="user">
@@ -21,22 +22,22 @@
         </form>
     </div>
 
-    <div class="container-fluid" id="admin" style="visibility: hidden">
+    <div class="container-fluid" id="admin" style="display: none">
         <div class="row">
             <div class="col-md-12">
                 <label id="labelAdminNav">Gerenciamento Admin</label>
                 <div>
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#admin" data-toggle="tab">Adminstradores</a></li>
-                        <li><a href="#cliente" data-toggle="tab">Clientes</a></li>
+                        <li><a href="#cliente" data-toggle="tab" onclick="buildHtmlTable('#excelDataTable')">Clientes</a></li>
                         <li><a href="#produto" data-toggle="tab">Produtos</a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="admin">
-                        Admin
                         </div>
                         <div class="tab-pane" id="cliente">
-                            Cliente
+                            <table id="tableClientes" border="1">
+                              </table>
                         </div>
                         <div class="tab-pane" id="produto">
                             Produto

@@ -11,9 +11,9 @@ function logon(nomeCliente, senhaCliente) {
 
 function loginAdmin() {
     let divAdmin = document.getElementById("admin");
-    divAdmin.style.visibility = 'visible';
+    divAdmin.style.display = 'inline';
     let divLogin = document.getElementById("login");
-    divLogin.style.visibility = 'hidden';
+    divLogin.style.display = 'none';
 }
 
 function loginCliente(nomeCliente) {
