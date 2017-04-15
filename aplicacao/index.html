@@ -3,12 +3,11 @@
     <head>
         <script src='node_modules/jquery/dist/jquery.min.js'></script>
         <script src='node_modules/moment/min/moment.min.js'></script>
-        script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
+        <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
         <script>
             $(document).ready(function(){
                 $('#calendar').fullCalendar({
-                    weekends: false,
-                    view: agendaWeek
+                    weekends: false
                 })
             });
         </script>
@@ -95,7 +94,7 @@
         </div>
         <script type="text/javascript" src="index.js"></script>
         
-        <div id="calendario" style="display: none">
+        <div id="Agenda" style="display: inline-block">
             <div id="calendar"></div>
         </div>
     </body>
