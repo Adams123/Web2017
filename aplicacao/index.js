@@ -1,10 +1,8 @@
-function closeAll() {
-    document.getElementById("bemvindo").style.display = 'none';
-    document.getElementById("cliente").style.display = 'none';
-    document.getElementById("admin").style.display = 'none';
-    document.getElementById("confirmacao").style.display = 'none';
-    document.getElementById("pets").style.display = 'none';
-}
+// Membros do Grupo:
+// * Adams Vietro Codignotto da Silva - 6791943
+// * Antonio Pedro Lavezzo Mazzarolo - 8626232
+// * Gustavo Dutra Santana - 8532040
+// * Veronica Vannini - 8517369
 
 function confirmLogout(choice) {
     if (choice == true)
@@ -19,11 +17,6 @@ function confirmLogout(choice) {
     }
 }
 
-function showProfile() {
-    closeAll();
-    document.getElementById("pets").style.display = 'inline-block';
-}
-
 function logon(nomeCliente, senhaCliente) {
     if (nomeCliente == 'admin' && senhaCliente == 'admin') {
         loginAdmin();
@@ -33,11 +26,11 @@ function logon(nomeCliente, senhaCliente) {
 }
 
 function loginAdmin(){
-        $("#navBarHome").hide();
-        $("#navBarAdmin").show();
+    $("#navBarAdmin").show();
+    $("#navBarHome").hide();
 }
+
 function loginCliente(nomeCliente) {
-    let divCliente = document.getElementById("homeCliente");
     $("#navBarCliente").show();
     $("#navBarHome").hide();
 }
