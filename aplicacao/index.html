@@ -207,7 +207,7 @@
                     <input class="inputText" type="tel" name="TelCli" placeholder="Ex: (16) 3418-2341">
                     <br><label>Email:</label>
                     <input class="inputText" type="email" name="TelCli" placeholder="Ex: didiomedusa@gmail.com">
-                    <br><br>
+                    <br><br><br>
                     <input class="submits" type="submit" value="Cadastrar">
                 </div>
                 <!-- Cadastrar Administrador -->
@@ -223,7 +223,7 @@
                     <input class="inputText" type="tel" name="TelAdm" placeholder="Ex: (16) 3418-2341">
                     <br><label>Email:</label>
                     <input class="inputText" type="email" name="TelAdm" placeholder="Ex: didiomedusa@gmail.com">
-                    <br><br>
+                    <br><br><br>
                     <input class="submits" type="submit" value="Cadastrar">
                 </div>
                 <!-- Cadastrar Produto -->
@@ -243,8 +243,8 @@
                     <input class="inputText" type="number" name="QtdEstProd" placeholder="Ex: 10">
                     <br><label>Quantidade Vendida:</label>
                     <input class="inputText" type="number" name="QtdVendProd" placeholder="Ex: 10">
-                    <br><br>
-                    <label></label><input class="submits" type="submit" value="Cadastrar">
+                    <br><br><br><br><br><br><br>
+                    <input class="submits" type="submit" value="Cadastrar">
                 </div>
                 <!-- Cadastrar Serviço -->
                 <div data-toggable2 id="cadastrarSer" class="formSubmit">
@@ -259,7 +259,7 @@
                     <textarea name="DescServ" rows="4" cols="50" placeholder="Ex: Uma incrível chuva de limpeza que deixará seu animal limpinho e cheiroso."></textarea>
                     <br><label>Preço:</label>
                     <input class="inputText" type="number" step="0.01" name="PrecServ" placeholder="Ex: 15.00">
-                    <br><br><label></label>
+                    <br><br><br><br><br>
                     <input class="submits" type="submit" value="Cadastrar">
                 </div>
             </div>
@@ -301,7 +301,7 @@
                 <li><a data-toggle2 href="#listGainsAdm">Listar Ganhos</a></li>
 
                 <!-- Editar Perfil -->
-                <div class="formSubmit" data-toggable2 id="editPerfilAdm">
+                <div class="formSubmit" data-toggable2 id="editPerfilAdm"><br>
                     <h2> Editar Perfil: </h2>
                     <label>Nome:</label>
                     <input class="inputText" type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
@@ -313,7 +313,7 @@
                     <input class="inputText" type="tel" name="TelAdm" placeholder="Ex: (16) 3418-2341">
                     <br><label>Email:</label>
                     <input class="inputText" type="email" name="TelAdm" placeholder="Ex: didiomedusa@gmail.com">
-                    <br><br>
+                    <br><br><br>
                     <input class="submits" type="submit" value="Salvar">
                 </div>
                 <!-- Listar Ganhos -->
@@ -433,7 +433,7 @@
                             <h3> R$24,00 </h3>
                         </td>
                         <td>
-                            <input class="exibeInput" type="number" name="QtdProduto" value="1">
+                            <input class="preco" type="number" name="QtdProduto" value="1">
                         </td>
                         <td><input class="submits" type="submit" value="Adicionar ao Carrinho"> </td>
                     </tr>
@@ -447,7 +447,7 @@
                             <h3> R$897,78 </h3>
                         </td>
                         <td>
-                            <input class="exibeInput" type="number" name="QtdProduto" value="1">
+                            <input class="preco" type="number" name="QtdProduto" value="1">
                         </td>
                         <td><input class="submits" type="submit" value="Adicionar ao Carrinho"> </td>
                     </tr>
@@ -555,7 +555,7 @@
                                     <td>
                                         <h3>Nenhum</h3>
                                     </td>
-                                    <td><input type="text" name="precoProdAtt" value="R$0,00">
+                                    <td><input class="preco" type="text" name="precoProdAtt" value="R$0,00">
                                     </td>
                                 </tr>
                                 <tr>
@@ -573,7 +573,7 @@
                                     <td>
                                         <h3>Banho, Tosa, Vacina</h3>
                                     </td>
-                                    <td><input type="text" name="precoProdAtt" value="R$120,00">
+                                    <td><input class="preco" type="text" name="precoProdAtt" value="R$120,00">
                                     </td>
                                 </tr>
                             </table>
