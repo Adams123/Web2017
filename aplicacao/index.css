@@ -110,3 +110,15 @@ img {
 .forms{ /*todas as div contendo um form*/
 
 }
+
+#editPetsCli label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 100px;
+    text-align: left;
+}
+#editPetsCli input{
+  display: inline-block;
+  float: left;
+}
