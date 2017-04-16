@@ -1,7 +1,15 @@
 /* Membros do Grupo: */
+
+
 /* * Adams Vietro Codignotto da Silva - 6791943 */
+
+
 /* * Antonio Pedro Lavezzo Mazzarolo - 8626232 */
+
+
 /* * Gustavo Dutra Santana - 8532040 */
+
+
 /* * Veronica Vannini - 8517369 */
 
 ul {
@@ -33,22 +41,35 @@ li a:hover {
     margin-top: 0;
 }
 
+
 /* The Modal (background) */
+
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
 
+
 /* Modal Content */
+
 .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -57,7 +78,9 @@ li a:hover {
     width: 80%;
 }
 
+
 /* The Close Button */
+
 .close {
     color: #aaaaaa;
     float: right;
@@ -73,52 +96,115 @@ li a:hover {
 }
 
 img {
-  border-radius: 15px 15px;
+    border-radius: 15px 15px;
 }
 
-.navBarSup{ /* barras maiores superiores (as pretas)*/
-
-}
-.navBarInf{ /* barras menores quando tem várias opções (vários opções de cadastros, serviços e afins)*/
-
-}
-.logout{ /*div da tela de logout*/
-
+.navBarSup {
+    /* barras maiores superiores (as pretas)*/
 }
 
-.tabelas{ /*todas as tabelas*/
-
+.navBarInf {
+    /* barras menores quando tem várias opções (vários opções de cadastros, serviços e afins)*/
 }
-.divTables{ /*div de cada tabela*/
+
+.logout {
+    /*div da tela de logout*/
+}
+
+.tabelas {
+    /*todas as tabelas*/
+}
+
+.divTables {
+    /*div de cada tabela*/
     float: left;
 }
-#multTabelas{ /*div contendo mais de uma tabela*/
-    float:left; width:100%;
-}
-.exibeInput{ /*todos os inputs q são usados apenas para exibição de valores (nos listar por exemplo)*/
 
-}
-.inputText{ /*todos os texts contendo input (nome, cpf, qualquer coisa)*/
-
-}
-.inputFile{ /*todos os inputs de foto (área + botão)*/
-
-}
-.submits{ /*botões no geral (exceto de enviar arquivo)*/
-
-}
-.forms{ /*todas as div contendo um form*/
-
+#multTabelas {
+    /*div contendo mais de uma tabela*/
+    float: left;
+    width: 100%;
 }
 
-#editPetsCli label{
+.exibeInput {
+    /*todos os inputs q são usados apenas para exibição de valores (nos listar por exemplo)*/
+    width:30px;
+}
+
+.inputText {
+    /*todos os texts contendo input (nome, cpf, qualquer coisa)*/
+}
+
+.inputFile {
+    /*todos os inputs de foto (área + botão)*/
+}
+
+.submits {
+    /*botões no geral (exceto de enviar arquivo)*/
+}
+
+.forms {
+    /*todas as div contendo um form*/
+}
+
+.formSubmit label {
     display: inline-block;
     float: left;
     clear: left;
     width: 100px;
     text-align: left;
 }
-#editPetsCli input{
-  display: inline-block;
-  float: left;
+
+.formSubmit input {
+    display: inline-block;
+    float: left;
+}
+
+.formSubmit textArea {
+    display: inline-block;
+    float: left;
+}
+
+.longform label {
+    width: 180px;
+}
+
+.lucros {
+    display: flex;
+    align-items: center;
+}
+
+
+.tabelas {
+    color: #333;
+font-family: Helvetica, Arial, sans-serif;
+width: 640px;
+border-collapse:
+collapse; border-spacing: 0;
+}
+
+.tabelas td,
+th {
+    border: 1px solid transparent; /* No more visible border */
+height: 30px;
+transition: all 0.3s; /* Simple transition for hover effect */
+}
+
+
+.tabelas td {
+    background: #FAFAFA;
+text-align: center;
+}
+
+.tabelas th {
+   background: #DFDFDF; /* Darken header a bit */
+font-weight: bold;
+}
+.tabelas tr:nth-child(even) td { background: #F1F1F1; }
+
+.tabelas tr:nth-child(odd) td { background: #FEFEFE; }
+.tabelas tr td:hover { background: #666; color: #FFF; } /* Hover cell effect! */
+
+.tableProd{
+   margin: 0 auto; width: 960px;
 }
