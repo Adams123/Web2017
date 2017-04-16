@@ -19,8 +19,8 @@
 
 <body>
     <!-- Navegação antes de login -->
-    <div class="navBarSup" id="navBarHome" style="display:block">
-        <ul>
+    <div  id="navBarHome" style="display:block">
+        <ul class="navBarSup">
             <li><a data-toggle href="#home">Home</a></li>
             <li><a data-toggle href="#login">Login</a></li>
         </ul>
@@ -31,21 +31,21 @@
             </div>
             <!-- Login -->
             <div data-toggable id="login" class="formSubmit">
-                <form id="formLogin" onsubmit="return false;">
+                <!--<form id="formLogin" onsubmit="return false;">-->
                     <label>Login:</label>
                     <input class="inputText" type="text" name="login" id="user">
                     <br> <label>Senha:</label>
                     <input class="inputText" type="password" id="senha">
                     <br>
                     <button class="submits" onclick="logon(document.getElementById('user').value, document.getElementById('senha').value)">Entrar</button>
-                </form>
+                <!--</form>-->
             </div>
         </div>
     </div>
 
     <!-- Navegação do Administrador -->
-    <div class="navBarSup" id="navBarAdmin" style="display:none">
-        <ul>
+    <div  id="navBarAdmin" style="display:none">
+        <ul class="navBarSup">
             <li><a data-toggle href="#homeAdm">Home</a></li>
             <li><a data-toggle href="#produtosAdm">Produtos</a></li>
             <li><a data-toggle href="#calendarioAdm">Calendário</a></li>
@@ -62,13 +62,14 @@
             <!-- Produtos -->
             <div class="navBarInf" data-toggable id="produtosAdm">
                 <h2> O que deseja fazer? </h2>
-                <a data-toggle2 href="#addProd">Adicionar Produto</a>
-                <a data-toggle2 href="#attProd">Atualizar Produto</a>
-                <a data-toggle2 href="#delProd">Apagar Produto</a>
-                <a data-toggle2 href="#listProd">Consultar Produto</a>
+                <li><a data-toggle2 href="#addProd">Adicionar Produto</a></li>
+                <li><a data-toggle2 href="#attProd">Atualizar Produto</a></li>
+                <li><a data-toggle2 href="#delProd">Apagar Produto</a></li>
+                <li><a data-toggle2 href="#listProd">Consultar Produto</a></li>
 
                 <!-- Adicionar Produto -->
                 <div data-toggable2 id="addProd" class="formSubmit longform">
+                   <br>
                     <h2>Adicionar produto:</h2>
                     <label>Nome:</label><input class="inputText" type="text" name="nomeProdAdd" Placeholder="Ração">
                     <br><label>ID:</label>
@@ -88,6 +89,7 @@
                 </div>
                 <!-- Atualizar Produto -->
                 <div data-toggable2 id="attProd" class="formSubmit longform">
+                   <br>
                     <h2>Atualizar produto:</h2>
                     <label>ID:</label>
                     <input class="inputText" type="number" name="idProdAtt" Placeholder="1">
@@ -109,6 +111,7 @@
                 </div>
                 <!-- Remover Produto -->
                 <div data-toggable2 id="delProd" class="formSubmit longform">
+                   <br>
                     <h2>Apagar produto:</h2>
                     <label>ID:</label>
                     <input class="inputText" type="number" name="idProdDel" Placeholder="1">
@@ -132,7 +135,6 @@
                 </div>
                 <!-- Listar Produtos -->
                 <div data-toggable2 id="listProd">
-                    <h2>Listar produtos</h2>
                     <table class="tabelas tableProd" >
                        <tr>
                            <th>ID</th>
@@ -185,10 +187,10 @@
             <!-- Cadastrar -->
             <div class="navBarInf" data-toggable id="cadastrar">
                 <h2> O que deseja fazer? </h2>
-                <a data-toggle2 href="#cadastrarCli">Cadastrar Cliente</a>
-                <a data-toggle2 href="#cadastrarAdm">Cadastrar Administrador</a>
-                <a data-toggle2 href="#cadastrarProd">Cadastrar Produto</a>
-                <a data-toggle2 href="#cadastrarSer">Cadastrar Serviço</a>
+                <li><a data-toggle2 href="#cadastrarCli">Cadastrar Cliente</a></li>
+                <li><a data-toggle2 href="#cadastrarAdm">Cadastrar Administrador</a></li>
+                <li><a data-toggle2 href="#cadastrarProd">Cadastrar Produto</a></li>
+                <li><a data-toggle2 href="#cadastrarSer">Cadastrar Serviço</a></li>
 
                 <!-- Cadastrar Cliente -->
                 <div data-toggable2 id="cadastrarCli" class="formSubmit">
@@ -264,8 +266,8 @@
             <!-- Serviços -->
             <div class="navBarInf" data-toggable id="servicosAdm">
                 <h2> O que deseja fazer? </h2>
-                <a data-toggle2 href="#assocServ">Associar serviço a horário</a>
-                <a data-toggle2 href="#releaseServ">Liberar horário reservado</a>
+                <li><a data-toggle2 href="#assocServ">Associar serviço a horário</a></li>
+                <li><a data-toggle2 href="#releaseServ">Liberar horário reservado</a></li>
 
                 <!-- Associar Serviço -->
                 <div data-toggable2 id="assocServ" class="formSubmit">
@@ -295,8 +297,8 @@
             <!-- Perfil Administrador -->
             <div class="navBarInf" data-toggable id="profileAdm">
                 <h2> O que deseja fazer? </h2>
-                <a data-toggle2 href="#editPerfilAdm">Editar Perfil</a>
-                <a data-toggle2 href="#listGainsAdm">Listar Ganhos</a>
+                <li><a data-toggle2 href="#editPerfilAdm">Editar Perfil</a></li>
+                <li><a data-toggle2 href="#listGainsAdm">Listar Ganhos</a></li>
 
                 <!-- Editar Perfil -->
                 <div class="formSubmit" data-toggable2 id="editPerfilAdm">
@@ -397,8 +399,8 @@
     </div>
 
     <!-- Navegação Cliente -->
-    <div class="navBarSup" id="navBarCliente" style="display:none">
-        <ul>
+    <div  id="navBarCliente" style="display:none">
+        <ul class="navBarSup">
             <li><a data-toggle href="#homeCliente">Home</a></li>
             <li><a data-toggle href="#produtosCli">Produtos</a></li>
             <li><a data-toggle href="#carrinhoCli">Carrinho</a></li>
@@ -454,24 +456,31 @@
             <!-- Carrinho -->
             <div data-toggable id="carrinhoCli">
               <table class="tabelas tableProd">
+              <tr>
+                  <th>Foto</th>
+                  <th>Nome</th>
+                  <th>Quantidade</th>
+                  <th>Valor unitário</th>
+                  <th>Total</th>
+              </tr>
                <tr>
                    <td><img src="https://staticpetz.stoom.com.br/fotos/1469467300065.jpg" alt="" style="width:150px;height:150px;"></td>
                    <td><h3>Brinquedo Latoy Leitão Látex para Cães</h3></td>
-                   <td><input class="exibeInput" type="number" name="nomeProd" value="2" style="width:30px"></td>
-                   <td><input class="exibeInput" type="text" value="R$24,00"></td>
-                   <td><input class="exibeInput" type="text" value="R$48,00"></td>
+                   <td><input class="preco" type="number" name="nomeProd" value="2"></td>
+                   <td><input class="preco" type="text" value="R$24,00"></td>
+                   <td><input class="preco" type="text" value="R$48,00"></td>
                </tr>
                <tr>
                    <td><img src="https://staticpetz.stoom.com.br/fotos/1450897784351.jpg" alt="" style="width:150px;height:150px;"></td>
                    <td><h3>Tapete Gelado Jambo Mat Cool</h3></td>
                    <td>
-                   <input class="exibeInput" type="number" name="nomeProd" value="1" style="width:30px"></td>
-                   <td><input class="exibeInput" type="text" value="R$897,78"></td>
-                   <td><input class="exibeInput" type="text" value="R$897,78"></td>
+                   <input class="preco" type="number" name="nomeProd" value="1"></td>
+                   <td><input class="preco" type="text" value="R$897,78"></td>
+                   <td><input class="preco" type="text" value="R$897,78"></td>
                </tr>
               </table>
               <div style="float:right">Total<input value="R$921,78"></div><br>
-              <div style="position:absolute; left:85%; top:59%"><input type="submit" value="Esvaziar Carrinho"><input type="submit" value="Comprar"></div>
+              <div style="position:absolute; left:85%; top:68%"><input type="submit" value="Esvaziar Carrinho"><input type="submit" value="Comprar"></div>
 
             </div>
             <!-- Calendário -->
@@ -495,13 +504,16 @@
             </div>
             <!-- Perfil Cliente -->
             <div class="navBarInf" data-toggable id="profileCli">
+              <br>
+
                 <h2> O que deseja fazer? </h2>
-                <a data-toggle2 href="#editPetsCli">Cadastrar Animais</a>
-                <a data-toggle2 href="#listPetsCli">Listar Animais</a>
-                <a data-toggle2 href="#editPerfilCli">Editar Perfil</a>
+                <li><a data-toggle2 href="#editPetsCli">Cadastrar Animais</a></li>
+                <li><a data-toggle2 href="#listPetsCli">Listar Animais</a></li>
+                <li><a data-toggle2 href="#editPerfilCli">Editar Perfil</a></li>
 
                 <!-- Editar Pets -->
                 <div data-toggable2 id="editPetsCli" class="formSubmit">
+                   <br>
                     <h2> Cadastro de Pets: </h2>
                     <label>Nome do Pet: </label>
                     <input class="inputText" type="text" name="NomePet" placeholder="Ex: Pipoca">
@@ -570,6 +582,7 @@
                 </div>
                 <!-- Editar Perfil -->
                 <div data-toggable2 id="editPerfilCli" class="formSubmit">
+                   <br>
                     <h2> Editar Perfil: </h2>
                     <label>Nome:</label>
                     <input type="text" name="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
@@ -583,7 +596,7 @@
                     <input type="text" name="TelCli" placeholder="Ex: (16) 3418-2341">
                     <br><label>Email:</label>
                     <input type="email" name="TelCli" placeholder="Ex: didiomedusa@gmail.com">
-                    <br><br>
+                    <br><br><br>
                     <input class="submits" type="submit" value="Salvar">
                 </div>
             </div>

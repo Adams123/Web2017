@@ -11,10 +11,6 @@ function confirmLogout(choice) {
         $("#navBarAdmin").hide();
         $("#navBarCliente").hide();
     }
-    else
-    {
-        $('.confirm').hide();
-    }
 }
 
 function logon(nomeCliente, senhaCliente) {
