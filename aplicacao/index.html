@@ -6,9 +6,10 @@
 
 <!DOCTYPE html>
 <html>
-
+<html lang="en-us">
 <head>
     <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href='node_modules/fullcalendar/dist/fullcalendar.css' />
     <script src='node_modules/jquery/dist/jquery.min.js'></script>
     <script src='node_modules/moment/min/moment.min.js'></script>
@@ -26,7 +27,7 @@
         </ul>
         <div>
             <!-- Home -->
-            <div data-toggable id="home">
+            <div data-toggable id="home" class="welcome">
                 Olá! Bem vindo ao nosso site!
             </div>
             <!-- Login -->
@@ -193,7 +194,7 @@
                 <li><a data-toggle2 href="#cadastrarSer">Cadastrar Serviço</a></li>
 
                 <!-- Cadastrar Cliente -->
-                <div data-toggable2 id="cadastrarCli" class="formSubmit">
+                <div data-toggable2 id="cadastrarCli" class="formSubmit longform">
                     <h2> Cadastrar Cliente: </h2>
                     <label>Nome:</label>
                     <input class="inputText" type="text" name="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
@@ -211,7 +212,7 @@
                     <input class="submits" type="submit" value="Cadastrar">
                 </div>
                 <!-- Cadastrar Administrador -->
-                <div data-toggable2 id="cadastrarAdm" class="formSubmit">
+                <div data-toggable2 id="cadastrarAdm" class="formSubmit longform">
                     <h2> Cadastrar Administrador: </h2>
                     <label>Nome:</label>
                     <input class="inputText" type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
@@ -247,7 +248,7 @@
                     <input class="submits" type="submit" value="Cadastrar">
                 </div>
                 <!-- Cadastrar Serviço -->
-                <div data-toggable2 id="cadastrarSer" class="formSubmit">
+                <div data-toggable2 id="cadastrarSer" class="formSubmit longform">
                     <h2> Cadastrar Serviço: </h2>
                     <label>Nome:</label>
                     <input class="inputText" type="text" name="NomeServ" placeholder="Ex: Banho">
@@ -270,7 +271,7 @@
                 <li><a data-toggle2 href="#releaseServ">Liberar horário reservado</a></li>
 
                 <!-- Associar Serviço -->
-                <div data-toggable2 id="assocServ" class="formSubmit">
+                <div data-toggable2 id="assocServ" class="formSubmit longform">
                     <h2> Associar Serviço: </h2>
                     <label>Nome:</label>
                     <input class="inputText" type="text" name="NomeServ" placeholder="Ex: Banho">
@@ -282,7 +283,7 @@
                     <input class="submits" type="submit" value="Reservar">
                 </div>
                 <!-- Liberar Reserva -->
-                <div data-toggable2 id="releaseServ" class="formSubmit">
+                <div data-toggable2 id="releaseServ" class="formSubmit longform">
                     <h2> Desmarcar Serviço: </h2>
                     <label>Nome:</label>
                     <input class="inputText" type="text" name="NomeServ" placeholder="Ex: Banho">
@@ -301,7 +302,7 @@
                 <li><a data-toggle2 href="#listGainsAdm">Listar Ganhos</a></li>
 
                 <!-- Editar Perfil -->
-                <div class="formSubmit" data-toggable2 id="editPerfilAdm"><br>
+                <div class="formSubmit longform" data-toggable2 id="editPerfilAdm"><br>
                     <h2> Editar Perfil: </h2>
                     <label>Nome:</label>
                     <input class="inputText" type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
@@ -480,7 +481,7 @@
                </tr>
               </table>
               <div style="float:right">Total<input value="R$921,78"></div><br>
-              <div style="position:absolute; left:85%; top:68%"><input type="submit" value="Esvaziar Carrinho"><input type="submit" value="Comprar"></div>
+              <div style="clear: right; float: right"><input type="submit" value="Esvaziar Carrinho"><input type="submit" value="Comprar"></div>
 
             </div>
             <!-- Calendário -->
@@ -512,7 +513,7 @@
                 <li><a data-toggle2 href="#editPerfilCli">Editar Perfil</a></li>
 
                 <!-- Editar Pets -->
-                <div data-toggable2 id="editPetsCli" class="formSubmit">
+                <div data-toggable2 id="editPetsCli" class="formSubmit longform">
                    <br>
                     <h2> Cadastro de Pets: </h2>
                     <label>Nome do Pet: </label>
@@ -581,7 +582,7 @@
                     </div>
                 </div>
                 <!-- Editar Perfil -->
-                <div data-toggable2 id="editPerfilCli" class="formSubmit">
+                <div data-toggable2 id="editPerfilCli" class="formSubmit longform">
                    <br>
                     <h2> Editar Perfil: </h2>
                     <label>Nome:</label>
