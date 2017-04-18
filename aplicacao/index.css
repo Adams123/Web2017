@@ -13,7 +13,7 @@
 /* * Veronica Vannini - 8517369 */
 
 ul {
-	display: block;
+    display: block;
     list-style-type: none;
     margin: 0;
     padding: 1%;
@@ -22,7 +22,7 @@ ul {
 }
 
 li {
-	display: block;
+    display: block;
     float: left;
 }
 
@@ -31,8 +31,8 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-	box-sizing: inherit;
-	margin: 0 auto;
+    box-sizing: inherit;
+    margin: 0 auto;
 }
 
 li a:hover {
@@ -45,33 +45,20 @@ li a:hover {
 }
 
 
-/* The Modal (background) */
 
 .modal {
     display: none;
-    /* Hidden by default */
     position: fixed;
-    /* Stay in place */
     z-index: 1;
-    /* Sit on top */
     padding-top: 100px;
-    /* Location of the box */
     left: 0;
     top: 0;
     width: 100%;
-    /* Full width */
     height: 100%;
-    /* Full height */
     overflow: auto;
-    /* Enable scroll if needed */
     background-color: rgb(0, 0, 0);
-    /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
 }
-
-
-/* Modal Content */
 
 .modal-content {
     background-color: #fefefe;
@@ -80,9 +67,6 @@ li a:hover {
     border: 1px solid #888;
     width: 80%;
 }
-
-
-/* The Close Button */
 
 .close {
     color: #aaaaaa;
@@ -127,7 +111,6 @@ img {
     float: left;
     list-style: none;
     margin: 0px 10px 0 0px;
-    /*Remove to create tab effect*/
 }
 
 
@@ -147,17 +130,11 @@ img {
     vertical-align: middle;
     padding: 0 10px;
     background-color: #000000;
-    /*A basic background color is set incase the image will not load*/
-
     border: 1px solid #333333;
     border-bottom: none;
 }
-.logout label{
-
-}
+.logout label {}
 .divTables {
-    /*div de cada tabela*/
-
     float: left;
 }
 #multTabelas {
@@ -165,18 +142,12 @@ img {
     width: 100%;
 }
 .exibeInput {
-    /*todos os inputs q são usados apenas para exibição de valores (nos listar por exemplo)*/
     width: 60%;
-}
-.inputText {
-    /*todos os texts contendo input (nome, cpf, qualquer coisa)*/
-}
-.inputFile {
-    /*todos os inputs de foto (área + botão)*/
 }
 .submits {
     background: #4B99AD;
     /* padding: 8px 15px; */
+
     border: none;
     color: #fff;
 }
@@ -189,25 +160,25 @@ img {
     clear: left;
     width: 100%;
     text-align: left;
-    margin:0 0 3px 0;
-    padding:0px;
+    margin: 0 0 3px 0;
+    padding: 0px;
     font-weight: bold;
 }
-#login{
+#login {
     background: white;
-  width: 40%;
-  box-shadow: 0px 0px 20px rgba(#000, .7);
-  font-family: lato;
-  position: relative;
-  color: #333;
-  border-radius: 10px
+    width: 40%;
+    box-shadow: 0px 0px 20px rgba(#000, .7);
+    font-family: lato;
+    position: relative;
+    color: #333;
+    border-radius: 10px
 }
-#login label{
+#login label {
     margin: 5% 5%;
     display: inline-block;
     position: relative
 }
-#login input{
+#login input {
     display: block;
     width: 78%;
     margin: 0% 5%;
@@ -217,8 +188,7 @@ img {
     outline: none;
     border: 1px solid #ccc
 }
-#login button
-{
+#login button {
     position: relative;
     margin: 5% 5%;
     font-family: inherit;
@@ -233,8 +203,8 @@ img {
     cursor: pointer;
     transition: all 0.15s ease-in-out
 }
-.preco{
-    width:60%
+.preco {
+    width: 60%
 }
 .formSubmit input {
     display: inline-block;
@@ -244,38 +214,36 @@ img {
     display: inline-block;
     float: left;
 }
-.formSubmit input[type=submit], button
-{
-        background: #4B99AD;
+.formSubmit input[type=submit],
+button {
+    background: #4B99AD;
     padding: 8px 15px 8px 15px;
     border: none;
     color: #fff;
 }
-.formSubmit input[type=textarea], input[type=email], input[type=number]{
+.formSubmit input[type=textarea],
+input[type=email],
+input[type=number] {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    border:1px solid #BEBEBE;
+    border: 1px solid #BEBEBE;
     padding: 7px;
-    margin:0px;
+    margin: 0px;
     -webkit-transition: all 0.30s ease-in-out;
     -moz-transition: all 0.30s ease-in-out;
     -ms-transition: all 0.30s ease-in-out;
     -o-transition: all 0.30s ease-in-out;
     outline: none;
 }
-.formSubmit input[type=submit]:hover
-{
+.formSubmit input[type=submit]:hover {
     background: #4691A4;
-    box-shadow:none;
-    -moz-box-shadow:none;
-    -webkit-box-shadow:none;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
 }
-
 .longform label {
     width: 35%;
-	/* margin-left: auto; */
-	/* margin-right: auto; */
 }
 .lucros {
     display: flex;
@@ -291,11 +259,8 @@ img {
 .tabelas td,
 th {
     border: 1px solid transparent;
-    /* No more visible border */
-
     height: 30px;
     transition: all 0.3s;
-    /* Simple transition for hover effect */
 }
 .tabelas td {
     background: #FAFAFA;
@@ -317,14 +282,12 @@ th {
     background: #666;
     color: #FFF;
 }
-/* Hover cell effect! */
 .tableProd {
     margin: 0 auto;
     width: 100%;
 }
-
 .welcome {
-	width: 100%;
-	margin: 0 auto;
-	padding: 2%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2%;
 }
