@@ -16,15 +16,18 @@
     <script src='node_modules/moment/min/moment.min.js'></script>
     <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
     <script src='index.js'></script>
+    <script src='db.js'></script>
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
+
     <!-- Navegação antes de login -->
     <div id="navBarHome" style="display:block">
         <ul class="navBarSup">
             <li><a data-toggle href="#home">Home</a></li>
             <li><a data-toggle href="#login">Login</a></li>
+            <li><a data-toggle href="#coisas">Coisas</a></li>
         </ul>
         <div>
             <!-- Home -->
@@ -39,8 +42,14 @@
                 <br> <label>Senha:</label>
                 <input class="inputText" type="password" id="senha">
                 <br>
-                <button class="submits" onclick="logon(document.getElementById('user').value, document.getElementById('senha').value)">Entrar</button>
+                <button class="submits" onclick="checkAdmin(document.getElementById('user').value, document.getElementById('senha').value)">Entrar</button>
                 <!--</form>-->
+            </div>
+            <div data-toggable id="coisas">
+                 <button onclick="remove()">Deletar tudo</button>
+                 <button onclick="add()">Adicionar</button>
+                 <button onclick="read()">Listar1</button>
+                 <button onclick="readAll()">ListarTUTO</button>
             </div>
         </div>
     </div>
