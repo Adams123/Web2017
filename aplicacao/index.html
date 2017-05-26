@@ -16,7 +16,8 @@
     <script src='node_modules/moment/min/moment.min.js'></script>
     <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
     <script src='index.js'></script>
-    <script src='db.js'></script>
+    <script src='adminDB.js'></script>
+    <script src='clienteDB.js'></script>
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
@@ -46,10 +47,9 @@
                 <!--</form>-->
             </div>
             <div data-toggable id="coisas">
-                 <button onclick="remove()">Deletar tudo</button>
-                 <button onclick="add()">Adicionar</button>
-                 <button onclick="read()">Listar1</button>
-                 <button onclick="readAll()">ListarTUTO</button>
+                <button onclick="removeAll()">Deletar TUTO</button>
+                <button onclick="read()">Listar Prim</button>
+                <button onclick="readAll()">Listar TUTO</button>
             </div>
         </div>
     </div>
@@ -206,35 +206,35 @@
                 <div data-toggable2 id="cadastrarCli" class="formSubmit longform">
                     <h2> Cadastrar Cliente: </h2>
                     <label>Nome:</label>
-                    <input class="inputText" type="text" name="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
+                    <input class="inputText" type="text" name="NomeCli" id="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
                     <br><label>CPF:</label>
-                    <input class="inputText" type="text" name="CPFCli" placeholder="Ex: 13552134360">
+                    <input class="inputText" type="text" name="CPFCli" id="CPFCli" placeholder="Ex: 13552134360">
                     <br><label>Endereço:</label>
-                    <input class="inputText" type="text" name="EnderecoCli" placeholder="Ex: Av. São Carlos 1200">
+                    <input class="inputText" type="text" name="EnderecoCli" id="EnderecoCli" placeholder="Ex: Av. São Carlos 1200">
                     <br><label>Foto:</label>
-                    <input class="inputFile" type="file" name="FotoCli">
+                    <input class="inputFile" type="file" name="FotoCli" id="FotoCli" >
                     <br><label>Telefone:</label>
-                    <input class="inputText" type="tel" name="TelCli" placeholder="Ex: (16) 3418-2341">
+                    <input class="inputText" type="tel" name="TelCli" id="TelCli" placeholder="Ex: (16) 3418-2341">
                     <br><label>Email:</label>
-                    <input class="inputText" type="email" name="TelCli" placeholder="Ex: didiomedusa@gmail.com">
+                    <input class="inputText" type="email" name="EmailCli" id="EmailCli" placeholder="Ex: didiomedusa@gmail.com">
                     <br><br><br>
-                    <input class="submits" type="submit" value="Cadastrar">
+                    <input class="submits" type="submit" value="Cadastrar" onclick="addCliente(document.getElementById('NomeCli').value,document.getElementById('CPFCli').value,document.getElementById('EnderecoCli').value,document.getElementById('FotoCli').value,document.getElementById('TelCli').value,document.getElementById('EmailCli').value)">
                 </div>
                 <!-- Cadastrar Administrador -->
                 <div data-toggable2 id="cadastrarAdm" class="formSubmit longform">
                     <h2> Cadastrar Administrador: </h2>
                     <label>Nome:</label>
-                    <input class="inputText" type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
+                    <input class="inputText" type="text" name="NomeAdm" id="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
                     <br><label>CPF:</label>
-                    <input class="inputText" type="text" name="CPFAdm" placeholder="Ex: 13552134360">
+                    <input class="inputText" type="text" name="CPFAdm" id="CPFAdm" placeholder="Ex: 13552134360">
                     <br><label>Foto:</label>
-                    <input class="inputFile" type="file" name="FotoAdm">
+                    <input class="inputFile" type="file" id="FotoAdm" accept=".png,.jpeg,.jpg" name="FotoAdm">
                     <br><label>Telefone:</label>
-                    <input class="inputText" type="tel" name="TelAdm" placeholder="Ex: (16) 3418-2341">
+                    <input class="inputText" type="tel" id="TelAdm" name="TelAdm" placeholder="Ex: (16) 3418-2341">
                     <br><label>Email:</label>
-                    <input class="inputText" type="email" name="TelAdm" placeholder="Ex: didiomedusa@gmail.com">
+                    <input class="inputText" type="email" name="EmailAdm" id="EmailAdm" placeholder="Ex: didiomedusa@gmail.com">
                     <br><br><br>
-                    <input class="submits" type="submit" value="Cadastrar">
+                    <input class="submits" type="submit" onclick="addAdmin(document.getElementById('NomeAdm').value,document.getElementById('CPFAdm').value,document.getElementById('FotoAdm').value,document.getElementById('TelAdm').value,document.getElementById('EmailAdm').value)" value="Cadastrar">
                 </div>
                 <!-- Cadastrar Produto -->
                 <div data-toggable2 id="cadastrarProd" class="formSubmit longform">

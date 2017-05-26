@@ -16,8 +16,8 @@ function confirmLogout(choice) {
 }
 
 // verificacao de admin ou cliente
-function logon(nomeCliente, senhaCliente) {
-    if (nomeCliente == 'admin' && senhaCliente == 'admin') {
+function logon(nomeCliente, senhaCliente, admin) {
+    if (admin) {
         loginAdmin();
     } else {
         loginCliente(nomeCliente);
