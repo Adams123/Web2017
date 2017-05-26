@@ -16,6 +16,7 @@
     <script src='node_modules/moment/min/moment.min.js'></script>
     <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
     <script src='index.js'></script>
+    <script src='initDB.js'></script>
     <script src='adminDB.js'></script>
     <script src='clienteDB.js'></script>
     <link rel="stylesheet" type="text/css" href="index.css">
@@ -49,7 +50,9 @@
             <div data-toggable id="coisas">
                 <button onclick="removeAll()">Deletar TUTO</button>
                 <button onclick="read()">Listar Prim</button>
-                <button onclick="readAll()">Listar TUTO</button>
+                <button onclick="readAllCli()">Listar TUTO</button>
+                <button onclick="deleteDB()">Delete DB</button>
+
             </div>
         </div>
     </div>

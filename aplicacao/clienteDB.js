@@ -4,59 +4,12 @@ Antonio Pedro Lavezzo Mazzarolo - 8626232
 Gustavo Dutra Santana - 8532040
 Veronica Vannini - 8517369 */
 
-window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
-
-window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
-window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange
-
-if (!window.indexedDB) {
-    window.alert("Seu browser não suporta IndexedDB.")
-}
-
-
-var db;
-var dbSize;
-var clienteRequest = window.indexedDB.open("PetShopDB", 1);
-
-clienteRequest.onerror = function (event) {
-    console.log("error: ");
-};
-
-clienteRequest.onsuccess = function (event) {
-    db = clienteRequest.result;
-    console.log("Conectado");
-    var qnt = db.transaction(["clientes"], "readwrite")
-        .objectStore("clientes").count();
-
-    qnt.onsuccess = function () //verificando se há clientes cadastrados
-    {
-        dbSize = qnt.result;
-    }
-    qnt.onerror = function()
-    {
-        var objectStore = db.createObjectStore("clientes", {
-        keyPath: "id",
-        autoIncrement: true
-    });
-    }
-
-
-};
-
-clienteRequest.onupgradeneeded = function (event) {
-    var db = event.target.result;
-    var objectStore = db.createObjectStore("clientes", {
-        keyPath: "id",
-        autoIncrement: true
-    });
-}
-
 function addCliente(nome, cpf, endereco, foto, telefone, email) {
 
-    var clienteRequest = db.transaction(["clientes"], "readwrite")
+    requestDB = db.transaction(["clientes"], "readwrite")
         .objectStore("clientes")
         .add({
-            id: dbSize,
+            id: dbSizeCli,
             name: nome,
             endereco: endereco,
             pass: "cliente",
@@ -65,22 +18,25 @@ function addCliente(nome, cpf, endereco, foto, telefone, email) {
             telefone: telefone,
             email: email
         });
-    clienteRequest.onsuccess = function() {
-        console.log("Adicionado " + name + " com id " + dbSize);
-        dbSize = dbSize + 1;
+    requestDB.onsuccess = function () {
+        console.log("Adicionado " + name + " com id " + dbSizeCli);
+        dbSizeCli = dbSizeCli + 1;
+    }
+    requestDB.onerror = function () {
+        console.log("Erro: ");
     }
 }
 
 function readCli() {
     var transaction = db.transaction(["clientes"]);
     var objectStore = transaction.objectStore("clientes");
-    var clienteRequest = objectStore.get("0");
-    clienteRequest.onerror = function (event) {
+     requestDB = objectStore.get("0");
+    requestDB.onerror = function (event) {
         alert("Unable to retrieve data from database!");
     };
-    clienteRequest.onsuccess = function (event) {
-        if (clienteRequest.result) {
-            alert("Name: " + clienteRequest.result.name + ", Pass: " + clienteRequest.result.pass);
+    requestDB.onsuccess = function (event) {
+        if (requestDB.result) {
+            alert("Name: " + requestDB.result.name + ", Pass: " + requestDB.result.pass);
         } else {
             alert("Kenny couldn't be found in your database!");
         }

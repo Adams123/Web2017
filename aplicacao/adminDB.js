@@ -4,71 +4,13 @@ Antonio Pedro Lavezzo Mazzarolo - 8626232
 Gustavo Dutra Santana - 8532040
 Veronica Vannini - 8517369 */
 
-window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
-
-window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
-window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange
-
-if (!window.indexedDB) {
-    window.alert("Seu browser não suporta IndexedDB.")
-}
-
-const adminData = [
-    {
-        id: 1,
-        name: "admin",
-        pass: "admin",
-        cpf: "23132345411",
-        foto: "String",
-        telefone: "123123",
-        email: "teste@gmail.com"
-    }
-];
-
-
-var db;
-var dbSize;
-var adminRequest = window.indexedDB.open("PetShopDB", 1);
-
-adminRequest.onerror = function (event) {
-    console.log("error: ");
-};
-
-adminRequest.onsuccess = function (event) {
-    db = adminRequest.result;
-    console.log("Conectado");
-
-    var qnt = db.transaction(["admins"], "readwrite")
-        .objectStore("admins").count();
-
-    qnt.onsuccess = function () //verificando se há admins cadastrados
-    {
-        if (qnt.result == 0) {
-            db.transaction(["admins"], "readwrite")
-                .objectStore("admins").add(adminData[0]);
-            dbSize = qnt.result + 1;
-        } else
-            dbSize = qnt.result;
-    }
-};
-
-adminRequest.onupgradeneeded = function (event) {
-    var db = event.target.result;
-    var objectStore = db.createObjectStore("admins", {
-        keyPath: "id",
-        autoIncrement: true
-    });
-    for (var i in adminData) {
-        objectStore.add(adminData[i]);
-    }
-}
 
 function addAdmin(nome, cpf, foto, telefone, email) {
 
-    var adminRequest = db.transaction(["admins"], "readwrite")
+    requestDB = db.transaction(["admins"], "readwrite")
         .objectStore("admins")
         .add({
-            id: dbSize,
+            id: dbSizeAdm,
             name: nome,
             pass: "admin",
             cpf: cpf,
@@ -76,22 +18,26 @@ function addAdmin(nome, cpf, foto, telefone, email) {
             telefone: telefone,
             email: email
         });
-    adminRequest.onsuccess = function(){
-        console.log("Adicionado " + name + " com id " + dbSize);
-        dbSize = dbSize + 1;
+    requestDB.onsuccess = function(){
+        console.log("Adicionado " + name + " com id " + dbSizeAdm);
+        dbSizeAdm = dbSizeAdm + 1;
+    }
+    requestDB.onerror = function()
+    {
+        console.log("Erro");
     }
 }
 
 function read() {
     var transaction = db.transaction(["admins"]);
     var objectStore = transaction.objectStore("admins");
-    var adminRequest = objectStore.get("0");
-    adminRequest.onerror = function (event) {
+    requestDB = objectStore.get("0");
+    requestDB.onerror = function (event) {
         alert("Unable to retrieve data from database!");
     };
-    adminRequest.onsuccess = function (event) {
-        if (adminRequest.result) {
-            alert("Name: " + adminRequest.result.name + ", Pass: " + adminRequest.result.pass);
+    requestDB.onsuccess = function (event) {
+        if (requestDB.result) {
+            alert("Name: " + requestDB.result.name + ", Pass: " + requestDB.result.pass);
         } else {
             alert("Kenny couldn't be found in your database!");
         }
