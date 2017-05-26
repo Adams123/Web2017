@@ -4,12 +4,18 @@ Antonio Pedro Lavezzo Mazzarolo - 8626232
 Gustavo Dutra Santana - 8532040
 Veronica Vannini - 8517369 */
 
-function addCliente(nome, cpf, endereco, foto, telefone, email) {
+// Ta dando ruim isso aqui
+function addCliente() {
+	var nome = document.getElementById('NomeCli').value;
+	var cpf = document.getElementById('CPFCli').value;
+	var endereco = document.getElementById('EnderecoCli').value;
+	var foto = document.getElementById('FotoCli').value;
+	var telefone = document.getElementById('TelCli').value;
+	var email = document.getElementById('EmailCli').value;
 
     requestDB = db.transaction(["clientes"], "readwrite")
         .objectStore("clientes")
         .add({
-            id: dbSizeCli,
             name: nome,
             endereco: endereco,
             pass: "cliente",
@@ -19,11 +25,10 @@ function addCliente(nome, cpf, endereco, foto, telefone, email) {
             email: email
         });
     requestDB.onsuccess = function () {
-        console.log("Adicionado " + name + " com id " + dbSizeCli);
-        dbSizeCli = dbSizeCli + 1;
+        console.log("Adicionado " + name);
     }
     requestDB.onerror = function () {
-        console.log("Erro: ");
+        console.log("Erro");
     }
 }
 

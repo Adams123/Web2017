@@ -4,13 +4,17 @@ Antonio Pedro Lavezzo Mazzarolo - 8626232
 Gustavo Dutra Santana - 8532040
 Veronica Vannini - 8517369 */
 
-
-function addAdmin(nome, cpf, foto, telefone, email) {
+// Ta dando ruim isso aqui
+function addAdmin() {
+	var nome = document.getElementById('NomeAdm').value;
+	var cpf = document.getElementById('CPFAdm').value;
+	var foto = document.getElementById('FotoAdm').value;
+	var telefone = document.getElementById('TelAdm').value;
+	var email = document.getElementById('EmailAdm').value;
 
     requestDB = db.transaction(["admins"], "readwrite")
         .objectStore("admins")
         .add({
-            id: dbSizeAdm,
             name: nome,
             pass: "admin",
             cpf: cpf,
@@ -19,8 +23,7 @@ function addAdmin(nome, cpf, foto, telefone, email) {
             email: email
         });
     requestDB.onsuccess = function(){
-        console.log("Adicionado " + name + " com id " + dbSizeAdm);
-        dbSizeAdm = dbSizeAdm + 1;
+        console.log("Adicionado " + name);
     }
     requestDB.onerror = function()
     {
@@ -63,7 +66,9 @@ function removeAll() { //limpa todos os
     objectStore.clear();
 }
 
-function checkAdmin(nomeCliente, senhaCliente) {
+function checkAdmin() {
+	var nomeCliente = document.getElementById('user').value;
+	var senhaCliente = document.getElementById('senha').value;
     var objectStore = db.transaction("admins").objectStore("admins");
 
     objectStore.openCursor().onsuccess = function (event) {

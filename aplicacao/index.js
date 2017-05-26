@@ -10,8 +10,6 @@ function confirmLogout(choice) {
         $("#navBarHome").show();
         $("#navBarAdmin").hide();
         $("#navBarCliente").hide();
-    } else {
-
     }
 }
 
