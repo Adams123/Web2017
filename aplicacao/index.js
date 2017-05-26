@@ -4,6 +4,8 @@
 // * Gustavo Dutra Santana - 8532040
 // * Veronica Vannini - 8517369
 
+var whoIsNavigating;
+
 // Funcao para mudar a visualização ao fazer o logout
 function confirmLogout(choice) {
     if (choice == true) {
@@ -14,12 +16,13 @@ function confirmLogout(choice) {
 }
 
 // verificacao de admin ou cliente
-function logon(nomeCliente, senhaCliente, admin) {
-    if (admin) {
+function logon(cpf, isAdmin) {
+    if (isAdmin) {
         loginAdmin();
     } else {
-        loginCliente(nomeCliente);
+        loginCliente();
     }
+	whoIsNavigating = cpf;
 }
 
 
@@ -29,7 +32,7 @@ function loginAdmin() {
     $("#navBarHome").hide();
 }
 //configura exibicao para cliente
-function loginCliente(nomeCliente) {
+function loginCliente() {
     $("#navBarCliente").show();
     $("#navBarHome").hide();
 }
@@ -58,8 +61,6 @@ $(document).ready(function () {
     });
 
     toggable2.hide();
-
-
 
     //---------------- customizacao do plugin do calendário
     $('.calendar').fullCalendar({

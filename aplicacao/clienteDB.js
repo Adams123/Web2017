@@ -4,7 +4,6 @@ Antonio Pedro Lavezzo Mazzarolo - 8626232
 Gustavo Dutra Santana - 8532040
 Veronica Vannini - 8517369 */
 
-// Ta dando ruim isso aqui
 function addCliente() {
 	var nome = document.getElementById('NomeCli').value;
 	var cpf = document.getElementById('CPFCli').value;
@@ -15,7 +14,7 @@ function addCliente() {
 
     requestDB = db.transaction(["clientes"], "readwrite")
         .objectStore("clientes")
-        .add({
+        .put({
             name: nome,
             endereco: endereco,
             pass: "cliente",
@@ -24,11 +23,14 @@ function addCliente() {
             telefone: telefone,
             email: email
         });
+	
     requestDB.onsuccess = function () {
-        console.log("Adicionado " + name);
+        console.log("Adicionado " + nome);
+		alert(nome + " foi adicionado com sucesso!");
     }
     requestDB.onerror = function () {
         console.log("Erro");
+		alert("Falha ao adicionar " + nome + ".");
     }
 }
 
@@ -62,7 +64,7 @@ function readAllCli() {
     };
 }
 
-function removeAll() { //limpa todos os 
+function removeAllCli() { //limpa todos os 
     var objectStore = db.transaction(["clientes"], "readwrite").objectStore("clientes");
     objectStore.clear();
 }
@@ -74,7 +76,8 @@ function checkCliente(nomeCliente, senhaCliente) {
         var cursor = event.target.result;
         if (cursor) {
             if (nomeCliente == cursor.value.name && senhaCliente == cursor.value.pass) {
-                logon(nomeCliente, senhaCliente, 0);
+				var cpf = cursor.value.cpf;
+                logon(cpf, 0);
                 return;
             }
             cursor.continue();
