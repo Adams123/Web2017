@@ -4,13 +4,16 @@ Antonio Pedro Lavezzo Mazzarolo - 8626232
 Gustavo Dutra Santana - 8532040
 Veronica Vannini - 8517369 */
 
-
-function addAdmin(nome, cpf, foto, telefone, email) {
+function addAdmin() {
+	var nome = document.getElementById('NomeAdm').value;
+	var cpf = document.getElementById('CPFAdm').value;
+	var foto = document.getElementById('FotoAdm').value;
+	var telefone = document.getElementById('TelAdm').value;
+	var email = document.getElementById('EmailAdm').value;
 
     requestDB = db.transaction(["admins"], "readwrite")
         .objectStore("admins")
-        .add({
-            id: dbSizeAdm,
+        .put({
             name: nome,
             pass: "admin",
             cpf: cpf,
@@ -19,16 +22,16 @@ function addAdmin(nome, cpf, foto, telefone, email) {
             email: email
         });
     requestDB.onsuccess = function(){
-        console.log("Adicionado " + name + " com id " + dbSizeAdm);
-        dbSizeAdm = dbSizeAdm + 1;
+        console.log("Adicionado " + nome);
+		alert(nome + " foi adicionado com sucesso!");
     }
-    requestDB.onerror = function()
-    {
+    requestDB.onerror = function(){
         console.log("Erro");
+		alert("Falha ao adicionar " + nome + ".");
     }
 }
 
-function read() {
+function readAdmin() {
     var transaction = db.transaction(["admins"]);
     var objectStore = transaction.objectStore("admins");
     requestDB = objectStore.get("0");
@@ -44,7 +47,7 @@ function read() {
     };
 }
 
-function readAll() {
+function readAllAdmin() {
     var objectStore = db.transaction("admins").objectStore("admins");
 
     objectStore.openCursor().onsuccess = function (event) {
@@ -58,19 +61,22 @@ function readAll() {
     };
 }
 
-function removeAll() { //limpa todos os 
+function removeAllAdmin() { //limpa todos os 
     var objectStore = db.transaction(["admins"], "readwrite").objectStore("admins");
     objectStore.clear();
 }
 
-function checkAdmin(nomeCliente, senhaCliente) {
+function checkAdmin() {
+	var nomeCliente = document.getElementById('user').value;
+	var senhaCliente = document.getElementById('senha').value;
     var objectStore = db.transaction("admins").objectStore("admins");
 
     objectStore.openCursor().onsuccess = function (event) {
         var cursor = event.target.result;
         if (cursor) {
             if (nomeCliente == cursor.value.name && senhaCliente == cursor.value.pass) {
-                logon(nomeCliente, senhaCliente, 1);
+				var cpf = cursor.value.cpf;
+                logon(cpf, 1);
                 return;
             }
             cursor.continue();
