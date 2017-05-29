@@ -67,17 +67,17 @@ function removeAllAdmin() { //limpa todos os
 }
 
 function checkAdmin() {
+
 	var nomeCliente = document.getElementById('user').value;
 	var senhaCliente = document.getElementById('senha').value;
     var objectStore = db.transaction("admins").objectStore("admins");
-
     objectStore.openCursor().onsuccess = function (event) {
         var cursor = event.target.result;
         if (cursor) {
             if (nomeCliente == cursor.value.name && senhaCliente == cursor.value.pass) {
 				var cpf = cursor.value.cpf;
                 logon(cpf, 1);
-                return;
+                return false;
             }
             cursor.continue();
         } else {
