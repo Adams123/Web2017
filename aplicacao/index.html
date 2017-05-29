@@ -19,6 +19,9 @@
     <script src='initDB.js'></script>
     <script src='adminDB.js'></script>
     <script src='clienteDB.js'></script>
+    <script src='animaisDB.js'></script>
+    <script src='produtosDB.js'></script>
+    <script src='servicosDB.js'></script>
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
@@ -279,15 +282,13 @@
 						<br>
 						<h2> Cadastrar Serviço: </h2>
 						<label>Nome:</label>
-						<input class="inputText" type="text" name="NomeServ" placeholder="Ex: Banho">
-						<br><label>ID do Serviço:</label>
-						<input class="inputText" type="text" name="IdServ" placeholder="Ex: PC0000001">
+						<input class="inputText" type="text" name="NomeServ" id="addNomeServ" placeholder="Ex: Banho">
 						<br><label>Foto:</label>
-						<input class="inputFile" type="file" name="FotoServ">
+						<input class="inputFile" type="file" name="FotoServ" id="addFotoServ" >
 						<br><label>Descrição:</label>
-						<textarea name="DescServ" rows="4" cols="50" placeholder="Ex: Uma incrível chuva de limpeza que deixará seu animal limpinho e cheiroso."></textarea>
+						<textarea name="DescServ" rows="4" cols="50" id="addDescServ"  placeholder="Ex: Uma incrível chuva de limpeza que deixará seu animal limpinho e cheiroso."></textarea>
 						<br><label>Preço:</label>
-						<input class="inputText" type="number" step="0.01" name="PrecServ" placeholder="Ex: 15.00">
+						<input class="inputText" type="number" step="0.01" id="addPrecoServ" name="PrecServ" placeholder="Ex: 15.00">
 						<br><br><label></label>
 						<input class="submits" type="submit" value="Cadastrar">
 					</form>
@@ -556,13 +557,13 @@
 						<br>
 						<h2> Cadastro de Pets: </h2>
 						<label>Nome do Pet: </label>
-						<input class="inputText" type="text" name="NomePet" placeholder="Ex: Pipoca">
+						<input class="inputText" type="text" name="NomePet" id="addNomePet" placeholder="Ex: Pipoca">
 						<br> <label>Raça: </label>
-						<input class="inputText" type="text" name="RacaPet" placeholder="Ex: Dalmata">
+						<input class="inputText" type="text" name="RacaPet" id="addRacaPet" placeholder="Ex: Dalmata">
 						<br><label>Idade: </label>
-						<input class="inputText" type="number" name="IdadePet" placeholder="7">
+						<input class="inputText" id="addIdadePet" type="number" name="IdadePet" placeholder="7">
 						<br><label>Foto: </label>
-						<input class="inputFile" type="file" name="FotoPet">
+						<input class="inputFile" id="addFotoPet" type="file" name="FotoPet">
 						<br><br><label></label>
 						<input class="inputSubmit" type="submit" value="Salvar">
 					</form>

@@ -77,11 +77,11 @@ function checkAdmin() {
             if (nomeCliente == cursor.value.name && senhaCliente == cursor.value.pass) {
 				var cpf = cursor.value.cpf;
                 logon(cpf, 1);
-                return;
+                return false;
             }
             cursor.continue();
         } else {
-            checkClient(nomeCliente, senhaCliente);
+            return checkCliente(nomeCliente, senhaCliente);
         }
     };
 }

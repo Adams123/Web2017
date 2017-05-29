@@ -78,11 +78,12 @@ function checkCliente(nomeCliente, senhaCliente) {
             if (nomeCliente == cursor.value.name && senhaCliente == cursor.value.pass) {
 				var cpf = cursor.value.cpf;
                 logon(cpf, 0);
-                return;
+                return false;
             }
             cursor.continue();
         } else {
             alert("Cadastro não encontrado, favor cadastrar por um admin.");
+            return false;
         }
     };
 }
