@@ -1,17 +1,30 @@
 /* Membros do Grupo: */
-
-
 /* * Adams Vietro Codignotto da Silva - 6791943 */
-
-
 /* * Antonio Pedro Lavezzo Mazzarolo - 8626232 */
-
-
 /* * Gustavo Dutra Santana - 8532040 */
-
-
 /* * Veronica Vannini - 8517369 */
 
+#attProd
+{
+    margin: auto;
+    height:400px;
+    width:100%;
+}
+#contentLeft{
+    width: 70%;
+    float: left;
+    display: inline-block;
+}
+#imgRight{
+    width: 30%;
+    vertical-align:top;
+    display: inline-block;
+}
+#fotoProdAttDest
+{
+    max-height: 30%;
+    max-width: 100%;
+}
 ul {
     display: block;
     list-style-type: none;

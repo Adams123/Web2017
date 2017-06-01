@@ -17,6 +17,7 @@
     <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
     <script src='index.js'></script>
     <script src='initDB.js'></script>
+    <script src='blobbuilder.js'></script>
     <script src='adminDB.js'></script>
     <script src='clienteDB.js'></script>
     <script src='animaisDB.js'></script>
@@ -40,13 +41,13 @@
             </div>
             <!-- Login -->
             <div data-toggable id="login" class="formSubmit">
-                <form id="formLogin" onsubmit="checkAdmin()">
+                <form id="formLogin">
 					<label>Login:</label>
 					<input class="inputText" type="text" name="login" id="user">
 					<br> <label>Senha:</label>
 					<input class="inputText" type="password" id="senha">
 					<br>
-					<button class="submits" type="submit">Entrar</button>
+					<button class="submits" type="submit" onclick="loginAdmin()">Entrar</button>
                 </form>
             </div>
             <div data-toggable id="coisas">
@@ -88,45 +89,50 @@
 					<form id="formAddProd" onsubmit="return false;">
 						<br>
 						<h2>Adicionar produto:</h2>
-						<label>Nome:</label><input class="inputText" type="text" name="nomeProdAdd" Placeholder="Ração">
+						<label>Nome:</label><input class="inputText" id="nomeProdAdd" type="text" name="nomeProdAdd" Placeholder="Ração">
 						<br><label>ID:</label>
-						<input class="inputText" type="number" name="idProdAdd" Placeholder="1">
+						<input class="inputText" id="idProdAdd" type="number" name="idProdAdd" Placeholder="1">
 						<br><label>Foto:</label>
-						<input class="inputFile" type="file" name="fotoProdAdd">
+						<input class="inputFile" id="fotoProdAdd" type="file" name="fotoProdAdd" onchange="previewFile(document.getElementById('fotoProdAdd'),document.getElementById('imgProdAdd'));encodeImageFileAsURL(this);">
+						<!--<br><img src="" id="imgProdAdd" height="100">-->
 						<br><label>Descricao:</label>
-						<input class="inputText" type="textarea" name="descricaoProdAdd" Placeholder="Ração pra porco" style="width: 300px;">
+						<input class="inputText" id="descricaoProdAdd" type="textarea" name="descricaoProdAdd" Placeholder="Ração pra porco" style="width: 300px;">
 						<br><label>Preço:</label>
-						<input class="inputText" type="number" name="precoProdAdd" step="0.01" Placeholder="3.54">
+						<input class="inputText" id="precoProdAdd" type="number" name="precoProdAdd" step="0.01" Placeholder="3.54">
 						<br><label>Quantidade em estoque:</label>
-						<input class="inputText" type="number" name="quantProdAdd" Placeholder="23">
+						<input class="inputText" id="quantProdAdd" type="number" name="quantProdAdd" Placeholder="23">
 						<br><label>Quantidade vendida:</label>
-						<input class="inputText" type="number" name="vendasProdAdd" Placeholder="11">
+						<input class="inputText" id="vendasProdAdd" type="number" name="vendasProdAdd" Placeholder="11">
 						<br><br><label></label>
-						<input class="submits" type="submit" value="Cadastrar">
+						<input class="submits" type="submit" value="Cadastrar" onclick="addProd()">
 					</form>
                 </div>
                 <!-- Atualizar Produto -->
                 <div data-toggable2 id="attProd" class="formSubmit longform">
-					<form id="formAttProd" onsubmit="return false;">
+					<form id="formAttProd" onsubmit="return false;"><div id="contentLeft">
 						<br>
 						<h2>Atualizar produto:</h2>
 						<label>ID:</label>
-						<input class="inputText" type="number" name="idProdAtt" Placeholder="1">
-						<input class="submits" type="submit" value="Pesquisar"> <br>
+						<input class="inputText" type="number" name="idProdAtt" id="idProdAtt" Placeholder="1">
+						<input class="submits" type="submit" value="Pesquisar" onclick="getProdInfo()"> <br>
 						<br> <label>Nome:</label>
-						<input class="inputText" type="text" name="nomeProdAtt" Placeholder="Ração">
+						<input class="inputText" type="text" name="nomeProdAtt"  id="nomeProdAtt" Placeholder="Ração">
 						<br><label>Foto:</label>
-						<input class="inputFile" type="file" name="fotoProdAtt">
+						<input class="inputFile" id="fotoProdAtt" type="file" name="fotoProdAtt">
+						<img id="myimage">
 						<br><label>Descricao:</label>
-						<input class="inputText" type="textarea" name="descricaoProdAtt" Placeholder="Ração pra porco" style="width: 300px;">
+						<input class="inputText"  id="descricaoProdAtt" type="textarea" name="descricaoProdAtt" Placeholder="Ração pra porco" style="width: 300px;">
 						<br><label>Preço:</label>
-						<input class="inputText" type="number" name="precoProdAtt" step="0.01" Placeholder="3.54">
+						<input class="inputText" id="precoProdAtt"  type="number" name="precoProdAtt" step="0.01" Placeholder="3.54">
 						<br><label>Quantidade em estoque:</label>
-						<input class="inputText" type="number" name="quantProdAtt" Placeholder="23">
+						<input class="inputText"  id="quantProdAtt" type="number" name="quantProdAtt" Placeholder="23">
 						<br><label>Quantidade vendida:</label>
-						<input class="inputText" type="number" name="vendasProdAtt" Placeholder="11">
+						<input class="inputText"  id="vendasProdAtt" type="number" name="vendasProdAtt" Placeholder="11">
 						<br><br><label></label>
 						<input class="submits" type="submit" value="Atualizar">
+						</div><div id="imgRight">
+						<br><img id="fotoProdAttDest" src="http://www.jqueryscript.net/images/Base64-Decode-Encode-Plugin-base64-js.jpg" >
+						</div>
 					</form>
                 </div>
                 <!-- Remover Produto -->
