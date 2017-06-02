@@ -7,12 +7,12 @@ Veronica Vannini - 8517369 */
 
 
 function addProd() {
-	var nome = document.getElementById('nomeProdAdd').value;
-	var barCode = document.getElementById('idProdAdd').value;
-	var foto = imagem;
-	var descricao = document.getElementById('descricaoProdAdd').value;
-	var preco = document.getElementById('precoProdAdd').value;
-	var qntEstoque = document.getElementById('quantProdAdd').value;
+    var nome = document.getElementById('nomeProdAdd').value;
+    var barCode = document.getElementById('idProdAdd').value;
+    var foto = imagem;
+    var descricao = document.getElementById('descricaoProdAdd').value;
+    var preco = document.getElementById('precoProdAdd').value;
+    var qntEstoque = document.getElementById('quantProdAdd').value;
     var qntVend = document.getElementById('vendasProdAdd').value;
 
     requestDB = db.transaction(["produtos"], "readwrite")
@@ -29,16 +29,20 @@ function addProd() {
 
     requestDB.onsuccess = function () {
         console.log("Adicionado " + nome);
-		alert(nome + " foi adicionado com sucesso!");
+        alert(nome + " foi adicionado com sucesso!");
     };
     requestDB.onerror = function () {
         console.log("Erro");
-		alert("Falha ao adicionar " + nome + ".");
+        alert("Falha ao adicionar " + nome + ".");
     };
 }
 
-function getProdInfo(){
-    getKey(document.getElementById("idProdAtt").value, "produtos", getProd);
+function getProdInfo(tab) {
+    if (tab == "del") {
+        getKey(document.getElementById("idProdDel").value, "produtos", getProdDel);
+    } else {
+        getKey(document.getElementById("idProdAtt").value, "produtos", getProdAtt);
+    }
 }
 
 function getKey(id, store, getFunc) {
@@ -48,8 +52,7 @@ function getKey(id, store, getFunc) {
     requestDB.onerror = function (event) {
         alert("Unable to retrieve data from database!");
     };
-    requestDB.onsuccess = function(event)
-    {
+    requestDB.onsuccess = function (event) {
         if (requestDB.result) {
             getFunc(requestDB.result);
         } else {
@@ -58,40 +61,187 @@ function getKey(id, store, getFunc) {
     };
 }
 
-
-function getProd(prod)
-{
+function getProdAtt(prod) {
 
     var nome = document.getElementById('nomeProdAtt');
-	var foto = document.getElementById('fotoProdAttDest');
-	var descricao = document.getElementById('descricaoProdAtt');
-	var preco = document.getElementById('precoProdAtt');
-	var qntEstoque = document.getElementById('quantProdAtt');
+    var foto = document.getElementById('imgProdAtt');
+    var descricao = document.getElementById('descricaoProdAtt');
+    var preco = document.getElementById('precoProdAtt');
+    var qntEstoque = document.getElementById('quantProdAtt');
     var qntVend = document.getElementById('vendasProdAtt');
-    if(!prod) return false;
-    nome.value=prod.nome;
-    foto.src=prod.foto;
-    descricao.value=prod.descricao;
-    preco.value=prod.preco;
-    qntEstoque.value=prod.qntEstoque;
-    qntVend.value=prod.qntVend;
+    nome.value = prod.nome;
+    foto.src = prod.foto;
+    descricao.value = prod.descricao;
+    preco.value = prod.preco;
+    qntEstoque.value = prod.qntEstoque;
+    qntVend.value = prod.qntVend;
 }
 
-function readAllProd() {
-    var objectStore = db.transaction("produtos").objectStore("produtos");
+function getProdDel(prod) {
 
-    objectStore.openCursor().onsuccess = function (event) {
-        var cursor = event.target.result;
-        if (cursor) {
-            alert("Id: " + cursor.key + ", Nome: " + cursor.value.name);
-            cursor.continue();
+    var nome = document.getElementById('nomeProdDel');
+    var foto = document.getElementById('imgProdDel');
+    var descricao = document.getElementById('descricaoProdDel');
+    var preco = document.getElementById('precoProdDel');
+    var qntEstoque = document.getElementById('quantProdDel');
+    var qntVend = document.getElementById('vendasProdDel');
+    nome.value = prod.nome;
+    foto.src = prod.foto;
+    descricao.value = prod.descricao;
+    preco.value = prod.preco;
+    qntEstoque.value = prod.qntEstoque;
+    qntVend.value = prod.qntVend;
+}
+
+function getProdList(prod) {
+
+    var nome = document.getElementById('nomeProdDel');
+    var foto = document.getElementById('imgProdDel');
+    var descricao = document.getElementById('descricaoProdDel');
+    var preco = document.getElementById('precoProdDel');
+    var qntEstoque = document.getElementById('quantProdDel');
+    var qntVend = document.getElementById('vendasProdDel');
+    nome.value = prod.nome;
+    foto.src = prod.foto;
+    descricao.value = prod.descricao;
+    preco.value = prod.preco;
+    qntEstoque.value = prod.qntEstoque;
+    qntVend.value = prod.qntVend;
+}
+
+function updateProd() {
+    var barCode = document.getElementById('idProdAtt').value;
+    var nome = document.getElementById('nomeProdAtt').value;
+    var foto = document.getElementById('imgProdAtt').value;
+    var descricao = document.getElementById('descricaoProdAtt').value;
+    var preco = document.getElementById('precoProdAtt').value;
+    var qntEstoque = document.getElementById('quantProdAtt').value;
+    var qntVend = document.getElementById('vendasProdAtt').value;
+    var foto = imagem;
+    requestDB = db.transaction(["produtos"], "readwrite")
+        .objectStore("produtos")
+        .put({
+            barCode: barCode,
+            nome: nome,
+            barCode: barCode,
+            foto: foto,
+            descricao: descricao,
+            preco: preco,
+            qntEstoque: qntEstoque,
+            qntVend: qntVend
+        });
+
+    requestDB.onsuccess = function () {
+        console.log("Adicionado " + nome);
+        alert(nome + " foi adicionado com sucesso!");
+    };
+    requestDB.onerror = function () {
+        console.log("Erro");
+        alert("Falha ao adicionar " + nome + ".");
+    };
+}
+
+
+
+function remove() {
+    var id = document.getElementById("idProdDel").value;
+    requestDB = db.transaction(["produtos"], "readwrite")
+        .objectStore("produtos")
+        .delete(id);
+
+    requestDB.onsuccess = function () {
+        console.log("Removido " + id);
+    };
+    requestDB.onerror = function () {
+        console.log("Erro ao remover");
+    };
+}
+
+
+
+function returnProd(prod, lista) {
+    var produto = {
+        barCode: prod.barCode,
+        nome: prod.nome,
+        foto: prod.foto,
+        descricao: prod.descricao,
+        preco: prod.preco,
+        qntEstoque: prod.qntEstoque,
+        qntVend: prod.qntVend
+    };
+    lista.push(produto);
+}
+
+function addKey(id, lista, getFunc) {
+    var transaction = db.transaction(["produtos"], "readwrite");
+    var objectStore = transaction.objectStore("produtos");
+    requestDB = objectStore.get(id);
+    requestDB.onerror = function (event) {
+        alert("Unable to retrieve data from database!");
+    };
+    requestDB.onsuccess = function (event) {
+        if (requestDB.result) {
+            getFunc(requestDB.result, lista);
         } else {
-            alert("Não há mais registros");
+            console.log("Kenny couldn't be found in your database!");
         }
     };
 }
 
-function removeAllProd() { //limpa todos os
-    var objectStore = db.transaction(["produtos"], "readwrite").objectStore("produtos");
-    objectStore.clear();
+function showProd(produto)
+{
+    var body = document.getElementById("tableProd");
+
+    var tr = document.createElement('tr');
+    var td1 = document.createElement('td');
+    td1.innerHTML = produto.barCode;
+    var td2 = document.createElement('td');
+    var img = document.createElement('img');
+    img.src = produto.foto;
+    td2.appendChild(img);
+    img.setAttribute("width","150px");
+    img.setAttribute("height","150px");
+    var td3 = document.createElement('td');
+    var h3n = document.createElement('h3');
+    h3n.innerHTML = produto.nome;
+    td3.appendChild(h3n);
+    var td4 = document.createElement('td');
+    td4.innerHTML = produto.descricao;
+    var td5 = document.createElement('td');
+    var h3p = document.createElement('h3');
+    h3p.innerHTML=produto.preco;
+    td5.appendChild(h3p);
+    var td6 = document.createElement('td');
+    var inputQntD = document.createElement('h3');
+    inputQntD.innerHTML = produto.qntEstoque;
+    td6.appendChild(inputQntD);
+    var td7 = document.createElement('td');
+    var inputQntV = document.createElement('h3');
+    inputQntV.innerHTML = produto.qntVend;
+    td7.appendChild(inputQntV);
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    tr.appendChild(td5);
+    tr.appendChild(td6);
+    tr.appendChild(td7);
+    body.appendChild(tr);
+}
+
+function readAllProds() {
+    var produtos = [];
+    var objectStore = db.transaction("produtos").objectStore("produtos");
+    var i = 0;
+    objectStore.openCursor().onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+            addKey(cursor.key, produtos, returnProd);
+            cursor.continue();
+            i = i + 1;
+        } else {
+            for(var j=0;j<i;j++)
+                showProd(produtos[j]);
+        }
+    };
 }

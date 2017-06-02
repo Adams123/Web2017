@@ -82,7 +82,7 @@
                 <li><a data-toggle2 href="#addProd">Adicionar Produto</a></li>
                 <li><a data-toggle2 href="#attProd">Atualizar Produto</a></li>
                 <li><a data-toggle2 href="#delProd">Apagar Produto</a></li>
-                <li><a data-toggle2 href="#listProd">Consultar Produto</a></li>
+                <li><a data-toggle2 href="#listProd" onclick="readAllProds()">Consultar Produto</a></li>
 
                 <!-- Adicionar Produto -->
                 <div data-toggable2 id="addProd" class="formSubmit longform">
@@ -94,7 +94,7 @@
 						<input class="inputText" id="idProdAdd" type="number" name="idProdAdd" Placeholder="1">
 						<br><label>Foto:</label>
 						<input class="inputFile" id="fotoProdAdd" type="file" name="fotoProdAdd" onchange="previewFile(document.getElementById('fotoProdAdd'),document.getElementById('imgProdAdd'));encodeImageFileAsURL(this);">
-						<!--<br><img src="" id="imgProdAdd" height="100">-->
+						<br><img src="" id="imgProdAdd" height="100">
 						<br><label>Descricao:</label>
 						<input class="inputText" id="descricaoProdAdd" type="textarea" name="descricaoProdAdd" Placeholder="Ração pra porco" style="width: 300px;">
 						<br><label>Preço:</label>
@@ -114,12 +114,11 @@
 						<h2>Atualizar produto:</h2>
 						<label>ID:</label>
 						<input class="inputText" type="number" name="idProdAtt" id="idProdAtt" Placeholder="1">
-						<input class="submits" type="submit" value="Pesquisar" onclick="getProdInfo()"> <br>
+						<input class="submits" type="submit" value="Pesquisar" onclick="getProdInfo('att')"> <br>
 						<br> <label>Nome:</label>
 						<input class="inputText" type="text" name="nomeProdAtt"  id="nomeProdAtt" Placeholder="Ração">
 						<br><label>Foto:</label>
-						<input class="inputFile" id="fotoProdAtt" type="file" name="fotoProdAtt">
-						<img id="myimage">
+						<input class="inputFile" id="fotoProdAtt" type="file" name="fotoProdAtt" onchange="previewFile(document.getElementById('fotoProdAtt'),document.getElementById('imgProdAtt'));encodeImageFileAsURL(this);">
 						<br><label>Descricao:</label>
 						<input class="inputText"  id="descricaoProdAtt" type="textarea" name="descricaoProdAtt" Placeholder="Ração pra porco" style="width: 300px;">
 						<br><label>Preço:</label>
@@ -129,9 +128,9 @@
 						<br><label>Quantidade vendida:</label>
 						<input class="inputText"  id="vendasProdAtt" type="number" name="vendasProdAtt" Placeholder="11">
 						<br><br><label></label>
-						<input class="submits" type="submit" value="Atualizar">
+						<input class="submits" type="submit" value="Atualizar" onclick="updateProd()">
 						</div><div id="imgRight">
-						<br><img id="fotoProdAttDest" src="http://www.jqueryscript.net/images/Base64-Decode-Encode-Plugin-base64-js.jpg" >
+						<br><img id="imgProdAtt" src="" >
 						</div>
 					</form>
                 </div>
@@ -141,28 +140,28 @@
 						<br>
 						<h2>Apagar produto:</h2>
 						<label>ID:</label>
-						<input class="inputText" type="number" name="idProdDel" Placeholder="1">
-						<input class="submits" type="submit" value="Pesquisar">
+						<input class="inputText" type="number" name="idProdDel" Placeholder="1" id="idProdDel">
+						<input class="submits" type="submit" value="Pesquisar" onclick="getProdInfo('del');">
 						<br><br>
 						<label>Nome:</label>
-						<input class="inputText" type="text" name="nomeProdDel" Placeholder="Ração">
+						<input class="inputText" type="text" name="nomeProdDel" Placeholder="Ração" id="nomeProdDel" disabled>
 						<br><label>Foto:</label>
-						<input class="inputFile" type="file" name="fotoProdDel">
+						<img src="" id="imgProdDel" class="imagem">
 						<br><label>Descricao:</label>
-						<input class="inputText" type="textarea" name="descricaoProdDel" Placeholder="Ração pra porco" style="width: 300px;">
+						<input class="inputText" type="textarea" name="descricaoProdDel" Placeholder="Ração pra porco" style="width: 300px;" id="descricaoProdDel" disabled>
 						<br><label>Preço:</label>
-						<input class="inputText" type="number" name="precoProdDel" step="0.01" Placeholder="3.54">
+						<input class="inputText" type="number" name="precoProdDel" step="0.01" Placeholder="3.54" id="precoProdDel" disabled>
 						<br><label>Quantidade em estoque:</label>
-						<input class="inputText" type="number" name="quantProdDel" Placeholder="23">
+						<input class="inputText" type="number" name="quantProdDel" id="quantProdDel" Placeholder="23" disabled>
 						<br><label>Quantidade vendida:</label>
-						<input class="inputText" type="number" name="vendasProdDel" Placeholder="11">
+						<input class="inputText" type="number" name="vendasProdDel" id="vendasProdDel" Placeholder="11" disabled>
 						<br><br><label></label>
-						<input class="submits" type="submit" value="Remover">
+						<input class="submits" type="submit" value="Remover" onclick="remove();">
 					</form>
                 </div>
                 <!-- Listar Produtos -->
                 <div data-toggable2 id="listProd">
-                    <table class="tabelas tableProd">
+                    <table class="tabelas tableProd" id="tableProd">
                         <tr>
                             <th>ID</th>
                             <th>Foto</th>
@@ -171,36 +170,6 @@
                             <th>Preço</th>
                             <th>Quantidade disponível</th>
                             <th>Quantidade vendida</th>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td><img src="https://staticpetz.stoom.com.br/fotos/1450897784351.jpg" alt="" style="width:150px;height:150px;"></td>
-                            <td>
-                                <h3>Tapete Gelado Jambo Mat Cool</h3>
-                            </td>
-                            <td class="descricao">
-                                <p>O Tapete Gelado Jambo Mat Cool é um colchonete de nylon, espuma e gel que funciona como uma opção refrescante para os Pets nos dias quentes. O gel interno que existe dentro do tapete é ativado com o peso do Pet deixando o produto com uma temperatura de até 6° abaixo da temperatura ambiente. A refrescância do tapetinho dura de 3 a 4 horas e após esse período basta deixar o tapetinho descansar por 30 minutos que ele estará novamente pronto para o uso. Não é necessário eletricidade, refrigeração ou repor água. Após um período prolongado de uso, deixe o tapete descansar por 30 minutos. </p>
-                            </td>
-                            <td>
-                                <h3>R$897,78</h3>
-                            </td>
-                            <td><input class="exibeInput" type="number" name="QtdProduto" value="10"></td>
-                            <td><input class="exibeInput" type="number" name="QtdProduto" value="0"></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td><img src="https://staticpetz.stoom.com.br/fotos/1469467300065.jpg" alt="" style="width:150px;height:150px;"></td>
-                            <td>
-                                <h3>Brinquedo Latoy Leitão Látex para Cães</h3>
-                            </td>
-                            <td>
-                                <p>O Brinquedo Latoy Leitão Látex para Cães possui formato atrativo e cores vibrantes para diversão do seu amigo, e ainda é totalmente seguro, sua a matéria prima é 100% natural e a pintura é atóxica, além de resistente á mordidas. </p>
-                            </td>
-                            <td>
-                                <h3>R$24,00</h3>
-                            </td>
-                            <td><input class="exibeInput" type="number" name="QtdProduto" value="50"></td>
-                            <td><input class="exibeInput" type="number" name="QtdProduto" value="1"></td>
                         </tr>
                     </table>
                 </div>

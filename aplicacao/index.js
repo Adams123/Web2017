@@ -161,7 +161,7 @@ $(document).ready(function () {
 
 function previewFile(source, dest)
 {
-  /*
+
   var file = source.files[0];
   var preview = dest;
   var reader  = new FileReader();
@@ -172,5 +172,5 @@ function previewFile(source, dest)
 
   if (file) {
     reader.readAsDataURL(file);
-  }*/
+  }
 }

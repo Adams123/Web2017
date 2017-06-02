@@ -25,6 +25,11 @@
     max-height: 30%;
     max-width: 100%;
 }
+.imagem
+{
+    width: 150px;
+    height: 150px;
+}
 ul {
     display: block;
     list-style-type: none;
