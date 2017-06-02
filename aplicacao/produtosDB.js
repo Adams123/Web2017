@@ -45,21 +45,6 @@ function getProdInfo(tab) {
     }
 }
 
-function getKey(id, store, getFunc) {
-    var transaction = db.transaction([store], "readwrite");
-    var objectStore = transaction.objectStore(store);
-    requestDB = objectStore.get(id);
-    requestDB.onerror = function (event) {
-        alert("Unable to retrieve data from database!");
-    };
-    requestDB.onsuccess = function (event) {
-        if (requestDB.result) {
-            getFunc(requestDB.result);
-        } else {
-            console.log("Kenny couldn't be found in your database!");
-        }
-    };
-}
 
 function getProdAtt(prod) {
 
@@ -112,7 +97,6 @@ function getProdList(prod) {
 function updateProd() {
     var barCode = document.getElementById('idProdAtt').value;
     var nome = document.getElementById('nomeProdAtt').value;
-    var foto = document.getElementById('imgProdAtt').value;
     var descricao = document.getElementById('descricaoProdAtt').value;
     var preco = document.getElementById('precoProdAtt').value;
     var qntEstoque = document.getElementById('quantProdAtt').value;
@@ -172,21 +156,6 @@ function returnProd(prod, lista) {
     lista.push(produto);
 }
 
-function addKey(id, lista, getFunc) {
-    var transaction = db.transaction(["produtos"], "readwrite");
-    var objectStore = transaction.objectStore("produtos");
-    requestDB = objectStore.get(id);
-    requestDB.onerror = function (event) {
-        alert("Unable to retrieve data from database!");
-    };
-    requestDB.onsuccess = function (event) {
-        if (requestDB.result) {
-            getFunc(requestDB.result, lista);
-        } else {
-            console.log("Kenny couldn't be found in your database!");
-        }
-    };
-}
 
 function showProd(produto)
 {
@@ -236,7 +205,7 @@ function readAllProds() {
     objectStore.openCursor().onsuccess = function (event) {
         var cursor = event.target.result;
         if (cursor) {
-            addKey(cursor.key, produtos, returnProd);
+            addKey(cursor.key, "produtos", produtos, returnProd);
             cursor.continue();
             i = i + 1;
         } else {

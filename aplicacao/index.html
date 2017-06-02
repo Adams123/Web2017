@@ -17,6 +17,7 @@
     <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
     <script src='index.js'></script>
     <script src='initDB.js'></script>
+    <script src='generalDB.js'></script>
     <script src='blobbuilder.js'></script>
     <script src='adminDB.js'></script>
     <script src='clienteDB.js'></script>
@@ -259,13 +260,14 @@
 						<label>Nome:</label>
 						<input class="inputText" type="text" name="NomeServ" id="addNomeServ" placeholder="Ex: Banho">
 						<br><label>Foto:</label>
-						<input class="inputFile" type="file" name="FotoServ" id="addFotoServ" >
+						<input class="inputFile" type="file" name="FotoServ" id="addFotoServ" onchange="previewFile(document.getElementById('addFotoServ'),document.getElementById('imgServAdd'));encodeImageFileAsURL(this);">
+						<img id="imgServAdd" src="" class="imagem">
 						<br><label>Descrição:</label>
 						<textarea name="DescServ" rows="4" cols="50" id="addDescServ"  placeholder="Ex: Uma incrível chuva de limpeza que deixará seu animal limpinho e cheiroso."></textarea>
 						<br><label>Preço:</label>
 						<input class="inputText" type="number" step="0.01" id="addPrecoServ" name="PrecServ" placeholder="Ex: 15.00">
 						<br><br><label></label>
-						<input class="submits" type="submit" value="Cadastrar">
+						<input class="submits" type="submit" value="Cadastrar" onclick="addServ()">
 					</form>
                 </div>
             </div>
@@ -309,7 +311,7 @@
             <!-- Perfil Administrador -->
             <div class="navBarInf" data-toggable id="profileAdm">
                 <h2> O que deseja fazer? </h2>
-                <li><a data-toggle2 href="#editPerfilAdm">Editar Perfil</a></li>
+                <li><a data-toggle2 href="#editPerfilAdm" onclick="getAdmInfo()">Editar Perfil</a></li>
                 <li><a data-toggle2 href="#listGainsAdm">Listar Ganhos</a></li>
 
                 <!-- Editar Perfil -->
@@ -318,17 +320,20 @@
 						<br>
 						<h2> Editar Perfil: </h2>
 						<label>Nome:</label>
-						<input class="inputText" type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
+						<input class="inputText" type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin" id="nomeAdm">
+						<label>Senha:</label>
+						<input class="inputText" type="text" name="passAdm" placeholder="***" id="passAdm">
 						<br><label>CPF:</label>
-						<input class="inputText" type="text" name="CPFAdm" placeholder="Ex: 13552134360">
+						<input class="inputText" type="text" name="CPFAdm" placeholder="Ex: 13552134360" id="CPFAdm">
 						<br><label>Foto:</label>
-						<input class="inputFile" type="file" name="FotoAdm">
+						<input class="inputFile" type="file" name="FotoAdm" id="FotoAdm" onchange="previewFile(document.getElementById('FotoAdm'),document.getElementById('imgAdm'));encodeImageFileAsURL(this);">
+						<img id="imgAdm" src="">
 						<br><label>Telefone:</label>
-						<input class="inputText" type="tel" name="TelAdm" placeholder="Ex: (16) 3418-2341">
+						<input class="inputText" type="text" name="TelAdm" placeholder="Ex: (16) 3418-2341" id="TelAdm">
 						<br><label>Email:</label>
-						<input class="inputText" type="email" name="TelAdm" placeholder="Ex: didiomedusa@gmail.com">
+						<input class="inputText" type="email" name="emailAdm" placeholder="Ex: didiomedusa@gmail.com" id="emailAdm">
 						<br><br><label></label>
-						<input class="submits" type="submit" value="Salvar">
+						<input class="submits" type="submit" value="Salvar" onclick="updateAdm()">
 					</form>
                 </div>
                 <!-- Listar Ganhos -->

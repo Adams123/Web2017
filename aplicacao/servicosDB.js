@@ -6,14 +6,13 @@ Veronica Vannini - 8517369 */
 
 function addServ() {
 	var nome = document.getElementById('addNomeServ').value;
-	var foto = document.getElementById('addFotoServ').value;
+	var foto = imagem;
 	var descricao = document.getElementById('addDescServ').value;
 	var preco = document.getElementById('addPrecoServ').value;
 
     requestDB = db.transaction(["servicos"], "readwrite")
         .objectStore("servicos")
         .put({
-            id: qntservicos,
             nome: nome,
             foto: foto,
             descricao: descricao,

@@ -13,7 +13,7 @@ const adminData = [
         pass: "admin",
         cpf: "10000000000",
         foto: null,
-        telefone: null,
+        telefone: "12312313",
         email: "teste@gmail.com"
     }
 ];
