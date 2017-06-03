@@ -89,24 +89,23 @@ function checkAdmin() {
 function editAdmProfile(adm) {
     var nome = document.getElementById("nomeAdm");
     var pass = document.getElementById("passAdm");
-    var CPF = document.getElementById("CPFAdm");
+    var CPF = document.getElementById("CPFAdmEdit");
     var foto = document.getElementById("imgAdm");
-    var tel = document.getElementById("TelAdm");
+    var tel = document.getElementById("TelAdmEdit");
     var email = document.getElementById("emailAdm");
 
     nome.value = adm.name;
     pass.value = adm.pass;
-    CPF.value = Number(whoIsNavigating);
+    CPF.value = whoIsNavigating;
+
     if (adm.foto != null)
         foto.src = adm.foto;
     else foto.src = "https://www.codeproject.com/KB/architecture/648760/Null.png";
     tel.value = adm.telefone;
     email.value = adm.email;
-    console.log(tel.value);
 }
 
 function getAdmInfo() {
-    whoIsNavigating = "10000000000";
     getKey(whoIsNavigating, "admins", editAdmProfile);
 }
 
@@ -135,4 +134,97 @@ function updateAdm() {
         console.log("Erro");
         alert("Falha ao atualizar " + nome + ".");
     };
+}
+
+
+//-------------ganhos
+function listarGanhosServicos(servico)
+{
+    var tabela = document.getElementById("tabelaGanhosServicos");
+    var tr = document.createElement('tr');
+    var td1 = document.createElement('td');
+    var h31 = document.createElement('h2');
+    h31.innerHTML = servico.nome;
+    td1.appendChild(h31);
+    tr.appendChild(td1);
+    var td2 = document.createElement('td');
+    var h32 = document.createElement('h3');
+    h32.innerHTML = calculaLucroServ(servico);
+    td2.appendChild(h32);
+    tr.appendChild(td2);
+    tabela.appendChild(tr);
+
+    var lucroServ = document.getElementById("lucroServ");
+    lucroServ.value = lucroServ.value + lucro;
+}
+
+function listarGanhosProdutos(produto)
+{
+    var tabela = document.getElementById("tabelaGanhosProdutos");
+    var tr = document.createElement('tr');
+    var td1 = document.createElement('td');
+    var h31 = document.createElement('h2');
+    h31.innerHTML = produto.barCode;
+    td1.appendChild(h31);
+    tr.appendChild(td1);
+    var td2 = document.createElement('td');
+    var h32 = document.createElement('h3');
+    h32.innerHTML = "R$" + calculaLucroProd(produto);
+    td2.appendChild(h32);
+    tr.appendChild(td2);
+    tabela.appendChild(tr);
+}
+
+function listarGanhos()
+{
+    readAllProdutos();
+
+
+}
+function readAllProdutos()
+{
+    var produtos = [];
+    var objectStore = db.transaction("produtos").objectStore("produtos");
+    var i = 0;
+    objectStore.openCursor().onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+            addKey(cursor.key, "produtos", produtos, returnProd);
+            cursor.continue();
+            i = i + 1;
+        } else {
+            for (var j = 0; j < i; j++) {
+                if (!checkDone(produtos[j].barCode,"tabelaGanhosProdutos")) //evita ficar readicionando html toda vez q abrir a aba
+                    listarGanhosProdutos(produtos[j], "tabelaGanhosProdutos");
+            }
+        }
+    };
+}
+function readAllServicos()
+{
+    var servicos = [];
+    var objectStore = db.transaction("servicos").objectStore("servicos");
+    var i = 0;
+    objectStore.openCursor().onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+            addKey(cursor.key, "produtos", produtos, returnProd);
+            cursor.continue();
+            i = i + 1;
+        } else {
+            for (var j = 0; j < i; j++) {
+                if (!verifica(servicos[j])) //evita ficar readicionando html toda vez q abrir a aba
+                    listarGanhosProdutos(produtos[j]);
+            }
+        }
+    };
+}
+
+function calculaLucroProd(produto)
+{
+    return parseFloat(produto.qntVend * produto.preco).toFixed(2);
+}
+function calculaLucroServ(servico)
+{
+    return parseFloat(servico.preco).toFixed(2);
 }

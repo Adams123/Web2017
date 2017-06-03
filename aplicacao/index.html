@@ -33,7 +33,6 @@
         <ul class="navBarSup">
             <li><a data-toggle href="#home">Home</a></li>
             <li><a data-toggle href="#login">Login</a></li>
-            <li><a data-toggle href="#coisas">Coisas</a></li>
         </ul>
         <div>
             <!-- Home -->
@@ -50,13 +49,6 @@
 					<br>
 					<button class="submits" type="submit" onclick="loginAdmin()">Entrar</button>
                 </form>
-            </div>
-            <div data-toggable id="coisas">
-                <button onclick="removeAll()">Deletar TUTO</button>
-                <button onclick="read()">Listar Prim</button>
-                <button onclick="readAllCli()">Listar TUTO</button>
-                <button onclick="deleteDB()">Delete DB</button>
-
             </div>
         </div>
     </div>
@@ -312,7 +304,7 @@
             <div class="navBarInf" data-toggable id="profileAdm">
                 <h2> O que deseja fazer? </h2>
                 <li><a data-toggle2 href="#editPerfilAdm" onclick="getAdmInfo()">Editar Perfil</a></li>
-                <li><a data-toggle2 href="#listGainsAdm">Listar Ganhos</a></li>
+                <li><a data-toggle2 href="#listGainsAdm" onclick="listarGanhos()">Listar Ganhos</a></li>
 
                 <!-- Editar Perfil -->
                 <div class="formSubmit longform" data-toggable2 id="editPerfilAdm"><br>
@@ -324,12 +316,12 @@
 						<label>Senha:</label>
 						<input class="inputText" type="text" name="passAdm" placeholder="***" id="passAdm">
 						<br><label>CPF:</label>
-						<input class="inputText" type="text" name="CPFAdm" placeholder="Ex: 13552134360" id="CPFAdm">
+						<input class="inputText" type="text" name="CPFAdmEdit" id="CPFAdmEdit" disabled>
 						<br><label>Foto:</label>
 						<input class="inputFile" type="file" name="FotoAdm" id="FotoAdm" onchange="previewFile(document.getElementById('FotoAdm'),document.getElementById('imgAdm'));encodeImageFileAsURL(this);">
 						<img id="imgAdm" src="">
 						<br><label>Telefone:</label>
-						<input class="inputText" type="text" name="TelAdm" placeholder="Ex: (16) 3418-2341" id="TelAdm">
+						<input class="inputText" type="text" name="TelAdm" id="TelAdmEdit">
 						<br><label>Email:</label>
 						<input class="inputText" type="email" name="emailAdm" placeholder="Ex: didiomedusa@gmail.com" id="emailAdm">
 						<br><br><label></label>
@@ -340,7 +332,7 @@
                 <div data-toggable2 id="listGainsAdm">
                     <div id="multTabelas">
                         <div class="divTables">
-                            <table class="tabelas">
+                            <table class="tabelas" id="tabelaGanhosServicos">
                                 <tr>
                                     <th>Serviços</th>
                                     <th>Lucro</th>
@@ -372,31 +364,15 @@
                             </table>
                         </div>
                         <div class="divTables">
-                            <table class="tabelas">
+                            <table class="tabelas" id="tabelaGanhosProdutos">
                                 <tr>
                                     <th>ID Produto</th>
                                     <th>Lucro</th>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <h2>0</h2>
-                                    </td>
-                                    <td>
-                                        <h3>R$0,00</h3>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h2>1</h2>
-                                    </td>
-                                    <td>
-                                        <h3>R$24,00</h3>
-                                    </td>
-                                </tr>
                             </table>
                         </div>
                         <div class="forms" style="position: absolute; bottom: 0;">
-                            Lucro serviços: <input type="text" value="R$976,00"> Lucro produtos: <input type="text" value="R$24,00"> Lucro total: <input type="text" value="R$1000,00">
+                            Lucro serviços: <input type="text" value="R$976,00" id="lucroServ"> Lucro produtos: <input type="text" value="R$24,00" id="lucroProd"> Lucro total: <input type="text" value="R$1000,00" id="lucroTotal">
                         </div>
                     </div>
                 </div>

@@ -157,8 +157,7 @@ function returnProd(prod, lista) {
 }
 
 
-function showProd(produto)
-{
+function showProd(produto) {
     var body = document.getElementById("tableProd");
 
     var tr = document.createElement('tr');
@@ -168,8 +167,8 @@ function showProd(produto)
     var img = document.createElement('img');
     img.src = produto.foto;
     td2.appendChild(img);
-    img.setAttribute("width","150px");
-    img.setAttribute("height","150px");
+    img.setAttribute("width", "150px");
+    img.setAttribute("height", "150px");
     var td3 = document.createElement('td');
     var h3n = document.createElement('h3');
     h3n.innerHTML = produto.nome;
@@ -178,7 +177,7 @@ function showProd(produto)
     td4.innerHTML = produto.descricao;
     var td5 = document.createElement('td');
     var h3p = document.createElement('h3');
-    h3p.innerHTML=produto.preco;
+    h3p.innerHTML = "R$" + parseFloat(produto.preco).toFixed(2);
     td5.appendChild(h3p);
     var td6 = document.createElement('td');
     var inputQntD = document.createElement('h3');
@@ -209,8 +208,10 @@ function readAllProds() {
             cursor.continue();
             i = i + 1;
         } else {
-            for(var j=0;j<i;j++)
-                showProd(produtos[j]);
+            for (var j = 0; j < i; j++) {
+                if (!checkDone(produtos[j].barCode, "tableProd")) //evita ficar readicionando html toda vez q abrir a aba
+                    showProd(produtos[j]);
+            }
         }
     };
 }

@@ -17,12 +17,12 @@ function confirmLogout(choice) {
 
 // verificacao de admin ou cliente
 function logon(cpf, isAdmin) {
+    whoIsNavigating = cpf;
     if (isAdmin) {
         loginAdmin();
     } else {
         loginCliente();
     }
-	whoIsNavigating = cpf;
 }
 
 
@@ -30,6 +30,8 @@ function logon(cpf, isAdmin) {
 function loginAdmin() {
     $("#navBarAdmin").show();
     $("#navBarHome").hide();
+
+    whoIsNavigating = "10000000000";
 }
 //configura exibicao para cliente
 function loginCliente() {
