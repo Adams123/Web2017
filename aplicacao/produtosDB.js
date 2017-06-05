@@ -17,7 +17,7 @@ function addProd() {
 
     requestDB = db.transaction(["produtos"], "readwrite")
         .objectStore("produtos")
-        .put({
+        .add({
             nome: nome,
             barCode: barCode,
             foto: foto,
@@ -159,7 +159,7 @@ function returnProd(prod, lista) {
 
 function showProd(produto) {
     var body = document.getElementById("tableProd");
-
+    if(body.innerHTML.indexOf(produto.barCode)>-1) return;
     var tr = document.createElement('tr');
     var td1 = document.createElement('td');
     td1.innerHTML = produto.barCode;
@@ -197,21 +197,8 @@ function showProd(produto) {
     body.appendChild(tr);
 }
 
-function readAllProds() {
-    var produtos = [];
-    var objectStore = db.transaction("produtos").objectStore("produtos");
-    var i = 0;
-    objectStore.openCursor().onsuccess = function (event) {
-        var cursor = event.target.result;
-        if (cursor) {
-            addKey(cursor.key, "produtos", produtos, returnProd);
-            cursor.continue();
-            i = i + 1;
-        } else {
-            for (var j = 0; j < i; j++) {
-                if (!checkDone(produtos[j].barCode, "tableProd")) //evita ficar readicionando html toda vez q abrir a aba
-                    showProd(produtos[j]);
-            }
-        }
-    };
+function readAllProds()
+{
+    listAllItems("produtos", "tableProd", showProd, "barCode");
 }
+

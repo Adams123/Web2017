@@ -12,7 +12,7 @@ function addServ() {
 
     requestDB = db.transaction(["servicos"], "readwrite")
         .objectStore("servicos")
-        .put({
+        .add({
             nome: nome,
             foto: foto,
             descricao: descricao,

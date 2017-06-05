@@ -12,7 +12,7 @@ function addPet() {
 
     requestDB = db.transaction(["animais"], "readwrite")
         .objectStore("animais")
-        .put({
+        .add({
             id: qntAnimais,
             nome: nome,
             raca: raca,

@@ -14,7 +14,7 @@ function addCliente() {
 
     requestDB = db.transaction(["clientes"], "readwrite")
         .objectStore("clientes")
-        .put({
+        .add({
             name: nome,
             endereco: endereco,
             pass: "cliente",
@@ -82,7 +82,7 @@ function checkCliente(nomeCliente, senhaCliente) {
             }
             cursor.continue();
         } else {
-            alert("Cadastro não encontrado, favor cadastrar por um admin.");
+            alert("Cadastro não encontrado, favor cadastrar através de um admin.");
             return false;
         }
     };

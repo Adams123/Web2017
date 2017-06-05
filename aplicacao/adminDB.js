@@ -13,7 +13,7 @@ function addAdmin() {
 
     requestDB = db.transaction(["admins"], "readwrite")
         .objectStore("admins")
-        .put({
+        .add({
             name: nome,
             pass: "admin",
             cpf: cpf,
@@ -67,10 +67,9 @@ function removeAllAdmin() { //limpa todos os
 }
 
 function checkAdmin() {
-    var nomeCliente = $('#user').value;
-    var senhaCliente = $('#senha').value;
+    var nomeCliente = $('#user').val();
+    var senhaCliente = $('#senha').val();
     var objectStore = db.transaction("admins").objectStore("admins");
-
     objectStore.openCursor().onsuccess = function (event) {
         var cursor = event.target.result;
         if (cursor) {
@@ -81,7 +80,8 @@ function checkAdmin() {
             }
             cursor.continue();
         } else {
-            return checkCliente(nomeCliente, senhaCliente);
+            checkCliente(nomeCliente, senhaCliente);
+            return false;
         }
     };
 }
@@ -140,7 +140,9 @@ function updateAdm() {
 //-------------ganhos
 function listarGanhosServicos(servico)
 {
+
     var tabela = document.getElementById("tabelaGanhosServicos");
+    if(tabela.innerHTML.indexOf(servico.nome)>-1) return;
     var tr = document.createElement('tr');
     var td1 = document.createElement('td');
     var h31 = document.createElement('h2');
@@ -149,18 +151,19 @@ function listarGanhosServicos(servico)
     tr.appendChild(td1);
     var td2 = document.createElement('td');
     var h32 = document.createElement('h3');
-    h32.innerHTML = calculaLucroServ(servico);
+    h32.innerHTML = "R$" + servico.preco;
     td2.appendChild(h32);
     tr.appendChild(td2);
     tabela.appendChild(tr);
 
-    var lucroServ = document.getElementById("lucroServ");
-    lucroServ.value = lucroServ.value + lucro;
+    //var lucroServ = document.getElementById("lucroServ");
+    //lucroServ.value = lucroServ.value + lucro;
 }
 
 function listarGanhosProdutos(produto)
 {
     var tabela = document.getElementById("tabelaGanhosProdutos");
+    if(tabela.innerHTML.indexOf(produto.barCode)>-1) return;
     var tr = document.createElement('tr');
     var td1 = document.createElement('td');
     var h31 = document.createElement('h2');
@@ -169,62 +172,42 @@ function listarGanhosProdutos(produto)
     tr.appendChild(td1);
     var td2 = document.createElement('td');
     var h32 = document.createElement('h3');
-    h32.innerHTML = "R$" + calculaLucroProd(produto);
+    var lucro = calculaLucro(produto);
+    h32.innerHTML = "R$" + lucro;
     td2.appendChild(h32);
     tr.appendChild(td2);
     tabela.appendChild(tr);
+
+    var lucroProd = $('#lucroProd');
+    var lucroAtual = parseFloat(lucroProd.val()).toFixed(2);
+    var prodTotal = parseFloat(lucro) + parseFloat(lucroAtual);
+    lucroProd.val(prodTotal.toFixed(2));
+
+    var lucroTotal = $('#lucroTotal');
+    var lucroTotalAtual = parseFloat(lucroTotal.val()).toFixed(2);
+    var tudo = parseFloat(lucro) + parseFloat(lucroTotalAtual);
+    lucroTotal.val(tudo.toFixed(2));
 }
 
 function listarGanhos()
 {
-    readAllProdutos();
-
-
+    listAllItems("produtos", "tabelaGanhosProdutos", listarGanhosProdutos);
+    listAllItems("servicos", "tabelaGanhosServicos", listarGanhosServicos);
 }
-function readAllProdutos()
+function calculaLucro(item)
 {
-    var produtos = [];
-    var objectStore = db.transaction("produtos").objectStore("produtos");
-    var i = 0;
-    objectStore.openCursor().onsuccess = function (event) {
-        var cursor = event.target.result;
-        if (cursor) {
-            addKey(cursor.key, "produtos", produtos, returnProd);
-            cursor.continue();
-            i = i + 1;
-        } else {
-            for (var j = 0; j < i; j++) {
-                if (!checkDone(produtos[j].barCode,"tabelaGanhosProdutos")) //evita ficar readicionando html toda vez q abrir a aba
-                    listarGanhosProdutos(produtos[j], "tabelaGanhosProdutos");
-            }
-        }
-    };
-}
-function readAllServicos()
-{
-    var servicos = [];
-    var objectStore = db.transaction("servicos").objectStore("servicos");
-    var i = 0;
-    objectStore.openCursor().onsuccess = function (event) {
-        var cursor = event.target.result;
-        if (cursor) {
-            addKey(cursor.key, "produtos", produtos, returnProd);
-            cursor.continue();
-            i = i + 1;
-        } else {
-            for (var j = 0; j < i; j++) {
-                if (!verifica(servicos[j])) //evita ficar readicionando html toda vez q abrir a aba
-                    listarGanhosProdutos(produtos[j]);
-            }
-        }
-    };
+    return parseFloat(item.preco * item.qntVend).toFixed(2);
 }
 
-function calculaLucroProd(produto)
+
+//---------------------calendario
+function addCalendar()
 {
-    return parseFloat(produto.qntVend * produto.preco).toFixed(2);
-}
-function calculaLucroServ(servico)
-{
-    return parseFloat(servico.preco).toFixed(2);
+    var calendar = $('#calendar');
+    var newEvent = new Object();
+    newEvent.title = "some text";
+    newEvent.start = '2017-06-07T08:00:00';
+    newEvent.end = '2017-06-07T09:00:00';
+    newEvent.allDay = false;
+    calendar.fullCalendar('renderEvent', newEvent);
 }

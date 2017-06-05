@@ -14,7 +14,10 @@ function confirmLogout(choice) {
         $("#navBarCliente").hide();
     }
 }
-
+function strcmp(a, b)
+{
+    return (a<b?-1:(a>b?1:0));
+}
 // verificacao de admin ou cliente
 function logon(cpf, isAdmin) {
     whoIsNavigating = cpf;
@@ -24,7 +27,6 @@ function logon(cpf, isAdmin) {
         loginCliente();
     }
 }
-
 
 //configura exibicao para admin
 function loginAdmin() {
@@ -40,6 +42,7 @@ function loginCliente() {
 }
 
 //toggable e toggable2 são variáveis usadas para realizar a navegação entre as abas, sendo associadas às abas e seus respectivos conteúdos
+var calendar;
 $(document).ready(function () {
     var toggable = $("[data-toggable]");
     $("[data-toggle]").each(function () {
@@ -65,7 +68,7 @@ $(document).ready(function () {
     toggable2.hide();
 
     //---------------- customizacao do plugin do calendário
-    $('.calendar').fullCalendar({
+    calendar = $('.calendar').fullCalendar({
         weekends: false,
         defaultView: 'agendaWeek',
         businessHours: {
@@ -75,77 +78,7 @@ $(document).ready(function () {
         },
         allDaySlot: false,
         // slotDuration: '01:00:00',
-        events: [{
-                title: 'Vacina Pet - Pet: Pipoca',
-                url: 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
-                start: '2017-04-12T08:00:00',
-                end: '2017-04-12T09:00:00',
-                allDay: false
-			},
-            {
-                title: 'Banho Pet - Pet: Godofredo',
-                url: 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
-                start: '2017-04-10T12:00:00',
-                end: '2017-04-10T13:00:00',
-                allDay: false
-		   },
-            {
-                title: 'Vacina Pet - Pet: Pipoca',
-                url: 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
-                start: '2017-04-17T08:00:00',
-                end: '2017-04-17T09:00:00',
-                allDay: false
-			},
-            {
-                title: 'Banho Pet - Pet: Godofredo',
-                url: 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
-                start: '2017-04-19T12:00:00',
-                end: '2017-04-19T13:00:00',
-                allDay: false
-		   },
-            {
-                title: 'Vacina Pet - Pet: Pipoca',
-                url: 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
-                start: '2017-04-24T08:00:00',
-                end: '2017-04-24T09:00:00',
-                allDay: false
-			},
-            {
-                title: 'Banho Pet - Pet: Godofredo',
-                url: 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
-                start: '2017-04-26T12:00:00',
-                end: '2017-04-26T13:00:00',
-                allDay: false
-		   },
-            {
-                title: 'Vacina Pet - Pet: Pipoca',
-                url: 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
-                start: '2017-05-01T08:00:00',
-                end: '2017-05-01T09:00:00',
-                allDay: false
-			},
-            {
-                title: 'Banho Pet - Pet: Godofredo',
-                url: 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
-                start: '2017-05-04T12:00:00',
-                end: '2017-05-04T13:00:00',
-                allDay: false
-		   },
-            {
-                title: 'Vacina Pet - Pet: Pipoca',
-                url: 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
-                start: '2017-05-09T08:00:00',
-                end: '2017-05-09T09:00:00',
-                allDay: false
-			},
-            {
-                title: 'Banho Pet - Pet: Godofredo',
-                url: 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
-                start: '2017-05-12T12:00:00',
-                end: '2017-05-12T13:00:00',
-                allDay: false
-		   }
-		],
+        events: eventos,
         dayClick: function (date, jsEvent, view) {
             alert('Clicked on: ' + date.format('DD/MM/YYYY HH:mm'));
 
