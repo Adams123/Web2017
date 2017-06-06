@@ -42,7 +42,6 @@ function loginCliente() {
 }
 
 //toggable e toggable2 são variáveis usadas para realizar a navegação entre as abas, sendo associadas às abas e seus respectivos conteúdos
-var calendar;
 $(document).ready(function () {
     var toggable = $("[data-toggable]");
     $("[data-toggle]").each(function () {
@@ -68,7 +67,7 @@ $(document).ready(function () {
     toggable2.hide();
 
     //---------------- customizacao do plugin do calendário
-    calendar = $('.calendar').fullCalendar({
+    $('.calendar').fullCalendar({
         weekends: false,
         defaultView: 'agendaWeek',
         businessHours: {
@@ -89,10 +88,22 @@ $(document).ready(function () {
             span.onclick = function () {
                 modal.style.display = "none";
             }
-
         }
-    })
+    });
+
+    //------------------adicionando listener ao dropdown de servico
+    var select = document.getElementById('dropdownServicosDel');
+select.addEventListener('change', function () {
+    var selecionada = this.options[this.selectedIndex];
+    var url = selecionada.getAttribute('value');
+
 });
+});
+
+function setValuesServ(nome)
+{
+
+}
 
 function previewFile(source, dest)
 {
@@ -109,3 +120,5 @@ function previewFile(source, dest)
     reader.readAsDataURL(file);
   }
 }
+
+

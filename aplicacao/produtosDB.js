@@ -3,12 +3,10 @@ Adams Vietro Codignotto da Silva - 6791943
 Antonio Pedro Lavezzo Mazzarolo - 8626232
 Gustavo Dutra Santana - 8532040
 Veronica Vannini - 8517369 */
-
-
-
 function addProd() {
     var nome = document.getElementById('nomeProdAdd').value;
     var barCode = document.getElementById('idProdAdd').value;
+    barCode=Number(barCode);
     var foto = imagem;
     var descricao = document.getElementById('descricaoProdAdd').value;
     var preco = document.getElementById('precoProdAdd').value;
@@ -39,9 +37,9 @@ function addProd() {
 
 function getProdInfo(tab) {
     if (tab == "del") {
-        getKey(document.getElementById("idProdDel").value, "produtos", getProdDel);
+        getKey(Number(document.getElementById("idProdDel").value), "produtos", getProdDel);
     } else {
-        getKey(document.getElementById("idProdAtt").value, "produtos", getProdAtt);
+        getKey(Number(document.getElementById("idProdAtt").value), "produtos", getProdAtt);
     }
 }
 

@@ -21,18 +21,30 @@ function countDb(store) {
     var qnt = store.count();
     return qnt;
 }
+
+//apenas para adicionar ao dropdown
+function addToServicos(servico) {
+    console.log("adding " + servico);
+    $('#dropdownServicosAdd').append($('<option>', {
+        value: servico.nome,
+        text: servico.nome
+    }));
+    $('#dropdownServicosDel').append($('<option>', {
+        value: servico.nome,
+        text: servico.nome
+    }));
+};
+
 //caso necessario adiciona dados às base
 requestDB.onsuccess = function (event) {
     db = requestDB.result;
 
     var qntCli = countDb("clientes");
-    qntCli.onsuccess = function()
-    {
-        for(var i=0;i<clienteTeste.length;i++)
-            {
-                db.transaction(["clientes"], "readwrite")
-            .objectStore("clientes").add(clienteTeste[i]);
-            }
+    qntCli.onsuccess = function () {
+        for (var i = 0; i < clienteTeste.length; i++) {
+            db.transaction(["clientes"], "readwrite")
+                .objectStore("clientes").add(clienteTeste[i]);
+        }
     }
 
     var qntAdm = countDb("admins");
@@ -43,35 +55,33 @@ requestDB.onsuccess = function (event) {
     }
 
     qntAnimais = countDb("animais");
-    qntAnimais.onsuccess = function()
-    {
-        if(qntAnimais.result==0)//como é incremental a id, sempre vai adicionar a menos que conte a quantidade
-        for(var i=0;i<animaisTeste.length;i++)
-            {
+    qntAnimais.onsuccess = function () {
+        if (qntAnimais.result == 0) //como é incremental a id, sempre vai adicionar a menos que conte a quantidade
+            for (var i = 0; i < animaisTeste.length; i++) {
                 db.transaction(["animais"], "readwrite")
-            .objectStore("animais").add(animaisTeste[i]);
+                    .objectStore("animais").add(animaisTeste[i]);
             }
     }
 
     qntServicos = countDb("servicos");
-    qntServicos.onsuccess = function()
-    {
-        if(qntServicos.result==0)//como é incremental a id, sempre vai adicionar a menos que conte a quantidade
-        for(var i=0;i<servicosTeste.length;i++)
-            {
+    qntServicos.onsuccess = function () {
+        if (qntServicos.result == 0) //como é incremental a id, sempre vai adicionar a menos que conte a quantidade
+            for (var i = 0; i < servicosTeste.length; i++) {
                 db.transaction(["servicos"], "readwrite")
-            .objectStore("servicos").add(servicosTeste[i]);
+                    .objectStore("servicos").add(servicosTeste[i]);
             }
+        //adicionando os servicos existentes ao dropdown
+        for (var i = 0; i < servicosTeste.length; i++) {
+            addToServicos(servicosTeste[i]);
+        }
     }
 
     var qntProd = countDb("produtos");
-    qntProd.onsuccess = function()
-    {
-        for(var i=0;i<produtosTeste.length;i++)
-            {
-                db.transaction(["produtos"], "readwrite")
-            .objectStore("produtos").add(produtosTeste[i]);
-            }
+    qntProd.onsuccess = function () {
+        for (var i = 0; i < produtosTeste.length; i++) {
+            db.transaction(["produtos"], "readwrite")
+                .objectStore("produtos").add(produtosTeste[i]);
+        }
     }
 };
 //criacao de todas as tabelas

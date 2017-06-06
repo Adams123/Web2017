@@ -138,11 +138,10 @@ function updateAdm() {
 
 
 //-------------ganhos
-function listarGanhosServicos(servico)
-{
+function listarGanhosServicos(servico) {
 
     var tabela = document.getElementById("tabelaGanhosServicos");
-    if(tabela.innerHTML.indexOf(servico.nome)>-1) return;
+    if (tabela.innerHTML.indexOf(servico.nome) > -1) return;
     var tr = document.createElement('tr');
     var td1 = document.createElement('td');
     var h31 = document.createElement('h2');
@@ -160,10 +159,9 @@ function listarGanhosServicos(servico)
     //lucroServ.value = lucroServ.value + lucro;
 }
 
-function listarGanhosProdutos(produto)
-{
+function listarGanhosProdutos(produto) {
     var tabela = document.getElementById("tabelaGanhosProdutos");
-    if(tabela.innerHTML.indexOf(produto.barCode)>-1) return;
+    if (tabela.innerHTML.indexOf(produto.barCode) > -1) return;
     var tr = document.createElement('tr');
     var td1 = document.createElement('td');
     var h31 = document.createElement('h2');
@@ -189,25 +187,32 @@ function listarGanhosProdutos(produto)
     lucroTotal.val(tudo.toFixed(2));
 }
 
-function listarGanhos()
-{
+function listarGanhos() {
     listAllItems("produtos", "tabelaGanhosProdutos", listarGanhosProdutos);
     listAllItems("servicos", "tabelaGanhosServicos", listarGanhosServicos);
 }
-function calculaLucro(item)
-{
+
+function calculaLucro(item) {
     return parseFloat(item.preco * item.qntVend).toFixed(2);
 }
 
-
 //---------------------calendario
-function addCalendar()
-{
-    var calendar = $('#calendar');
-    var newEvent = new Object();
-    newEvent.title = "some text";
-    newEvent.start = '2017-06-07T08:00:00';
-    newEvent.end = '2017-06-07T09:00:00';
-    newEvent.allDay = false;
-    calendar.fullCalendar('renderEvent', newEvent);
+function addEventToCalendar() { //nao verifica se tem ja adicionado
+
+    var nome = $( "#dropdownServicos option:selected" ).text();
+    var calendar = $('.calendar');
+    var events=[];
+    events = calendar.fullCalendar('clientEvents');
+
+    var start = $('#dataServ').val() +"T"+ $('#tempServ').val();
+    var newEvent = {
+        title:nome,
+        start: start,
+        duration: '01:00',
+        allDay: false
+    };
+    console.log(events);
+    if($.inArray(newEvent, events)!=-1) return false;
+    console.log(newEvent);
+    calendar.fullCalendar('renderEvent', newEvent, true);
 }

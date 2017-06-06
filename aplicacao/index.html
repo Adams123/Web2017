@@ -11,8 +11,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href='node_modules/fullcalendar/dist/fullcalendar.css' />
     <script src='node_modules/jquery/dist/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src='node_modules/moment/min/moment.min.js'></script>
     <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
     <script src='index.js'></script>
@@ -43,12 +45,12 @@
             <!-- Login -->
             <div data-toggable id="login" class="formSubmit">
                 <form id="formLogin">
-					<label>Login:</label>
-					<input class="inputText" type="text" name="login" id="user">
-					<br> <label>Senha:</label>
-					<input class="inputText" type="password" id="senha">
-					<br>
-					<button class="submits" type="submit" onclick="loginAdmin()">Entrar</button>
+                    <label>Login:</label>
+                    <input class="inputText" type="text" name="login" id="user">
+                    <br> <label>Senha:</label>
+                    <input class="inputText" type="password" id="senha">
+                    <br>
+                    <button class="submits" type="submit" onclick="loginAdmin()">Entrar</button>
                 </form>
             </div>
         </div>
@@ -80,78 +82,80 @@
 
                 <!-- Adicionar Produto -->
                 <div data-toggable2 id="addProd" class="formSubmit longform">
-					<form id="formAddProd" onsubmit="return false;">
-						<br>
-						<h2>Adicionar produto:</h2>
-						<label>Nome:</label><input class="inputText" id="nomeProdAdd" type="text" name="nomeProdAdd" Placeholder="Ração">
-						<br><label>ID:</label>
-						<input class="inputText" id="idProdAdd" type="number" name="idProdAdd" Placeholder="1">
-						<br><label>Foto:</label>
-						<input class="inputFile" id="fotoProdAdd" type="file" name="fotoProdAdd" onchange="previewFile(document.getElementById('fotoProdAdd'),document.getElementById('imgProdAdd'));encodeImageFileAsURL(this);">
-						<br><img src="" id="imgProdAdd" height="100">
-						<br><label>Descricao:</label>
-						<input class="inputText" id="descricaoProdAdd" type="textarea" name="descricaoProdAdd" Placeholder="Ração pra porco" style="width: 300px;">
-						<br><label>Preço:</label>
-						<input class="inputText" id="precoProdAdd" type="number" name="precoProdAdd" step="0.01" Placeholder="3.54">
-						<br><label>Quantidade em estoque:</label>
-						<input class="inputText" id="quantProdAdd" type="number" name="quantProdAdd" Placeholder="23">
-						<br><label>Quantidade vendida:</label>
-						<input class="inputText" id="vendasProdAdd" type="number" name="vendasProdAdd" Placeholder="11">
-						<br><br><label></label>
-						<input class="submits" type="submit" value="Cadastrar" onclick="addProd()">
-					</form>
+                    <form id="formAddProd" onsubmit="return false;">
+                        <br>
+                        <h2>Adicionar produto:</h2>
+                        <label>Nome:</label><input class="inputText" id="nomeProdAdd" type="text" name="nomeProdAdd" Placeholder="Ração">
+                        <br><label>ID:</label>
+                        <input class="inputText" id="idProdAdd" type="number" name="idProdAdd" Placeholder="1">
+                        <br><label>Foto:</label>
+                        <input class="inputFile" id="fotoProdAdd" type="file" name="fotoProdAdd" onchange="previewFile(document.getElementById('fotoProdAdd'),document.getElementById('imgProdAdd'));encodeImageFileAsURL(this);">
+                        <br><img src="" id="imgProdAdd" height="100">
+                        <br><label>Descricao:</label>
+                        <input class="inputText" id="descricaoProdAdd" type="textarea" name="descricaoProdAdd" Placeholder="Ração pra porco" style="width: 300px;">
+                        <br><label>Preço:</label>
+                        <input class="inputText" id="precoProdAdd" type="number" name="precoProdAdd" step="0.01" Placeholder="3.54">
+                        <br><label>Quantidade em estoque:</label>
+                        <input class="inputText" id="quantProdAdd" type="number" name="quantProdAdd" Placeholder="23">
+                        <br><label>Quantidade vendida:</label>
+                        <input class="inputText" id="vendasProdAdd" type="number" name="vendasProdAdd" Placeholder="11">
+                        <br><br><label></label>
+                        <input class="submits" type="submit" value="Cadastrar" onclick="addProd()">
+                    </form>
                 </div>
                 <!-- Atualizar Produto -->
                 <div data-toggable2 id="attProd" class="formSubmit longform">
-					<form id="formAttProd" onsubmit="return false;"><div id="contentLeft">
-						<br>
-						<h2>Atualizar produto:</h2>
-						<label>ID:</label>
-						<input class="inputText" type="number" name="idProdAtt" id="idProdAtt" Placeholder="1">
-						<input class="submits" type="submit" value="Pesquisar" onclick="getProdInfo('att')"> <br>
-						<br> <label>Nome:</label>
-						<input class="inputText" type="text" name="nomeProdAtt"  id="nomeProdAtt" Placeholder="Ração">
-						<br><label>Foto:</label>
-						<input class="inputFile" id="fotoProdAtt" type="file" name="fotoProdAtt" onchange="previewFile(document.getElementById('fotoProdAtt'),document.getElementById('imgProdAtt'));encodeImageFileAsURL(this);">
-						<br><label>Descricao:</label>
-						<input class="inputText"  id="descricaoProdAtt" type="textarea" name="descricaoProdAtt" Placeholder="Ração pra porco" style="width: 300px;">
-						<br><label>Preço:</label>
-						<input class="inputText" id="precoProdAtt"  type="number" name="precoProdAtt" step="0.01" Placeholder="3.54">
-						<br><label>Quantidade em estoque:</label>
-						<input class="inputText"  id="quantProdAtt" type="number" name="quantProdAtt" Placeholder="23">
-						<br><label>Quantidade vendida:</label>
-						<input class="inputText"  id="vendasProdAtt" type="number" name="vendasProdAtt" Placeholder="11">
-						<br><br><label></label>
-						<input class="submits" type="submit" value="Atualizar" onclick="updateProd()">
-						</div><div id="imgRight">
-						<br><img id="imgProdAtt" src="" >
-						</div>
-					</form>
+                    <form id="formAttProd" onsubmit="return false;">
+                        <div id="contentLeft">
+                            <br>
+                            <h2>Atualizar produto:</h2>
+                            <label>ID:</label>
+                            <input class="inputText" type="number" name="idProdAtt" id="idProdAtt" Placeholder="1">
+                            <input class="submits" type="submit" value="Pesquisar" onclick="getProdInfo('att')"> <br>
+                            <br> <label>Nome:</label>
+                            <input class="inputText" type="text" name="nomeProdAtt" id="nomeProdAtt" Placeholder="Ração">
+                            <br><label>Foto:</label>
+                            <input class="inputFile" id="fotoProdAtt" type="file" name="fotoProdAtt" onchange="previewFile(document.getElementById('fotoProdAtt'),document.getElementById('imgProdAtt'));encodeImageFileAsURL(this);">
+                            <br><label>Descricao:</label>
+                            <input class="inputText" id="descricaoProdAtt" type="textarea" name="descricaoProdAtt" Placeholder="Ração pra porco" style="width: 300px;">
+                            <br><label>Preço:</label>
+                            <input class="inputText" id="precoProdAtt" type="number" name="precoProdAtt" step="0.01" Placeholder="3.54">
+                            <br><label>Quantidade em estoque:</label>
+                            <input class="inputText" id="quantProdAtt" type="number" name="quantProdAtt" Placeholder="23">
+                            <br><label>Quantidade vendida:</label>
+                            <input class="inputText" id="vendasProdAtt" type="number" name="vendasProdAtt" Placeholder="11">
+                            <br><br><label></label>
+                            <input class="submits" type="submit" value="Atualizar" onclick="updateProd()">
+                        </div>
+                        <div id="imgRight">
+                            <br><img id="imgProdAtt" src="">
+                        </div>
+                    </form>
                 </div>
                 <!-- Remover Produto -->
                 <div data-toggable2 id="delProd" class="formSubmit longform">
-					<form id="formDelProd" onsubmit="return false;">
-						<br>
-						<h2>Apagar produto:</h2>
-						<label>ID:</label>
-						<input class="inputText" type="number" name="idProdDel" Placeholder="1" id="idProdDel">
-						<input class="submits" type="submit" value="Pesquisar" onclick="getProdInfo('del');">
-						<br><br>
-						<label>Nome:</label>
-						<input class="inputText" type="text" name="nomeProdDel" Placeholder="Ração" id="nomeProdDel" disabled>
-						<br><label>Foto:</label>
-						<img src="" id="imgProdDel" class="imagem">
-						<br><label>Descricao:</label>
-						<input class="inputText" type="textarea" name="descricaoProdDel" Placeholder="Ração pra porco" style="width: 300px;" id="descricaoProdDel" disabled>
-						<br><label>Preço:</label>
-						<input class="inputText" type="number" name="precoProdDel" step="0.01" Placeholder="3.54" id="precoProdDel" disabled>
-						<br><label>Quantidade em estoque:</label>
-						<input class="inputText" type="number" name="quantProdDel" id="quantProdDel" Placeholder="23" disabled>
-						<br><label>Quantidade vendida:</label>
-						<input class="inputText" type="number" name="vendasProdDel" id="vendasProdDel" Placeholder="11" disabled>
-						<br><br><label></label>
-						<input class="submits" type="submit" value="Remover" onclick="remove();">
-					</form>
+                    <form id="formDelProd" onsubmit="return false;">
+                        <br>
+                        <h2>Apagar produto:</h2>
+                        <label>ID:</label>
+                        <input class="inputText" type="number" name="idProdDel" Placeholder="1" id="idProdDel">
+                        <input class="submits" type="submit" value="Pesquisar" onclick="getProdInfo('del');">
+                        <br><br>
+                        <label>Nome:</label>
+                        <input class="inputText" type="text" name="nomeProdDel" Placeholder="Ração" id="nomeProdDel" disabled>
+                        <br><label>Foto:</label>
+                        <img src="" id="imgProdDel" class="imagem">
+                        <br><label>Descricao:</label>
+                        <input class="inputText" type="textarea" name="descricaoProdDel" Placeholder="Ração pra porco" style="width: 300px;" id="descricaoProdDel" disabled>
+                        <br><label>Preço:</label>
+                        <input class="inputText" type="number" name="precoProdDel" step="0.01" Placeholder="3.54" id="precoProdDel" disabled>
+                        <br><label>Quantidade em estoque:</label>
+                        <input class="inputText" type="number" name="quantProdDel" id="quantProdDel" Placeholder="23" disabled>
+                        <br><label>Quantidade vendida:</label>
+                        <input class="inputText" type="number" name="vendasProdDel" id="vendasProdDel" Placeholder="11" disabled>
+                        <br><br><label></label>
+                        <input class="submits" type="submit" value="Remover" onclick="remove();">
+                    </form>
                 </div>
                 <!-- Listar Produtos -->
                 <div data-toggable2 id="listProd">
@@ -184,84 +188,84 @@
 
                 <!-- Cadastrar Cliente -->
                 <div data-toggable2 id="cadastrarCli" class="formSubmit longform">
-					<form id="formAddCliente" onsubmit="addCliente()">
-						<br>
-						<h2> Cadastrar Cliente: </h2>
-						<label>Nome:</label>
-						<input class="inputText" type="text" name="NomeCli" id="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
-						<br><label>CPF:</label>
-						<input class="inputText" type="text" name="CPFCli" id="CPFCli" placeholder="Ex: 13552134360">
-						<br><label>Endereço:</label>
-						<input class="inputText" type="text" name="EnderecoCli" id="EnderecoCli" placeholder="Ex: Av. São Carlos 1200">
-						<br><label>Foto:</label>
-						<input class="inputFile" type="file" name="FotoCli" id="FotoCli" >
-						<br><label>Telefone:</label>
-						<input class="inputText" type="tel" name="TelCli" id="TelCli" placeholder="Ex: (16) 3418-2341">
-						<br><label>Email:</label>
-						<input class="inputText" type="email" name="EmailCli" id="EmailCli" placeholder="Ex: didiomedusa@gmail.com">
-						<br><br><label></label>
-						<input class="submits" type="submit" value="Cadastrar">
-					</form>
+                    <form id="formAddCliente" onsubmit="addCliente()">
+                        <br>
+                        <h2> Cadastrar Cliente: </h2>
+                        <label>Nome:</label>
+                        <input class="inputText" type="text" name="NomeCli" id="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
+                        <br><label>CPF:</label>
+                        <input class="inputText" type="text" name="CPFCli" id="CPFCli" placeholder="Ex: 13552134360">
+                        <br><label>Endereço:</label>
+                        <input class="inputText" type="text" name="EnderecoCli" id="EnderecoCli" placeholder="Ex: Av. São Carlos 1200">
+                        <br><label>Foto:</label>
+                        <input class="inputFile" type="file" name="FotoCli" id="FotoCli">
+                        <br><label>Telefone:</label>
+                        <input class="inputText" type="tel" name="TelCli" id="TelCli" placeholder="Ex: (16) 3418-2341">
+                        <br><label>Email:</label>
+                        <input class="inputText" type="email" name="EmailCli" id="EmailCli" placeholder="Ex: didiomedusa@gmail.com">
+                        <br><br><label></label>
+                        <input class="submits" type="submit" value="Cadastrar">
+                    </form>
                 </div>
                 <!-- Cadastrar Administrador -->
                 <div data-toggable2 id="cadastrarAdm" class="formSubmit longform">
-					<form id="formAddAdmin" onsubmit="addAdmin()">
-						<br>
-						<h2> Cadastrar Administrador: </h2>
-						<label>Nome:</label>
-						<input class="inputText" type="text" name="NomeAdm" id="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
-						<br><label>CPF:</label>
-						<input class="inputText" type="text" name="CPFAdm" id="CPFAdm" placeholder="Ex: 13552134360">
-						<br><label>Foto:</label>
-						<input class="inputFile" type="file" id="FotoAdm" accept=".png,.jpeg,.jpg" name="FotoAdm">
-						<br><label>Telefone:</label>
-						<input class="inputText" type="tel" id="TelAdm" name="TelAdm" placeholder="Ex: (16) 3418-2341">
-						<br><label>Email:</label>
-						<input class="inputText" type="email" name="EmailAdm" id="EmailAdm" placeholder="Ex: didiomedusa@gmail.com">
-						<br><br><label></label>
-						<input class="submits" type="submit" value="Cadastrar">
-					</form>
-				</div>
+                    <form id="formAddAdmin" onsubmit="addAdmin()">
+                        <br>
+                        <h2> Cadastrar Administrador: </h2>
+                        <label>Nome:</label>
+                        <input class="inputText" type="text" name="NomeAdm" id="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
+                        <br><label>CPF:</label>
+                        <input class="inputText" type="text" name="CPFAdm" id="CPFAdm" placeholder="Ex: 13552134360">
+                        <br><label>Foto:</label>
+                        <input class="inputFile" type="file" id="FotoAdm" accept=".png,.jpeg,.jpg" name="FotoAdm">
+                        <br><label>Telefone:</label>
+                        <input class="inputText" type="tel" id="TelAdm" name="TelAdm" placeholder="Ex: (16) 3418-2341">
+                        <br><label>Email:</label>
+                        <input class="inputText" type="email" name="EmailAdm" id="EmailAdm" placeholder="Ex: didiomedusa@gmail.com">
+                        <br><br><label></label>
+                        <input class="submits" type="submit" value="Cadastrar">
+                    </form>
+                </div>
                 <!-- Cadastrar Produto -->
                 <div data-toggable2 id="cadastrarProd" class="formSubmit longform">
-					<form id="formAddProd" onsubmit="return false;">
-						<br>
-						<h2> Cadastrar Produto: </h2>
-						<label>Nome:</label>
-						<input class="inputText" type="text" name="NomeProd" placeholder="Ex: Bolinha de cachorro">
-						<br><label>Código de Barras:</label>
-						<input class="inputText" type="text" name="CodBarras" placeholder="Ex: 7897900310604">
-						<br><label>Foto:</label>
-						<input class="inputFile" type="file" name="FotoProd">
-						<br><label>Descrição:</label>
-						<textarea name="DescProd" rows="4" cols="50" placeholder="Ex: Essa bolinha de cachorro espetacular e muito divertida vai fazer com que seu animal tenha muitas horas de alegria."></textarea>
-						<br><label>Preço:</label>
-						<input class="inputText" type="number" step="0.01" name="PrecProd" placeholder="Ex: 15.00">
-						<br><label>Quantidade em Estoque:</label>
-						<input class="inputText" type="number" name="QtdEstProd" placeholder="Ex: 10">
-						<br><label>Quantidade Vendida:</label>
-						<input class="inputText" type="number" name="QtdVendProd" placeholder="Ex: 10">
-						<br><br><label></label>
-						<input class="submits" type="submit" value="Cadastrar">
-					</form>
+                    <form id="formAddProd" onsubmit="return false;">
+                        <br>
+                        <h2> Cadastrar Produto: </h2>
+                        <label>Nome:</label>
+                        <input class="inputText" type="text" name="NomeProd" placeholder="Ex: Bolinha de cachorro">
+                        <br><label>Código de Barras:</label>
+                        <input class="inputText" type="text" name="CodBarras" placeholder="Ex: 7897900310604">
+                        <br><label>Foto:</label>
+                        <input class="inputFile" type="file" name="FotoProd">
+                        <br><label>Descrição:</label>
+                        <textarea name="DescProd" rows="4" cols="50" placeholder="Ex: Essa bolinha de cachorro espetacular e muito divertida vai fazer com que seu animal tenha muitas horas de alegria."></textarea>
+                        <br><label>Preço:</label>
+                        <input class="inputText" type="number" step="0.01" name="PrecProd" placeholder="Ex: 15.00">
+                        <br><label>Quantidade em Estoque:</label>
+                        <input class="inputText" type="number" name="QtdEstProd" placeholder="Ex: 10">
+                        <br><label>Quantidade Vendida:</label>
+                        <input class="inputText" type="number" name="QtdVendProd" placeholder="Ex: 10">
+                        <br><br><label></label>
+                        <input class="submits" type="submit" value="Cadastrar">
+                    </form>
                 </div>
                 <!-- Cadastrar Serviço -->
                 <div data-toggable2 id="cadastrarSer" class="formSubmit longform">
-					<form id="formAddServ" onsubmit="return false;">
-						<br>
-						<h2> Cadastrar Serviço: </h2>
-						<label>Nome:</label>
-						<input class="inputText" type="text" name="NomeServ" id="addNomeServ" placeholder="Ex: Banho">
-						<br><label>Foto:</label>
-						<input class="inputFile" type="file" name="FotoServ" id="addFotoServ" onchange="previewFile(document.getElementById('addFotoServ'),document.getElementById('imgServAdd'));encodeImageFileAsURL(this);">
-						<img id="imgServAdd" src="" class="imagem">
-						<br><label>Descrição:</label>
-						<textarea name="DescServ" rows="4" cols="50" id="addDescServ"  placeholder="Ex: Uma incrível chuva de limpeza que deixará seu animal limpinho e cheiroso."></textarea>
-						<br><label>Preço:</label>
-						<input class="inputText" type="number" step="0.01" id="addPrecoServ" name="PrecServ" placeholder="Ex: 15.00">
-						<br><br><label></label>
-						<input class="submits" type="submit" value="Cadastrar" onclick="addServ()">
-					</form>
+                    <form id="formAddServ" onsubmit="return false;">
+                        <br>
+                        <h2> Cadastrar Serviço: </h2>
+                        <label>Nome:</label>
+                        <input class="inputText" type="text" name="NomeServ" id="addNomeServ" placeholder="Ex: Banho">
+                        <br><label>Foto:</label>
+                        <input class="inputFile" type="file" name="FotoServ" id="addFotoServ" onchange="previewFile(document.getElementById('addFotoServ'),document.getElementById('imgServAdd'));encodeImageFileAsURL(this);">
+                        <img id="imgServAdd" src="" class="imagem">
+                        <br><label>Descrição:</label>
+                        <textarea name="DescServ" rows="4" cols="50" id="addDescServ" placeholder="Ex: Uma incrível chuva de limpeza que deixará seu animal limpinho e cheiroso."></textarea>
+                        <br><label>Preço:</label>
+                        <input class="inputText" type="number" step="0.01" id="addPrecoServ" name="PrecServ" placeholder="Ex: 15.00">
+                        <br><br><label></label>
+                        <input class="submits" type="submit" value="Cadastrar" onclick="addServ()">
+                    </form>
                 </div>
             </div>
             <!-- Serviços -->
@@ -272,33 +276,36 @@
 
                 <!-- Associar Serviço -->
                 <div data-toggable2 id="assocServ" class="formSubmit longform">
-					<form id="formAssServ" onsubmit="return false;">
-						<br>
-						<h2> Associar Serviço: </h2>
-						<label>Nome:</label>
-						<input class="inputText" type="text" name="NomeServ" placeholder="Ex: Banho">
-						<br><label>Data:</label>
-						<input class="inputText" type="date" name="DataServ">
-						<br><label>Horário:</label>
-						<input class="inputText" type="time" name="TempServ">
-						<br><br><label></label>
-						<input class="submits" type="submit" value="Reservar">
-					</form>
+                    <form id="formAssServ" onsubmit="return false;">
+                        <br>
+                        <h2> Associar Serviço: </h2>
+                        <label>Serviço:</label>
+                        <select id="dropdownServicosAdd">
+                        </select>
+                        <br><label>Pet:</label>
+                        <select id="petsServicos"></select>
+                        <br><label>Data:</label>
+                        <input class="inputText" type="date" name="DataServ" id="dataServ">
+                        <br><label>Horário:</label>
+                        <input class="inputText" type="time" name="TempServ" id="tempServ">
+                        <br><br><label></label>
+                        <input class="submits" type="submit" value="Reservar" onclick="addEventToCalendar()">
+                    </form>
                 </div>
                 <!-- Liberar Reserva -->
                 <div data-toggable2 id="releaseServ" class="formSubmit longform">
-					<form id="formRelServ" onsubmit="return false;">
-						<br>
-						<h2> Desmarcar Serviço: </h2>
-						<label>Nome:</label>
-						<input class="inputText" type="text" name="NomeServ" placeholder="Ex: Banho">
-						<br><label>Data:</label>
-						<input class="inputText" type="date" name="DataServ">
-						<br><label>Horário:</label>
-						<input class="inputText" type="time" name="TempServ">
-						<br><br><label></label>
-						<input class="submits" type="submit" value="Desmarcar">
-					</form>
+                    <form id="formRelServ" onsubmit="return false;">
+                        <br>
+                        <h2> Desmarcar Serviço: </h2>
+                        <label>Nome:</label>
+                        <select id="dropdownServicosDel"></select>
+                        <br><label>Data:</label>
+                        <input class="inputText" type="date" name="DataServ" id="dataServDel" disabled>
+                        <br><label>Horário:</label>
+                        <input class="inputText" type="time" name="TempServ" id="tempServDel" disabled>
+                        <br><br><label></label>
+                        <input class="submits" type="submit" value="Desmarcar">
+                    </form>
                 </div>
             </div>
             <!-- Perfil Administrador -->
@@ -309,25 +316,25 @@
 
                 <!-- Editar Perfil -->
                 <div class="formSubmit longform" data-toggable2 id="editPerfilAdm"><br>
-					<form id="formEditAdmin" onsubmit="return false;">
-						<br>
-						<h2> Editar Perfil: </h2>
-						<label>Nome:</label>
-						<input class="inputText" type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin" id="nomeAdm">
-						<label>Senha:</label>
-						<input class="inputText" type="text" name="passAdm" placeholder="***" id="passAdm">
-						<br><label>CPF:</label>
-						<input class="inputText" type="text" name="CPFAdmEdit" id="CPFAdmEdit" disabled>
-						<br><label>Foto:</label>
-						<input class="inputFile" type="file" name="FotoAdm" id="FotoAdm" onchange="previewFile(document.getElementById('FotoAdm'),document.getElementById('imgAdm'));encodeImageFileAsURL(this);">
-						<img id="imgAdm" src="">
-						<br><label>Telefone:</label>
-						<input class="inputText" type="text" name="TelAdm" id="TelAdmEdit">
-						<br><label>Email:</label>
-						<input class="inputText" type="email" name="emailAdm" placeholder="Ex: didiomedusa@gmail.com" id="emailAdm">
-						<br><br><label></label>
-						<input class="submits" type="submit" value="Salvar" onclick="updateAdm()">
-					</form>
+                    <form id="formEditAdmin" onsubmit="return false;">
+                        <br>
+                        <h2> Editar Perfil: </h2>
+                        <label>Nome:</label>
+                        <input class="inputText" type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin" id="nomeAdm">
+                        <label>Senha:</label>
+                        <input class="inputText" type="text" name="passAdm" placeholder="***" id="passAdm">
+                        <br><label>CPF:</label>
+                        <input class="inputText" type="text" name="CPFAdmEdit" id="CPFAdmEdit" disabled>
+                        <br><label>Foto:</label>
+                        <input class="inputFile" type="file" name="FotoAdm" id="FotoAdm" onchange="previewFile(document.getElementById('FotoAdm'),document.getElementById('imgAdm'));encodeImageFileAsURL(this);">
+                        <img id="imgAdm" src="">
+                        <br><label>Telefone:</label>
+                        <input class="inputText" type="text" name="TelAdm" id="TelAdmEdit">
+                        <br><label>Email:</label>
+                        <input class="inputText" type="email" name="emailAdm" placeholder="Ex: didiomedusa@gmail.com" id="emailAdm">
+                        <br><br><label></label>
+                        <input class="submits" type="submit" value="Salvar" onclick="updateAdm()">
+                    </form>
                 </div>
                 <!-- Listar Ganhos -->
                 <div data-toggable2 id="listGainsAdm">
@@ -464,13 +471,13 @@
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <form id="formReserve" onsubmit="return false;">
-							<br>
-							<label>Nome do Pet:</label>
-							<input class="inputText" type="text" name="NomePet" placeholder="Ex: Pipoca">
-							<br> <label>Serviço:</label>
-							<input class="inputText" type="text" name="Servico" placeholder="Ex: Tosa">
-							<br><br><label></label>
-							<input class="submits" type="submit" value="Agendar">
+                            <br>
+                            <label>Nome do Pet:</label>
+                            <input class="inputText" type="text" name="NomePet" placeholder="Ex: Pipoca">
+                            <br> <label>Serviço:</label>
+                            <input class="inputText" type="text" name="Servico" placeholder="Ex: Tosa">
+                            <br><br><label></label>
+                            <input class="submits" type="submit" value="Agendar">
                         </form>
                     </div>
                 </div>
@@ -486,20 +493,20 @@
 
                 <!-- Editar Pets -->
                 <div data-toggable2 id="editPetsCli" class="formSubmit longform">
-					<form id="formEditPet" onsubmit="return false;">
-						<br>
-						<h2> Cadastro de Pets: </h2>
-						<label>Nome do Pet: </label>
-						<input class="inputText" type="text" name="NomePet" id="addNomePet" placeholder="Ex: Pipoca">
-						<br> <label>Raça: </label>
-						<input class="inputText" type="text" name="RacaPet" id="addRacaPet" placeholder="Ex: Dalmata">
-						<br><label>Idade: </label>
-						<input class="inputText" id="addIdadePet" type="number" name="IdadePet" placeholder="7">
-						<br><label>Foto: </label>
-						<input class="inputFile" id="addFotoPet" type="file" name="FotoPet">
-						<br><br><label></label>
-						<input class="inputSubmit" type="submit" value="Salvar">
-					</form>
+                    <form id="formEditPet" onsubmit="return false;">
+                        <br>
+                        <h2> Cadastro de Pets: </h2>
+                        <label>Nome do Pet: </label>
+                        <input class="inputText" type="text" name="NomePet" id="addNomePet" placeholder="Ex: Pipoca">
+                        <br> <label>Raça: </label>
+                        <input class="inputText" type="text" name="RacaPet" id="addRacaPet" placeholder="Ex: Dalmata">
+                        <br><label>Idade: </label>
+                        <input class="inputText" id="addIdadePet" type="number" name="IdadePet" placeholder="7">
+                        <br><label>Foto: </label>
+                        <input class="inputFile" id="addFotoPet" type="file" name="FotoPet">
+                        <br><br><label></label>
+                        <input class="inputSubmit" type="submit" value="Salvar">
+                    </form>
                 </div>
                 <!-- Listar Pets -->
                 <div data-toggable2 id="listPetsCli" class="formSubmit">
@@ -557,24 +564,24 @@
                 </div>
                 <!-- Editar Perfil -->
                 <div data-toggable2 id="editPerfilCli" class="formSubmit longform">
-					<form id="formEditCli" onsubmit="return false;">
-						<br>
-						<h2> Editar Perfil: </h2>
-						<label>Nome:</label>
-						<input type="text" name="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
-						<br><label>CPF:</label>
-						<input type="text" name="CPFCli" placeholder="Ex: 13552134360">
-						<br><label>Endereço:</label>
-						<input type="text" name="EnderecoCli" placeholder="Ex: Av. São Carlos 1200">
-						<br><label>Foto:</label>
-						<input class="inputFile" type="file" name="FotoCli">
-						<br><label>Telefone:</label>
-						<input type="text" name="TelCli" placeholder="Ex: (16) 3418-2341">
-						<br><label>Email:</label>
-						<input type="email" name="TelCli" placeholder="Ex: didiomedusa@gmail.com">
-						<br><br><label></label>
-						<input class="submits" type="submit" value="Salvar">
-					</form>
+                    <form id="formEditCli" onsubmit="return false;">
+                        <br>
+                        <h2> Editar Perfil: </h2>
+                        <label>Nome:</label>
+                        <input type="text" name="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
+                        <br><label>CPF:</label>
+                        <input type="text" name="CPFCli" placeholder="Ex: 13552134360">
+                        <br><label>Endereço:</label>
+                        <input type="text" name="EnderecoCli" placeholder="Ex: Av. São Carlos 1200">
+                        <br><label>Foto:</label>
+                        <input class="inputFile" type="file" name="FotoCli">
+                        <br><label>Telefone:</label>
+                        <input type="text" name="TelCli" placeholder="Ex: (16) 3418-2341">
+                        <br><label>Email:</label>
+                        <input type="email" name="TelCli" placeholder="Ex: didiomedusa@gmail.com">
+                        <br><br><label></label>
+                        <input class="submits" type="submit" value="Salvar">
+                    </form>
                 </div>
             </div>
             <!-- Logout -->

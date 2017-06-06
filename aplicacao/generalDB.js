@@ -10,7 +10,7 @@ function getKey(id, store, getFunc) {
         if (requestDB.result) {
             getFunc(requestDB.result);
         } else {
-            console.log("Kenny couldn't be found in your database!");
+            console.log("Não foi possível encontrar o produto.");
         }
     };
 }
