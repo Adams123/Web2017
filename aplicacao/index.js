@@ -14,9 +14,9 @@ function confirmLogout(choice) {
         $("#navBarCliente").hide();
     }
 }
-function strcmp(a, b)
-{
-    return (a<b?-1:(a>b?1:0));
+
+function strcmp(a, b) {
+    return (a < b ? -1 : (a > b ? 1 : 0));
 }
 // verificacao de admin ou cliente
 function logon(cpf, isAdmin) {
@@ -76,8 +76,6 @@ $(document).ready(function () {
             end: '18:00',
         },
         allDaySlot: false,
-        // slotDuration: '01:00:00',
-        events: eventos,
         dayClick: function (date, jsEvent, view) {
             alert('Clicked on: ' + date.format('DD/MM/YYYY HH:mm'));
 
@@ -93,32 +91,117 @@ $(document).ready(function () {
 
     //------------------adicionando listener ao dropdown de servico
     var select = document.getElementById('dropdownServicosDel');
-select.addEventListener('change', function () {
-    var selecionada = this.options[this.selectedIndex];
-    var url = selecionada.getAttribute('value');
-
+    select.addEventListener('change', function () {
+        var selecionada = this.options[this.selectedIndex];
+        var url = selecionada.getAttribute('value');
+        setValuesServ(url);
+    });
 });
-});
 
-function setValuesServ(nome)
-{
+function renderAllEvents() {
+    var trans = db.transaction("servicosAtivos", IDBTransaction.READ_ONLY);
+    var store = trans.objectStore("servicosAtivos");
+    var items = [];
 
+    var cursorRequest = store.openCursor();
+
+    cursorRequest.onerror = function (error) {
+        console.log(error);
+    };
+
+    cursorRequest.onsuccess = function (evt) {
+        var cursor = evt.target.result;
+        if (cursor) {
+            items.push(cursor.value);
+            $('.calendar').fullCalendar('renderEvent', cursor.value, true);
+            cursor.continue();
+        }
+    };
 }
 
-function previewFile(source, dest)
-{
+function setValuesServ(servicoPet) {
+    var key;
+    var trans = db.transaction("servicosAtivos", IDBTransaction.READ_ONLY);
+    var store = trans.objectStore("servicosAtivos");
 
-  var file = source.files[0];
-  var preview = dest;
-  var reader  = new FileReader();
+    var cursorRequest = store.openCursor();
 
-  reader.addEventListener("load", function () {
-    preview.src = reader.result;
-  }, false);
+    cursorRequest.onerror = function (error) {
+        console.log(error);
+    };
 
-  if (file) {
-    reader.readAsDataURL(file);
-  }
+    cursorRequest.onsuccess = function (evt) {
+        var cursor = evt.target.result;
+        if (cursor) {
+            key = cursor.value.title + " " + cursor.value.pet;
+            if (strcmp(key, servicoPet) == 0) //achou
+            {
+                showDataServDel(cursor.value);
+                return;
+            }
+            cursor.continue();
+        } else console.log("Nao achou " + key);
+    };
 }
 
+function showDataServDel(servicoPet) {
+    $('#dataServDel').val(servicoPet.start.split('T')[0]);
+    $('#tempServDel').val(servicoPet.start.split('T')[1]);
 
+}
+//usa a imagem do upload em source para exibir em dest
+function previewFile(source, dest) {
+
+    var file = source.files[0];
+    var preview = dest;
+    var reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+        preview.src = reader.result;
+    }, false);
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+}
+
+function desmarcarServico() {
+    var servicoPet = $("#dropdownServicosDel option:selected").text();
+    var key;
+    var trans = db.transaction("servicosAtivos", IDBTransaction.READ_ONLY);
+    var store = trans.objectStore("servicosAtivos");
+
+    var cursorRequest = store.openCursor();
+
+    cursorRequest.onerror = function (error) {
+        console.log(error);
+    };
+
+    cursorRequest.onsuccess = function (evt) {
+        var cursor = evt.target.result;
+        if (cursor) {
+            key = cursor.value.title + " " + cursor.value.pet;
+            if (strcmp(key, servicoPet) == 0) //achou
+            {
+                deleteServicoAtivo(cursor.value.id);
+                return;
+            }
+            cursor.continue();
+        } else console.log("Nao achou " + key);
+    };
+}
+
+function deleteServicoAtivo(id) {
+    requestDB = db.transaction(["servicosAtivos"], "readwrite")
+        .objectStore("servicosAtivos")
+        .delete(Number(id));
+
+    requestDB.onsuccess = function () {
+        console.log("Removido " + id);
+    };
+    requestDB.onerror = function () {
+        console.log("Erro ao remover");
+    };
+
+    $('.calendar').fullCalendar('removeEvents', Number(id));
+}

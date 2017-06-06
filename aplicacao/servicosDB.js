@@ -4,11 +4,12 @@ Antonio Pedro Lavezzo Mazzarolo - 8626232
 Gustavo Dutra Santana - 8532040
 Veronica Vannini - 8517369 */
 
+//adiciona serviço à base
 function addServ() {
-	var nome = document.getElementById('addNomeServ').value;
-	var foto = imagem;
-	var descricao = document.getElementById('addDescServ').value;
-	var preco = document.getElementById('addPrecoServ').value;
+    var nome = document.getElementById('addNomeServ').value;
+    var foto = imagem;
+    var descricao = document.getElementById('addDescServ').value;
+    var preco = document.getElementById('addPrecoServ').value;
 
     requestDB = db.transaction(["servicos"], "readwrite")
         .objectStore("servicos")
@@ -18,13 +19,13 @@ function addServ() {
             descricao: descricao,
             preco: preco
         });
-    requestDB.onsuccess = function(){
+    requestDB.onsuccess = function () {
         console.log("Adicionado " + nome);
-		alert(nome + " foi adicionado com sucesso!");
+        alert(nome + " foi adicionado com sucesso!");
     }
-    requestDB.onerror = function(){
+    requestDB.onerror = function () {
         console.log("Erro");
-		alert("Falha ao adicionar " + nome + ".");
+        alert("Falha ao adicionar " + nome + ".");
     }
 }
 

@@ -69,6 +69,8 @@ function removeAllCli() { //limpa todos os
     objectStore.clear();
 }
 
+
+//verifica se um dado cliente já existe na bd
 function checkCliente(nomeCliente, senhaCliente) {
     var objectStore = db.transaction("clientes").objectStore("clientes");
 

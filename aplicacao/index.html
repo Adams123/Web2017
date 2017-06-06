@@ -154,7 +154,7 @@
                         <br><label>Quantidade vendida:</label>
                         <input class="inputText" type="number" name="vendasProdDel" id="vendasProdDel" Placeholder="11" disabled>
                         <br><br><label></label>
-                        <input class="submits" type="submit" value="Remover" onclick="remove();">
+                        <input class="submits" type="submit" value="Remover" onclick="removeProd();">
                     </form>
                 </div>
                 <!-- Listar Produtos -->
@@ -298,13 +298,15 @@
                         <br>
                         <h2> Desmarcar Serviço: </h2>
                         <label>Nome:</label>
-                        <select id="dropdownServicosDel"></select>
+                        <select id="dropdownServicosDel">
+                            <option disabled selected value> -- escolha uma opção -- </option>
+                        </select>
                         <br><label>Data:</label>
                         <input class="inputText" type="date" name="DataServ" id="dataServDel" disabled>
                         <br><label>Horário:</label>
                         <input class="inputText" type="time" name="TempServ" id="tempServDel" disabled>
                         <br><br><label></label>
-                        <input class="submits" type="submit" value="Desmarcar">
+                        <input class="submits" type="submit" value="Desmarcar" onclick="desmarcarServico()">
                     </form>
                 </div>
             </div>
