@@ -10,15 +10,15 @@ function addServ() {
     var foto = imagem;
     var descricao = document.getElementById('addDescServ').value;
     var preco = document.getElementById('addPrecoServ').value;
-
+    var serv = {
+        nome: nome,
+        foto: foto,
+        descricao: descricao,
+        preco: preco
+    };
     requestDB = db.transaction(["servicos"], "readwrite")
         .objectStore("servicos")
-        .add({
-            nome: nome,
-            foto: foto,
-            descricao: descricao,
-            preco: preco
-        });
+        .add(serv);
     requestDB.onsuccess = function () {
         console.log("Adicionado " + nome);
         alert(nome + " foi adicionado com sucesso!");
@@ -27,39 +27,88 @@ function addServ() {
         console.log("Erro");
         alert("Falha ao adicionar " + nome + ".");
     }
+    addToServicos(serv);
 }
+//apenas para adicionar ao dropdown de servicos
+function addToServicos(servico) {
+    if ($("#dropdownServicosAdd option[value='" + servico.nome + "']").length == 0) //se a opção não existe adiciona, senão faz nada
+        $('#dropdownServicosAdd').append($('<option>', {
+            "value": servico.nome,
+            "text": servico.nome
+        }));
+};
 
-function readServ() {
-    var transaction = db.transaction(["servicos"]);
-    var objectStore = transaction.objectStore("servicos");
-    requestDB = objectStore.get("0");
-    requestDB.onerror = function (event) {
-        alert("Unable to retrieve data from database!");
+function renderServicos() {
+    $("#servicos option").remove();
+    var trans = db.transaction("servicos", IDBTransaction.READ_ONLY);
+    var store = trans.objectStore("servicos");
+    var cursorRequest = store.openCursor();
+
+    cursorRequest.onerror = function (error) {
+        console.log(error);
     };
-    requestDB.onsuccess = function (event) {
-        if (requestDB.result) {
-            alert("Name: " + requestDB.result.name);
-        } else {
-            alert("Kenny couldn't be found in your database!");
-        }
-    };
-}
 
-function readAllServ() {
-    var objectStore = db.transaction("servicos").objectStore("servicos");
-
-    objectStore.openCursor().onsuccess = function (event) {
-        var cursor = event.target.result;
+    cursorRequest.onsuccess = function (evt) {
+        var cursor = evt.target.result;
         if (cursor) {
-            alert("Id: " + cursor.key + ", Nome: " + cursor.value.name);
+            addToServicos(cursor.value);
             cursor.continue();
-        } else {
-            alert("Não há mais registros");
         }
     };
 }
 
-function removeAllServ() { //limpa todos os registros
-    var objectStore = db.transaction(["servicos"], "readwrite").objectStore("servicos");
-    objectStore.clear();
+function addToPets(pet, id) {
+    if ($("#petsServicos option[id='pet" + pet.id + "']").length == 0) //se a opção não existe adiciona, senão faz nada
+        $('#petsServicos').append($('<option>', {
+            "value": pet.nome,
+            "text": pet.nome,
+            "id": "pet" + id //gambi pra achar a id do pet mais facil
+        }));
+}
+
+function renderPets() {
+    $("#petsServicos option").remove();
+    var trans = db.transaction("animais", IDBTransaction.READ_ONLY);
+    var store = trans.objectStore("animais");
+    var cursorRequest = store.openCursor();
+
+    cursorRequest.onerror = function (error) {
+        console.log(error);
+    };
+    var i = 1;
+    cursorRequest.onsuccess = function (evt) {
+        var cursor = evt.target.result;
+        if (cursor) {
+            addToPets(cursor.value, i);
+            i = i + 1;
+            cursor.continue();
+        }
+    };
+}
+
+function addToLiberar(horario) {
+    if ($("#dropdownServicosDel option[id='serv" + horario.id + "']").length == 0) //se a opção não existe adiciona, senão faz nada
+        $('#dropdownServicosDel').append($('<option>', {
+            "value": horario.title + " " + horario.pet,
+            "text": horario.title + " " + horario.pet,
+            "id": "serv" + horario.id //gamb pra achar a id do serv mais facil
+        }));
+}
+
+
+function renderServsAtivos() {
+    var trans = db.transaction("servicosAtivos", IDBTransaction.READ_ONLY);
+    var store = trans.objectStore("servicosAtivos");
+    var cursorRequest = store.openCursor();
+    $('#dropdownServicosDel option').remove();
+    cursorRequest.onerror = function (error) {
+        console.log(error);
+    };
+    cursorRequest.onsuccess = function (evt) {
+        var cursor = evt.target.result;
+        if (cursor) {
+            addToLiberar(cursor.value);
+            cursor.continue();
+        }
+    };
 }

@@ -67,10 +67,7 @@ function editAdmProfile(adm) {
     nome.value = adm.name;
     pass.value = adm.pass;
     CPF.value = whoIsNavigating;
-
-    if (adm.foto != null)
-        foto.src = adm.foto;
-    else foto.src = "https://www.codeproject.com/KB/architecture/648760/Null.png";
+    foto.src = adm.foto;
     tel.value = adm.telefone;
     email.value = adm.email;
 }
@@ -114,9 +111,10 @@ function updateAdm() {
 
 //cria a tabela de ganhos de servicos e calculo o lucro apenas para servicos
 function listarGanhosServicos(servico) {
-
     var tabela = document.getElementById("tabelaGanhosServicos");
     if (checkInTableh2("tabelaGanhosServicos", servico.nome) == 0) {
+        var h32 = document.createElement('h3');
+        calculaLucroServico(servico, h32);
         var tr = document.createElement('tr');
         var td1 = document.createElement('td');
         var h31 = document.createElement('h2');
@@ -124,15 +122,47 @@ function listarGanhosServicos(servico) {
         td1.appendChild(h31);
         tr.appendChild(td1);
         var td2 = document.createElement('td');
-        var h32 = document.createElement('h3');
-        h32.innerHTML = "R$" + servico.preco;
         td2.appendChild(h32);
         tr.appendChild(td2);
         tabela.appendChild(tr);
     }
-    //var lucroServ = document.getElementById("lucroServ");
-    //lucroServ.value = lucroServ.value + lucro;
+    calculaLucroTotal();
 }
+
+function calculaLucroTotal() {
+    var lucroTotal = $('#lucroTotal');
+    var lucroProd = $('#lucroProd').val();
+    var lucroServ = $('#lucroServ').val();
+    console.log(lucroServ);
+    lucroTotal.val(parseFloat(lucroProd) + parseFloat(lucroServ));
+}
+
+function calculaLucroServico(servico, h3) {
+    var trans = db.transaction("servicosAtivos", IDBTransaction.READ_ONLY);
+    var store = trans.objectStore("servicosAtivos");
+    var lucro = 0.00;
+    var cursorRequest = store.openCursor();
+
+    cursorRequest.onerror = function (error) {
+        console.log(error);
+    };
+
+    cursorRequest.onsuccess = function (evt) {
+        var cursor = evt.target.result;
+        if (cursor) {
+            if (strcmp(cursor.value.title, servico.nome) == 0) {
+                lucro = parseFloat(lucro) + parseFloat(servico.preco);
+            }
+            cursor.continue();
+        } else {
+            var lucroServ = $('#lucroServ');
+            var lucrototal = parseFloat(lucroServ.val()) + parseFloat(lucro)
+            lucroServ.val(lucrototal);
+            h3.innerHTML = lucro;
+        }
+    };
+}
+
 //cria a tabela de ganhos de produtos e calculo o lucro apenas para produtos
 function listarGanhosProdutos(produto) {
     var tabela = document.getElementById("tabelaGanhosProdutos");
@@ -155,19 +185,16 @@ function listarGanhosProdutos(produto) {
         var lucroAtual = parseFloat(lucroProd.val()).toFixed(2);
         var prodTotal = parseFloat(lucro) + parseFloat(lucroAtual);
         lucroProd.val(prodTotal.toFixed(2));
-
-
-        //isso tem q virar funcao calculando o lucroProd + lucroServ e ser chamada no listarGanhos()
-        var lucroTotal = $('#lucroTotal');
-        var lucroTotalAtual = parseFloat(lucroTotal.val()).toFixed(2);
-        var tudo = parseFloat(lucro) + parseFloat(lucroTotalAtual);
-        lucroTotal.val(tudo.toFixed(2));
+        calculaLucroTotal();
     }
 }
 //monta as tabelas e lucros
 function listarGanhos() {
+    $('#tabelaGanhosProdutos td').remove();
+    $('#tabelaGanhosServicos td').remove();
     listAllItems("produtos", listarGanhosProdutos);
     listAllItems("servicos", listarGanhosServicos);
+    calculaLucroTotal();
 }
 //calcula lucro de prod
 function calculaLucro(item) {
@@ -193,6 +220,5 @@ function addEventToCalendar() { //nao verifica se tem ja adicionado
     };
     console.log(events);
     if ($.inArray(newEvent, events) != -1) return false;
-    console.log(newEvent);
     calendar.fullCalendar('renderEvent', newEvent, true);
 }

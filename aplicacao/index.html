@@ -17,9 +17,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src='node_modules/moment/min/moment.min.js'></script>
     <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
+    <script src='initDB.js'></script>
     <script src='index.js'></script>
     <script src='dadosTeste.js'></script>
-    <script src='initDB.js'></script>
     <script src='generalDB.js'></script>
     <script src='blobbuilder.js'></script>
     <script src='adminDB.js'></script>
@@ -62,7 +62,7 @@
             <li><a data-toggle href="#homeAdm">Home</a></li>
             <li><a data-toggle href="#produtosAdm">Produtos</a></li>
             <li><a data-toggle href="#calendarioAdm">Calendário</a></li>
-            <li><a data-toggle href="#cadastrar">Cadastrar</a></li>
+            <li><a data-toggle href="#cadastrar">Usuários</a></li>
             <li><a data-toggle href="#servicosAdm">Serviços</a></li>
             <li><a data-toggle href="#profileAdm">Profile</a></li>
             <li><a data-toggle href="#logoutAdm" onclick="$('.confirm').show()">Logout</a></li>
@@ -109,7 +109,7 @@
                         <div id="contentLeft">
                             <br>
                             <h2>Atualizar produto:</h2>
-                            <label>ID:</label>
+                            <label>Código de barras:</label>
                             <input class="inputText" type="number" name="idProdAtt" id="idProdAtt" Placeholder="1">
                             <input class="submits" type="submit" value="Pesquisar" onclick="getProdInfo('att')"> <br>
                             <br> <label>Nome:</label>
@@ -159,16 +159,21 @@
                 </div>
                 <!-- Listar Produtos -->
                 <div data-toggable2 id="listProd">
-                    <table class="tabelas tableProd" id="tableProd">
-                        <tr>
-                            <th>ID</th>
-                            <th>Foto</th>
-                            <th>Nome</th>
-                            <th>Descricao</th>
-                            <th>Preço</th>
-                            <th>Quantidade disponível</th>
-                            <th>Quantidade vendida</th>
-                        </tr>
+                    <table class="tabelas tableProd">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Foto</th>
+                                <th>Nome</th>
+                                <th>Descricao</th>
+                                <th>Preço</th>
+                                <th>Quantidade disponível</th>
+                                <th>Quantidade vendida</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableProd">
+
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -183,8 +188,6 @@
                 <h2> O que deseja fazer? </h2>
                 <li><a data-toggle2 href="#cadastrarCli">Cadastrar Cliente</a></li>
                 <li><a data-toggle2 href="#cadastrarAdm">Cadastrar Administrador</a></li>
-                <li><a data-toggle2 href="#cadastrarProd">Cadastrar Produto</a></li>
-                <li><a data-toggle2 href="#cadastrarSer">Cadastrar Serviço</a></li>
 
                 <!-- Cadastrar Cliente -->
                 <div data-toggable2 id="cadastrarCli" class="formSubmit longform">
@@ -226,29 +229,15 @@
                         <input class="submits" type="submit" value="Cadastrar">
                     </form>
                 </div>
-                <!-- Cadastrar Produto -->
-                <div data-toggable2 id="cadastrarProd" class="formSubmit longform">
-                    <form id="formAddProd" onsubmit="return false;">
-                        <br>
-                        <h2> Cadastrar Produto: </h2>
-                        <label>Nome:</label>
-                        <input class="inputText" type="text" name="NomeProd" placeholder="Ex: Bolinha de cachorro">
-                        <br><label>Código de Barras:</label>
-                        <input class="inputText" type="text" name="CodBarras" placeholder="Ex: 7897900310604">
-                        <br><label>Foto:</label>
-                        <input class="inputFile" type="file" name="FotoProd">
-                        <br><label>Descrição:</label>
-                        <textarea name="DescProd" rows="4" cols="50" placeholder="Ex: Essa bolinha de cachorro espetacular e muito divertida vai fazer com que seu animal tenha muitas horas de alegria."></textarea>
-                        <br><label>Preço:</label>
-                        <input class="inputText" type="number" step="0.01" name="PrecProd" placeholder="Ex: 15.00">
-                        <br><label>Quantidade em Estoque:</label>
-                        <input class="inputText" type="number" name="QtdEstProd" placeholder="Ex: 10">
-                        <br><label>Quantidade Vendida:</label>
-                        <input class="inputText" type="number" name="QtdVendProd" placeholder="Ex: 10">
-                        <br><br><label></label>
-                        <input class="submits" type="submit" value="Cadastrar">
-                    </form>
-                </div>
+
+            </div>
+            <!-- Serviços -->
+            <div class="navBarInf" data-toggable id="servicosAdm">
+                <h2> O que deseja fazer? </h2>
+                <li><a data-toggle2 href="#cadastrarSer">Cadastrar Serviço</a></li>
+                <li><a data-toggle2 href="#assocServ" onclick="renderServicos(); renderPets()">Associar serviço a horário</a></li>
+                <li><a data-toggle2 href="#releaseServ" onclick="renderServsAtivos()">Liberar horário reservado</a></li>
+
                 <!-- Cadastrar Serviço -->
                 <div data-toggable2 id="cadastrarSer" class="formSubmit longform">
                     <form id="formAddServ" onsubmit="return false;">
@@ -267,12 +256,6 @@
                         <input class="submits" type="submit" value="Cadastrar" onclick="addServ()">
                     </form>
                 </div>
-            </div>
-            <!-- Serviços -->
-            <div class="navBarInf" data-toggable id="servicosAdm">
-                <h2> O que deseja fazer? </h2>
-                <li><a data-toggle2 href="#assocServ">Associar serviço a horário</a></li>
-                <li><a data-toggle2 href="#releaseServ">Liberar horário reservado</a></li>
 
                 <!-- Associar Serviço -->
                 <div data-toggable2 id="assocServ" class="formSubmit longform">
@@ -289,7 +272,7 @@
                         <br><label>Horário:</label>
                         <input class="inputText" type="time" name="TempServ" id="tempServ">
                         <br><br><label></label>
-                        <input class="submits" type="submit" value="Reservar" onclick="addEventToCalendar()">
+                        <input class="submits" type="submit" value="Reservar" onclick="adicionarServAssoc()">
                     </form>
                 </div>
                 <!-- Liberar Reserva -->
@@ -342,23 +325,33 @@
                 <div data-toggable2 id="listGainsAdm">
                     <div id="multTabelas">
                         <div class="divTables">
-                            <table class="tabelas" id="tabelaGanhosServicos">
-                                <tr>
-                                    <th>Serviços</th>
-                                    <th>Lucro</th>
-                                </tr>
+                            <table class="tabelas">
+                                <thead>
+                                    <tr>
+                                        <th>Serviços</th>
+                                        <th>Lucro</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelaGanhosServicos">
+
+                                </tbody>
                             </table>
                         </div>
                         <div class="divTables">
-                            <table class="tabelas" id="tabelaGanhosProdutos">
-                                <tr>
-                                    <th>ID Produto</th>
-                                    <th>Lucro</th>
-                                </tr>
+                            <table class="tabelas">
+                                <thead>
+                                    <tr>
+                                        <th>ID Produto</th>
+                                        <th>Lucro</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelaGanhosProdutos">
+
+                                </tbody>
                             </table>
                         </div>
                         <div class="forms" style="position: absolute; bottom: 0;">
-                            Lucro serviços: R$<input type="text" value="R$976,00" id="lucroServ"> Lucro produtos: R$<input type="text" value="0.00" id="lucroProd"> Lucro total: R$<input type="text" value="0.00" id="lucroTotal">
+                            Lucro serviços: R$<input type="text" id="lucroServ" value="0.00"> Lucro produtos: R$<input type="text" value="0.00" id="lucroProd"> Lucro total: R$<input type="text" value="0.00" id="lucroTotal">
                         </div>
                     </div>
                 </div>

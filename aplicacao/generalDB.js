@@ -43,7 +43,7 @@ function listAllItems(storeName, showFunc) {
         } else {
             var len = items.length;
             for (var j = 0; j < len; j++) { //evita ficar readicionando html toda vez q abrir a aba
-                    showFunc(items[j]);
+                showFunc(items[j]);
             }
         }
     };
@@ -51,24 +51,22 @@ function listAllItems(storeName, showFunc) {
 
 //verifica se uma key ta na tabela
 function checkInTable(table, key) {
-    var exists=0;
+    var exists = 0;
     $('#' + table + ' tr td:first-child').each(function () {
         var cellText = $(this).html();
-        if (strcmp(key, cellText) == 0)
-        {
-            exists=1;
+        if (strcmp(key, cellText) == 0) {
+            exists = 1;
         }
     });
     return exists;
 }
 
 function checkInTableh2(table, key) {
-    var exists=0;
+    var exists = 0;
     $('#' + table + ' tr td:first-child h2').each(function () {
         var cellText = $(this).html();
-        if (strcmp(key, cellText) == 0)
-        {
-            exists=1;
+        if (strcmp(key, cellText) == 0) {
+            exists = 1;
         }
     });
     return exists;

@@ -90,8 +90,8 @@ $(document).ready(function () {
     });
 
     //------------------adicionando listener ao dropdown de servico
-    var select = document.getElementById('dropdownServicosDel');
-    select.addEventListener('change', function () {
+    var selectServ = document.getElementById('dropdownServicosDel');
+    selectServ.addEventListener('change', function () {
         var selecionada = this.options[this.selectedIndex];
         var url = selecionada.getAttribute('value');
         setValuesServ(url);
@@ -204,4 +204,42 @@ function deleteServicoAtivo(id) {
     };
 
     $('.calendar').fullCalendar('removeEvents', Number(id));
+}
+
+Date.prototype.addHours = function (h) {
+    this.setHours(this.getHours() + h);
+    return this;
+}
+// ta com pau, se adicionar com nome já existente da merda, mas n vo arrumar agora
+function adicionarServAssoc() {
+    var petid = $('#petsServicos option:selected').attr('id');
+    petid = petid.replace("pet", "");
+    getKey(Number(petid), "animais", addServAssoc);
+}
+
+function addServAssoc(pet) {
+
+    var d = $('#dataServ').val() + ' ' + $('#tempServ').val();
+    d = new Date(d);
+    var datestring = (d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2));
+    var timestring = "T" + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+    var timestring1 = "T" + ("0" + (d.getHours() + 1)).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+
+    var e = {
+        "allDay": false,
+        "start": datestring + timestring,
+        "end": datestring + timestring1,
+        "pet": pet.nome,
+        "title": $('#dropdownServicosAdd option:selected').text(),
+        "url": pet.foto
+    };
+    var trans = db.transaction(["servicosAtivos"], "readwrite");
+    requestDB = trans.objectStore("servicosAtivos")
+        .add(e);
+    requestDB.onsuccess = function (event) {
+        e.id = event.target.result; //adiciona a id ao objeto antes de salvar no calendario
+        $('.calendar').fullCalendar('renderEvent', e, true);
+        addToLiberar(e); //adiciona ao menu dropdown de horarios a serem liberados
+    }
+
 }

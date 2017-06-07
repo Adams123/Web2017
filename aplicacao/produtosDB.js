@@ -37,6 +37,8 @@ function addProd() {
         console.log("Erro");
         alert("Falha ao adicionar " + nome + ".");
     };
+
+
 }
 //pega informações do produto, baseado se é pra deletar ou atualizar
 function getProdInfo(tab) {
@@ -190,5 +192,6 @@ function showProd(produto) {
 }
 
 function readAllProds() {
+    $("#tableProd td").remove(); //destroi tabela e remonta
     listAllItems("produtos", showProd);
 }
