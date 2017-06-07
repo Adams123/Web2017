@@ -50,7 +50,7 @@
                     <br> <label>Senha:</label>
                     <input class="inputText" type="password" id="senha">
                     <br>
-                    <button class="submits" type="submit" onclick="loginAdmin()">Entrar</button>
+                    <button class="submits" type="submit" onclick="loginCliente()">Entrar</button>
                 </form>
             </div>
         </div>
@@ -372,8 +372,8 @@
     <div id="navBarCliente" style="display:none">
         <ul class="navBarSup">
             <li><a data-toggle href="#homeCliente">Home</a></li>
-            <li><a data-toggle href="#produtosCli">Produtos</a></li>
-            <li><a data-toggle href="#carrinhoCli">Carrinho</a></li>
+            <li><a data-toggle href="#produtosCli" onclick="renderProdutos()">Produtos</a></li>
+            <li><a data-toggle href="#carrinhoCli" onclick="renderCarrinho()">Carrinho</a></li>
             <li><a data-toggle href="#calendarioCli">Calendário</a></li>
             <li><a data-toggle href="#profileCli">Profile</a></li>
             <li><a data-toggle href="#logoutCli" onclick="$('.confirm').show()">Logout</a></li>
@@ -386,96 +386,44 @@
             <!-- Produtos -->
             <div data-toggable id="produtosCli">
                 <table class="tabelas tableProd">
-                    <tr>
-                        <th>Foto</th>
-                        <th>Produto</th>
-                        <th>Valor unitário</th>
-                        <th>Quantidade</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <td><img src="https://staticpetz.stoom.com.br/fotos/1469467300065.jpg" alt="" style="width:150px;height:150px;"></td>
-                        <td>
-                            <h3>Brinquedo Latoy Leitão Látex para Cães</h3>
-                            <p>O Brinquedo Latoy Leitão Látex para Cães possui formato atrativo e cores vibrantes para diversão do seu amigo, e ainda é totalmente seguro, sua a matéria prima é 100% natural e a pintura é atóxica, além de resistente á mordidas. </p>
-                        </td>
-                        <td>
-                            <h3> R$24,00 </h3>
-                        </td>
-                        <td>
-                            <input class="preco" type="number" name="QtdProduto" value="1">
-                        </td>
-                        <td><input class="submits" type="submit" value="Adicionar ao Carrinho"> </td>
-                    </tr>
-                    <tr>
-                        <td><img src="https://staticpetz.stoom.com.br/fotos/1450897784351.jpg" alt="" style="width:150px;height:150px;"></td>
-                        <td>
-                            <h3>Tapete Gelado Jambo Mat Cool</h3>
-                            <p>O Tapete Gelado Jambo Mat Cool é um colchonete de nylon, espuma e gel que funciona como uma opção refrescante para os Pets nos dias quentes. O gel interno que existe dentro do tapete é ativado com o peso do Pet deixando o produto com uma temperatura de até 6° abaixo da temperatura ambiente. A refrescância do tapetinho dura de 3 a 4 horas e após esse período basta deixar o tapetinho descansar por 30 minutos que ele estará novamente pronto para o uso. Não é necessário eletricidade, refrigeração ou repor água. Após um período prolongado de uso, deixe o tapete descansar por 30 minutos. </p>
-                        </td>
-                        <td>
-                            <h3> R$897,78 </h3>
-                        </td>
-                        <td>
-                            <input class="preco" type="number" name="QtdProduto" value="1">
-                        </td>
-                        <td><input class="submits" type="submit" value="Adicionar ao Carrinho"> </td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Produto</th>
+                            <th>Valor unitário</th>
+                            <th>Quantidade</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableProdutosCli">
+
+                    </tbody>
                 </table>
             </div>
             <!-- Carrinho -->
             <div data-toggable id="carrinhoCli">
                 <table class="tabelas tableProd">
-                    <tr>
-                        <th>Foto</th>
-                        <th>Nome</th>
-                        <th>Quantidade</th>
-                        <th>Valor unitário</th>
-                        <th>Total</th>
-                    </tr>
-                    <tr>
-                        <td><img src="https://staticpetz.stoom.com.br/fotos/1469467300065.jpg" alt="" style="width:150px;height:150px;"></td>
-                        <td>
-                            <h3>Brinquedo Latoy Leitão Látex para Cães</h3>
-                        </td>
-                        <td><input class="preco" type="number" name="nomeProd" value="2"></td>
-                        <td><input class="preco" type="text" value="R$24,00"></td>
-                        <td><input class="preco" type="text" value="R$48,00"></td>
-                    </tr>
-                    <tr>
-                        <td><img src="https://staticpetz.stoom.com.br/fotos/1450897784351.jpg" alt="" style="width:150px;height:150px;"></td>
-                        <td>
-                            <h3>Tapete Gelado Jambo Mat Cool</h3>
-                        </td>
-                        <td>
-                            <input class="preco" type="number" name="nomeProd" value="1"></td>
-                        <td><input class="preco" type="text" value="R$897,78"></td>
-                        <td><input class="preco" type="text" value="R$897,78"></td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nome</th>
+                            <th>Quantidade</th>
+                            <th>Valor unitário</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableCarrinhoCli">
+
+                    </tbody>
                 </table>
-                <div style="float:right">Total<input value="R$921,78"></div><br>
-                <div class="formSubmit" style="clear: right; float: right"><input type="submit" value="Esvaziar Carrinho" style="margin-right:10px"><input class="formSubmit" type="submit" value="Comprar"></div>
+                <div style="float:right">Total: R$<input id="totalCart" type="text" disabled value="0.00"></div><br>
+                <div class="formSubmit" style="clear: right; float: right"><input type="submit" value="Esvaziar Carrinho" style="margin-right:10px" onclick="emptyCart()"><input class="formSubmit" type="submit" value="Comprar" onclick="comprar()"></div>
 
             </div>
             <!-- Calendário -->
             <div data-toggable id="calendarioCli">
                 <div class="calendar"></div>
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <form id="formReserve" onsubmit="return false;">
-                            <br>
-                            <label>Nome do Pet:</label>
-                            <input class="inputText" type="text" name="NomePet" placeholder="Ex: Pipoca">
-                            <br> <label>Serviço:</label>
-                            <input class="inputText" type="text" name="Servico" placeholder="Ex: Tosa">
-                            <br><br><label></label>
-                            <input class="submits" type="submit" value="Agendar">
-                        </form>
-                    </div>
-                </div>
+
             </div>
             <!-- Perfil Cliente -->
             <div class="navBarInf" data-toggable id="profileCli">
@@ -484,7 +432,7 @@
                 <h2> O que deseja fazer? </h2>
                 <li><a data-toggle2 href="#editPetsCli">Cadastrar Animais</a></li>
                 <li><a data-toggle2 href="#listPetsCli">Listar Animais</a></li>
-                <li><a data-toggle2 href="#editPerfilCli">Editar Perfil</a></li>
+                <li><a data-toggle2 href="#editPerfilCli" onclick="renderPerfilCli()">Editar Perfil</a></li>
 
                 <!-- Editar Pets -->
                 <div data-toggable2 id="editPetsCli" class="formSubmit longform">
@@ -563,19 +511,22 @@
                         <br>
                         <h2> Editar Perfil: </h2>
                         <label>Nome:</label>
-                        <input type="text" name="NomeCli" placeholder="Ex: Giovane Medusa Mocellin">
+                        <input type="text" id="ProfileNomeCli" name="NomeCli">
                         <br><label>CPF:</label>
-                        <input type="text" name="CPFCli" placeholder="Ex: 13552134360">
+                        <input type="text" id="ProfileCPFCli" name="CPFCli" disabled>
+                        <br><label>Senha:</label>
+                        <input type="text" id="passCli" name="passCli">
                         <br><label>Endereço:</label>
-                        <input type="text" name="EnderecoCli" placeholder="Ex: Av. São Carlos 1200">
+                        <input type="text" id="enderecoCli" name="EnderecoCli">
                         <br><label>Foto:</label>
-                        <input class="inputFile" type="file" name="FotoCli">
+                        <input class="inputFile" type="file" name="FotoCli" id="FotoCli" onchange="previewFile(document.getElementById('FotoCli'),document.getElementById('showFotoCli'));encodeImageFileAsURL(this);">
+                        <img id="showFotoCli" class="imagem" src="">
                         <br><label>Telefone:</label>
-                        <input type="text" name="TelCli" placeholder="Ex: (16) 3418-2341">
+                        <input type="text" name="TelCli" id="telCli">
                         <br><label>Email:</label>
-                        <input type="email" name="TelCli" placeholder="Ex: didiomedusa@gmail.com">
+                        <input type="email" id="emailCli" name="emailCli">
                         <br><br><label></label>
-                        <input class="submits" type="submit" value="Salvar">
+                        <input class="submits" type="submit" value="Salvar" onclick="updateCliente()">
                     </form>
                 </div>
             </div>

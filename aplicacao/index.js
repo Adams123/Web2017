@@ -32,13 +32,13 @@ function logon(cpf, isAdmin) {
 function loginAdmin() {
     $("#navBarAdmin").show();
     $("#navBarHome").hide();
-
-    whoIsNavigating = "10000000000";
 }
 //configura exibicao para cliente
 function loginCliente() {
     $("#navBarCliente").show();
     $("#navBarHome").hide();
+
+    whoIsNavigating = "182-03-0311";
 }
 
 //toggable e toggable2 são variáveis usadas para realizar a navegação entre as abas, sendo associadas às abas e seus respectivos conteúdos

@@ -99,7 +99,6 @@ function updateProd() {
         .put({
             barCode: barCode,
             nome: nome,
-            barCode: barCode,
             foto: foto,
             descricao: descricao,
             preco: preco,
