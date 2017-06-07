@@ -15,16 +15,18 @@ function confirmLogout(choice) {
     }
 }
 
+function strcmp(a, b) {
+    return (a < b ? -1 : (a > b ? 1 : 0));
+}
 // verificacao de admin ou cliente
 function logon(cpf, isAdmin) {
+    whoIsNavigating = cpf;
     if (isAdmin) {
         loginAdmin();
     } else {
         loginCliente();
     }
-	whoIsNavigating = cpf;
 }
-
 
 //configura exibicao para admin
 function loginAdmin() {
@@ -35,6 +37,8 @@ function loginAdmin() {
 function loginCliente() {
     $("#navBarCliente").show();
     $("#navBarHome").hide();
+
+    whoIsNavigating = "182-03-0311";
 }
 
 //toggable e toggable2 são variáveis usadas para realizar a navegação entre as abas, sendo associadas às abas e seus respectivos conteúdos
@@ -72,78 +76,6 @@ $(document).ready(function () {
             end: '18:00',
         },
         allDaySlot: false,
-        // slotDuration: '01:00:00',
-        events: [{
-                title: 'Vacina Pet - Pet: Pipoca',
-                url: 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
-                start: '2017-04-12T08:00:00',
-                end: '2017-04-12T09:00:00',
-                allDay: false
-			},
-            {
-                title: 'Banho Pet - Pet: Godofredo',
-                url: 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
-                start: '2017-04-10T12:00:00',
-                end: '2017-04-10T13:00:00',
-                allDay: false
-		   },
-            {
-                title: 'Vacina Pet - Pet: Pipoca',
-                url: 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
-                start: '2017-04-17T08:00:00',
-                end: '2017-04-17T09:00:00',
-                allDay: false
-			},
-            {
-                title: 'Banho Pet - Pet: Godofredo',
-                url: 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
-                start: '2017-04-19T12:00:00',
-                end: '2017-04-19T13:00:00',
-                allDay: false
-		   },
-            {
-                title: 'Vacina Pet - Pet: Pipoca',
-                url: 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
-                start: '2017-04-24T08:00:00',
-                end: '2017-04-24T09:00:00',
-                allDay: false
-			},
-            {
-                title: 'Banho Pet - Pet: Godofredo',
-                url: 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
-                start: '2017-04-26T12:00:00',
-                end: '2017-04-26T13:00:00',
-                allDay: false
-		   },
-            {
-                title: 'Vacina Pet - Pet: Pipoca',
-                url: 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
-                start: '2017-05-01T08:00:00',
-                end: '2017-05-01T09:00:00',
-                allDay: false
-			},
-            {
-                title: 'Banho Pet - Pet: Godofredo',
-                url: 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
-                start: '2017-05-04T12:00:00',
-                end: '2017-05-04T13:00:00',
-                allDay: false
-		   },
-            {
-                title: 'Vacina Pet - Pet: Pipoca',
-                url: 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
-                start: '2017-05-09T08:00:00',
-                end: '2017-05-09T09:00:00',
-                allDay: false
-			},
-            {
-                title: 'Banho Pet - Pet: Godofredo',
-                url: 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
-                start: '2017-05-12T12:00:00',
-                end: '2017-05-12T13:00:00',
-                allDay: false
-		   }
-		],
         dayClick: function (date, jsEvent, view) {
             alert('Clicked on: ' + date.format('DD/MM/YYYY HH:mm'));
 
@@ -154,7 +86,160 @@ $(document).ready(function () {
             span.onclick = function () {
                 modal.style.display = "none";
             }
-
         }
-    })
+    });
+
+    //------------------adicionando listener ao dropdown de servico
+    var selectServ = document.getElementById('dropdownServicosDel');
+    selectServ.addEventListener('change', function () {
+        var selecionada = this.options[this.selectedIndex];
+        var url = selecionada.getAttribute('value');
+        setValuesServ(url);
+    });
 });
+
+function renderAllEvents() {
+    var trans = db.transaction("servicosAtivos", IDBTransaction.READ_ONLY);
+    var store = trans.objectStore("servicosAtivos");
+    var items = [];
+
+    var cursorRequest = store.openCursor();
+
+    cursorRequest.onerror = function (error) {
+        console.log(error);
+    };
+
+    cursorRequest.onsuccess = function (evt) {
+        var cursor = evt.target.result;
+        if (cursor) {
+            items.push(cursor.value);
+            $('.calendar').fullCalendar('renderEvent', cursor.value, true);
+            cursor.continue();
+        }
+    };
+}
+
+function setValuesServ(servicoPet) {
+    var key;
+    var trans = db.transaction("servicosAtivos", IDBTransaction.READ_ONLY);
+    var store = trans.objectStore("servicosAtivos");
+
+    var cursorRequest = store.openCursor();
+
+    cursorRequest.onerror = function (error) {
+        console.log(error);
+    };
+
+    cursorRequest.onsuccess = function (evt) {
+        var cursor = evt.target.result;
+        if (cursor) {
+            key = cursor.value.title + " " + cursor.value.pet;
+            if (strcmp(key, servicoPet) == 0) //achou
+            {
+                showDataServDel(cursor.value);
+                return;
+            }
+            cursor.continue();
+        } else console.log("Nao achou " + key);
+    };
+}
+
+function showDataServDel(servicoPet) {
+    $('#dataServDel').val(servicoPet.start.split('T')[0]);
+    $('#tempServDel').val(servicoPet.start.split('T')[1]);
+
+}
+//usa a imagem do upload em source para exibir em dest
+function previewFile(source, dest) {
+
+    var file = source.files[0];
+    var preview = dest;
+    var reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+        preview.src = reader.result;
+    }, false);
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+}
+
+function desmarcarServico() {
+    var servicoPet = $("#dropdownServicosDel option:selected").text();
+    var key;
+    var trans = db.transaction("servicosAtivos", IDBTransaction.READ_ONLY);
+    var store = trans.objectStore("servicosAtivos");
+
+    var cursorRequest = store.openCursor();
+
+    cursorRequest.onerror = function (error) {
+        console.log(error);
+    };
+
+    cursorRequest.onsuccess = function (evt) {
+        var cursor = evt.target.result;
+        if (cursor) {
+            key = cursor.value.title + " " + cursor.value.pet;
+            if (strcmp(key, servicoPet) == 0) //achou
+            {
+                deleteServicoAtivo(cursor.value.id);
+                return;
+            }
+            cursor.continue();
+        } else console.log("Nao achou " + key);
+    };
+}
+
+function deleteServicoAtivo(id) {
+    requestDB = db.transaction(["servicosAtivos"], "readwrite")
+        .objectStore("servicosAtivos")
+        .delete(Number(id));
+
+    requestDB.onsuccess = function () {
+        console.log("Removido " + id);
+    };
+    requestDB.onerror = function () {
+        console.log("Erro ao remover");
+    };
+
+    $('.calendar').fullCalendar('removeEvents', Number(id));
+}
+
+Date.prototype.addHours = function (h) {
+    this.setHours(this.getHours() + h);
+    return this;
+}
+// ta com pau, se adicionar com nome já existente da merda, mas n vo arrumar agora
+function adicionarServAssoc() {
+    var petid = $('#petsServicos option:selected').attr('id');
+    petid = petid.replace("pet", "");
+    getKey(Number(petid), "animais", addServAssoc);
+}
+
+function addServAssoc(pet) {
+
+    var d = $('#dataServ').val() + ' ' + $('#tempServ').val();
+    d = new Date(d);
+    var datestring = (d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2));
+    var timestring = "T" + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+    var timestring1 = "T" + ("0" + (d.getHours() + 1)).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+
+    var e = {
+        "allDay": false,
+        "start": datestring + timestring,
+        "end": datestring + timestring1,
+        "pet": pet.nome,
+        "title": $('#dropdownServicosAdd option:selected').text(),
+        "url": pet.foto
+    };
+    var trans = db.transaction(["servicosAtivos"], "readwrite");
+    requestDB = trans.objectStore("servicosAtivos")
+        .add(e);
+    requestDB.onsuccess = function (event) {
+        e.id = event.target.result; //adiciona a id ao objeto antes de salvar no calendario
+        $('.calendar').fullCalendar('renderEvent', e, true);
+        addToLiberar(e); //adiciona ao menu dropdown de horarios a serem liberados
+    }
+
+}
