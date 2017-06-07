@@ -128,7 +128,7 @@ const servicosTeste = [{
     "preco": 161.45
 }]
 
-[{
+const animaisTeste = [{
     "cliente": "182-03-0311",
     "nome": "Burtie",
     "raca": "Caniche",

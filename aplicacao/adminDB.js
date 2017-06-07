@@ -126,7 +126,7 @@ function listarGanhosServicos(servico) {
         tr.appendChild(td2);
         tabela.appendChild(tr);
     }
-    calculaLucroTotal();
+    //calculaLucroTotal();
 }
 
 function calculaLucroTotal() {
@@ -159,6 +159,7 @@ function calculaLucroServico(servico, h3) {
             var lucrototal = parseFloat(lucroServ.val()) + parseFloat(lucro)
             lucroServ.val(lucrototal);
             h3.innerHTML = lucro;
+            calculaLucroTotal();
         }
     };
 }

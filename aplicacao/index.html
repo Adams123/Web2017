@@ -17,9 +17,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src='node_modules/moment/min/moment.min.js'></script>
     <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
+    <script src='dadosTeste.js'></script>
     <script src='initDB.js'></script>
     <script src='index.js'></script>
-    <script src='dadosTeste.js'></script>
     <script src='generalDB.js'></script>
     <script src='blobbuilder.js'></script>
     <script src='adminDB.js'></script>
@@ -50,7 +50,7 @@
                     <br> <label>Senha:</label>
                     <input class="inputText" type="password" id="senha">
                     <br>
-                    <button class="submits" type="submit" onclick="loginCliente()">Entrar</button>
+                    <button class="submits" type="submit" onclick="checkAdmin()">Entrar</button>
                 </form>
             </div>
         </div>
@@ -90,7 +90,7 @@
                         <input class="inputText" id="idProdAdd" type="number" name="idProdAdd" Placeholder="1">
                         <br><label>Foto:</label>
                         <input class="inputFile" id="fotoProdAdd" type="file" name="fotoProdAdd" onchange="previewFile(document.getElementById('fotoProdAdd'),document.getElementById('imgProdAdd'));encodeImageFileAsURL(this);">
-                        <br><img src="" id="imgProdAdd" height="100">
+                        <br><img src="" id="imgProdAdd" class="imagem">
                         <br><label>Descricao:</label>
                         <input class="inputText" id="descricaoProdAdd" type="textarea" name="descricaoProdAdd" Placeholder="Ração pra porco" style="width: 300px;">
                         <br><label>Preço:</label>
@@ -128,7 +128,7 @@
                             <input class="submits" type="submit" value="Atualizar" onclick="updateProd()">
                         </div>
                         <div id="imgRight">
-                            <br><img id="imgProdAtt" src="">
+                            <br><img id="imgProdAtt" class="imagem" src="">
                         </div>
                     </form>
                 </div>
@@ -312,7 +312,7 @@
                         <input class="inputText" type="text" name="CPFAdmEdit" id="CPFAdmEdit" disabled>
                         <br><label>Foto:</label>
                         <input class="inputFile" type="file" name="FotoAdm" id="FotoAdm" onchange="previewFile(document.getElementById('FotoAdm'),document.getElementById('imgAdm'));encodeImageFileAsURL(this);">
-                        <img id="imgAdm" src="">
+                        <img id="imgAdm" src="" class="imagem">
                         <br><label>Telefone:</label>
                         <input class="inputText" type="text" name="TelAdm" id="TelAdmEdit">
                         <br><label>Email:</label>
@@ -431,7 +431,7 @@
 
                 <h2> O que deseja fazer? </h2>
                 <li><a data-toggle2 href="#editPetsCli">Cadastrar Animais</a></li>
-                <li><a data-toggle2 href="#listPetsCli">Listar Animais</a></li>
+                <li><a data-toggle2 href="#listPetsCli" onclick="getClientPets()">Listar Animais</a></li>
                 <li><a data-toggle2 href="#editPerfilCli" onclick="renderPerfilCli()">Editar Perfil</a></li>
 
                 <!-- Editar Pets -->
@@ -446,9 +446,10 @@
                         <br><label>Idade: </label>
                         <input class="inputText" id="addIdadePet" type="number" name="IdadePet" placeholder="7">
                         <br><label>Foto: </label>
-                        <input class="inputFile" id="addFotoPet" type="file" name="FotoPet">
+                        <input class="inputFile" id="addFotoPet" type="file" name="FotoPet" onchange="previewFile(document.getElementById('addFotoPet'),document.getElementById('showFotoPet'));encodeImageFileAsURL(this);">
+                        <img class="imagem" id="showFotoPet" src="">
                         <br><br><label></label>
-                        <input class="inputSubmit" type="submit" value="Salvar">
+                        <input class="inputSubmit" type="submit" value="Salvar" onclick="addPet()">
                     </form>
                 </div>
                 <!-- Listar Pets -->
@@ -468,42 +469,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tableListPetsCli">
-                                    <tr>
-                                        <td>
-                                            <h1>Pipoca</h1>
-                                        </td>
-                                        <td>
-                                            <h2>Dalmata</h2>
-                                        </td>
-                                        <td>
-                                            <h2>7 anos</h2>
-                                        </td>
-                                        <td><img src="http://tudosobrecachorros.com.br/wp-content/uploads/dalmata.png" alt="" style="width:150px;height:150px;">
-                                        </td>
-                                        <td>
-                                            <h3>Nenhum</h3>
-                                        </td>
-                                        <td><input class="preco" type="text" name="precoProdAtt" value="R$0,00">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h1>Plínio</h1>
-                                        </td>
-                                        <td>
-                                            <h2>Rottweiler</h2>
-                                        </td>
-                                        <td>
-                                            <h2>3 anos</h2>
-                                        </td>
-                                        <td><img src="http://tudosobrecachorros.com.br/wp-content/uploads/2012/05/Rottweiler_1.jpg" alt="" style="width:150px;height:150px;">
-                                        </td>
-                                        <td>
-                                            <h3>Banho, Tosa, Vacina</h3>
-                                        </td>
-                                        <td><input class="preco" type="text" name="precoProdAtt" value="R$120,00">
-                                        </td>
-                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>
