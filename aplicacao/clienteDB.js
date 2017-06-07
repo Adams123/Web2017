@@ -4,9 +4,11 @@ Antonio Pedro Lavezzo Mazzarolo - 8626232
 Gustavo Dutra Santana - 8532040
 Veronica Vannini - 8517369 */
 
-var carrinho = [];
-var row;
+var carrinho = []; //carrinho de compras do cliente
+var row; //usado para acessar qual item ele esta comprando, gambi pra facilitar
 
+
+//adiciona um cliente à bd
 function addCliente() {
     var nome = document.getElementById('NomeCli').value;
     var cpf = document.getElementById('CPFCli').value;
@@ -37,7 +39,7 @@ function addCliente() {
     }
 }
 
-//verifica se um dado cliente já existe na bd
+//verifica se um dado cliente já existe na bd e faz login se existir
 function checkCliente(nomeCliente, senhaCliente) {
     var objectStore = db.transaction("clientes").objectStore("clientes");
 
@@ -57,6 +59,7 @@ function checkCliente(nomeCliente, senhaCliente) {
     };
 }
 
+//atualiza um cliente
 function updateCliente() {
     var nome = document.getElementById("ProfileNomeCli").value;
     var endereco = document.getElementById("enderecoCli").value;
@@ -77,11 +80,15 @@ function updateCliente() {
 
 }
 
+
+//esvazia o carrinho e limpa a lista
 function emptyCart() {
     carrinho = [];
     renderCarrinho();
 }
 
+
+//exibe os dados do cliente na aba de profile
 function showCli(cliente) {
     var nome = document.getElementById("ProfileNomeCli");
     var endereco = document.getElementById("enderecoCli");
@@ -99,11 +106,14 @@ function showCli(cliente) {
     pass.value = cliente.pass;
 }
 
+
+//renderiza a tela de profile
 function renderPerfilCli() {
     getKey(whoIsNavigating, "clientes", showCli);
 }
 
 
+//cria uma row da lista de produtos
 function showProdCli(produto) {
     if (checkProdutoCli(produto) == 0) {
         var body = document.getElementById("tableProdutosCli");
@@ -152,13 +162,13 @@ function showProdCli(produto) {
     }
 }
 
-
-
+//renderiza a tabela inteira da lista de produtos
 function renderProdutos() {
     $("#tableProdutosCli td").remove(); //destroi tabela e remonta
     listAllItems("produtos", showProdCli);
 }
 
+//verifica se um poduto existe na tabela de produtos
 function checkProdutoCli(produto) {
     var exists = 0;
     $('#tableProdutosCli td:nth-child(4)').each(function () {
@@ -170,6 +180,7 @@ function checkProdutoCli(produto) {
     return exists;
 }
 
+//verifica se um item existe no carrinho de compras, retorna a posicao se encontrar, -1 cc.
 function checkCarrinho(code) {
     for (var i = 0; i < carrinho.length; i++) {
         if (Number(carrinho[i].produto.barCode) == Number(code)) {
@@ -179,6 +190,7 @@ function checkCarrinho(code) {
     return -1;
 }
 
+//adiciona um produto com id code e quantidade qnt ao carrinho
 function addToCart(code, qnt) {
     code = code.replace("prod", "");
     var transaction = db.transaction(["produtos"], "readwrite");
@@ -200,6 +212,7 @@ function addToCart(code, qnt) {
 
 }
 
+//renderiza tela de carrinho
 function showCarrinho() {
     var body = document.getElementById("tableCarrinhoCli");
     var totalCli = 0;
@@ -245,11 +258,13 @@ function showCarrinho() {
     $('#totalCart').val(parseFloat(totalCli));
 }
 
+//reconstroi a aba do carrinho
 function renderCarrinho() {
     $("#tableCarrinhoCli td").remove(); //destroi tabela e remonta
     showCarrinho();
 }
 
+//remove a quantidade qnt de produto prod da base
 function removeQntProd(qnt, prod) {
     requestDB = db.transaction(["produtos"], "readwrite")
         .objectStore("produtos")
@@ -264,6 +279,7 @@ function removeQntProd(qnt, prod) {
         });
 }
 
+//realiza o ato de compra, esvaziando carrinho e redesenhando o carrinho
 function comprar() {
     for (var i = 0; i < carrinho.length; i++)
         removeQntProd(carrinho[i].qnt, carrinho[i].produto);

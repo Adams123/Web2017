@@ -190,6 +190,7 @@ function showProd(produto) {
     }
 }
 
+//renderiza a tabela de produtos
 function readAllProds() {
     $("#tableProd td").remove(); //destroi tabela e remonta
     listAllItems("produtos", showProd);

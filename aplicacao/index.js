@@ -98,6 +98,7 @@ $(document).ready(function () {
     });
 });
 
+//pega todos os eventos da tabela do calendário e renderiza no calendário
 function renderAllEvents() {
     var trans = db.transaction("servicosAtivos", IDBTransaction.READ_ONLY);
     var store = trans.objectStore("servicosAtivos");
@@ -119,6 +120,8 @@ function renderAllEvents() {
     };
 }
 
+
+//cria o
 function setValuesServ(servicoPet) {
     var key;
     var trans = db.transaction("servicosAtivos", IDBTransaction.READ_ONLY);
@@ -165,6 +168,7 @@ function previewFile(source, dest) {
     }
 }
 
+//busca na bd pelo servico selecionado
 function desmarcarServico() {
     var servicoPet = $("#dropdownServicosDel option:selected").text();
     var key;
@@ -191,6 +195,7 @@ function desmarcarServico() {
     };
 }
 
+//remove servico da bd e do calendário
 function deleteServicoAtivo(id) {
     requestDB = db.transaction(["servicosAtivos"], "readwrite")
         .objectStore("servicosAtivos")
@@ -217,6 +222,7 @@ function adicionarServAssoc() {
     getKey(Number(petid), "animais", addServAssoc);
 }
 
+//adiciona servico do pet na bd
 function addServAssoc(pet) {
 
     var d = $('#dataServ').val() + ' ' + $('#tempServ').val();

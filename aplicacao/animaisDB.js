@@ -3,8 +3,13 @@ Adams Vietro Codignotto da Silva - 6791943
 Antonio Pedro Lavezzo Mazzarolo - 8626232
 Gustavo Dutra Santana - 8532040
 Veronica Vannini - 8517369 */
+
+
+//aqui fica salvo os pets do cliente, com todas as informações do pet + serviços associados (separados por ,) + despesas totais associadas ao pet, buscadas da base do calendário. isso é limpado cada vez que clica em listar animais e só é usado para criar a tabela dos animais
 var clientPets = [];
 
+
+//adiciona um pet à bd, relacionado ao cliente que esta navegando
 function addPet() {
     var nome = document.getElementById('addNomePet').value;
     var raca = document.getElementById('addRacaPet').value;
@@ -22,6 +27,8 @@ function addPet() {
         });
 }
 
+
+//preenche com as informações básicas dos pets do cliente
 function getClientPets() {
     clientPets = [];
     var trans = db.transaction("animais").objectStore("animais");
@@ -40,6 +47,8 @@ function getClientPets() {
     };
 }
 
+
+//preenche no atributo "servicos" os servicos associados ao pet
 function getServicosFromPet() {
     var trans = db.transaction("servicosAtivos").objectStore("servicosAtivos");
     var request = trans.openCursor();
@@ -60,6 +69,8 @@ function getServicosFromPet() {
     };
 }
 
+
+//calcula as despesas do pet, associa ao atributo "despesas" e exibe a tabela
 function getDespesasFromPet() {
     var count;
     var trans = db.transaction("servicos").objectStore("servicos");
@@ -87,6 +98,8 @@ function getDespesasFromPet() {
     };
 }
 
+
+//cria a tabela de pets, usando o vetor de pets
 function showPets() {
     //getClientPets();
     // getServicosFromPet();

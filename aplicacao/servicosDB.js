@@ -38,6 +38,7 @@ function addToServicos(servico) {
         }));
 };
 
+//renderiza a aba de servicos disponíveis
 function renderServicos() {
     $("#servicos option").remove();
     var trans = db.transaction("servicos", IDBTransaction.READ_ONLY);
@@ -57,6 +58,7 @@ function renderServicos() {
     };
 }
 
+//adiciona um pet com id ao menu dropdown de pets
 function addToPets(pet, id) {
     if ($("#petsServicos option[id='pet" + pet.id + "']").length == 0) //se a opção não existe adiciona, senão faz nada
         $('#petsServicos').append($('<option>', {
@@ -66,6 +68,7 @@ function addToPets(pet, id) {
         }));
 }
 
+//renderiza a aba de pets
 function renderPets() {
     $("#petsServicos option").remove();
     var trans = db.transaction("animais", IDBTransaction.READ_ONLY);
@@ -86,6 +89,7 @@ function renderPets() {
     };
 }
 
+//adiciona um servico ativo à lista de servicos para liberar
 function addToLiberar(horario) {
     if ($("#dropdownServicosDel option[id='serv" + horario.id + "']").length == 0) //se a opção não existe adiciona, senão faz nada
         $('#dropdownServicosDel').append($('<option>', {
@@ -95,7 +99,7 @@ function addToLiberar(horario) {
         }));
 }
 
-
+//renderiza a lista de serviços ativos
 function renderServsAtivos() {
     var trans = db.transaction("servicosAtivos", IDBTransaction.READ_ONLY);
     var store = trans.objectStore("servicosAtivos");
