@@ -75,18 +75,7 @@ $(document).ready(function () {
             start: '08:00',
             end: '18:00',
         },
-        allDaySlot: false,
-        dayClick: function (date, jsEvent, view) {
-            alert('Clicked on: ' + date.format('DD/MM/YYYY HH:mm'));
-
-            var modal = document.getElementById('myModal');
-            modal.style.display = "block";
-
-            var span = document.getElementsByClassName("close")[0];
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-        }
+        allDaySlot: false
     });
 
     //------------------adicionando listener ao dropdown de servico
@@ -237,7 +226,7 @@ function addServAssoc(pet) {
         "end": datestring + timestring1,
         "pet": pet.nome,
         "title": $('#dropdownServicosAdd option:selected').text(),
-        "url": pet.foto
+        "foto": pet.foto
     };
     var trans = db.transaction(["servicosAtivos"], "readwrite");
     requestDB = trans.objectStore("servicosAtivos")

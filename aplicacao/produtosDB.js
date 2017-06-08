@@ -16,7 +16,15 @@ function addProd() {
     var preco = document.getElementById('precoProdAdd').value;
     var qntEstoque = document.getElementById('quantProdAdd').value;
     var qntVend = document.getElementById('vendasProdAdd').value;
+    if (barCode < 1) {
+        alert("Valor positivo por favor");
+        return;
+    }
 
+    if (!checkIfNull(nome, barCode, foto, descricao, preco, qntEstoque, qntVend)) {
+        alert("Todos os valores são obrigatórios");
+        return;
+    }
     requestDB = db.transaction(["produtos"], "readwrite")
         .objectStore("produtos")
         .add({
@@ -31,11 +39,9 @@ function addProd() {
 
     requestDB.onsuccess = function () {
         console.log("Adicionado " + nome);
-        alert(nome + " foi adicionado com sucesso!");
     };
     requestDB.onerror = function () {
         console.log("Erro");
-        alert("Falha ao adicionar " + nome + ".");
     };
 
 
@@ -87,13 +93,18 @@ function getProdDel(prod) {
 
 //atualiza um produto através da função put, pegando a id já existente do produto
 function updateProd() {
-    var barCode = document.getElementById('idProdAtt').value;
+    var barCode = Number(document.getElementById('idProdAtt').value);
     var nome = document.getElementById('nomeProdAtt').value;
     var descricao = document.getElementById('descricaoProdAtt').value;
     var preco = document.getElementById('precoProdAtt').value;
     var qntEstoque = document.getElementById('quantProdAtt').value;
     var qntVend = document.getElementById('vendasProdAtt').value;
     var foto = imagem;
+    if (!checkIfNull(nome, foto, descricao, preco, qntEstoque, qntVend)) {
+        alert("Todos os valores são obrigatórios");
+        return;
+    }
+
     requestDB = db.transaction(["produtos"], "readwrite")
         .objectStore("produtos")
         .put({
@@ -108,11 +119,9 @@ function updateProd() {
 
     requestDB.onsuccess = function () {
         console.log("Adicionado " + nome);
-        alert(nome + " foi adicionado com sucesso!");
     };
     requestDB.onerror = function () {
         console.log("Erro");
-        alert("Falha ao adicionar " + nome + ".");
     };
 }
 

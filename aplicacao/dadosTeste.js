@@ -164,7 +164,7 @@ const animaisTeste = [{
 var eventos = [{
         "title": 'Vacina',
         "pet": 'Burtie',
-        "url": 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
+        "foto": 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
         "start": '2017-04-12T08:00:00',
         "end": '2017-04-12T09:00:00',
         "allDay": false,
@@ -173,7 +173,7 @@ var eventos = [{
     {
         "title": 'Banho',
         "pet": 'Moritz',
-        "url": 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
+        "foto": 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
         "start": '2017-04-10T12:00:00',
         "end": '2017-04-10T13:00:00',
         "allDay": false,
@@ -182,7 +182,7 @@ var eventos = [{
     {
         "title": 'Vacina',
         "pet": 'Caryl',
-        "url": 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
+        "foto": 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
         "start": '2017-04-17T08:00:00',
         "end": '2017-04-17T09:00:00',
         "allDay": false,
@@ -191,7 +191,7 @@ var eventos = [{
     {
         "title": 'Banho',
         "pet": 'Benedikt',
-        "url": 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
+        "foto": 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
         "start": '2017-04-19T12:00:00',
         "end": '2017-04-19T13:00:00',
         "allDay": false,
@@ -200,7 +200,7 @@ var eventos = [{
     {
         "title": 'Vacina',
         "pet": 'Aluin',
-        "url": 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
+        "foto": 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
         "start": '2017-04-24T08:00:00',
         "end": '2017-04-24T09:00:00',
         "allDay": false,
@@ -209,7 +209,7 @@ var eventos = [{
     {
         "title": 'Banho',
         "pet": 'Aluin',
-        "url": 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
+        "foto": 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
         "start": '2017-04-26T12:00:00',
         "end": '2017-04-26T13:00:00',
         "allDay": false,
@@ -218,7 +218,7 @@ var eventos = [{
     {
         "title": 'Vacina',
         "pet": 'Benedikt',
-        "url": 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
+        "foto": 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
         "start": '2017-05-01T08:00:00',
         "end": '2017-05-01T09:00:00',
         "allDay": false,
@@ -227,7 +227,7 @@ var eventos = [{
     {
         "title": 'Banho',
         "pet": 'Caryl',
-        "url": 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
+        "foto": 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
         "start": '2017-05-04T12:00:00',
         "end": '2017-05-04T13:00:00',
         "allDay": false,
@@ -236,7 +236,7 @@ var eventos = [{
     {
         "title": 'Vacina',
         "pet": 'Moritz',
-        "url": 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
+        "foto": 'https://www.veterinariamatogrosso.com.br/uploads/images/2016/12/6-1480591557.jpg',
         "start": '2017-05-09T08:00:00',
         "end": '2017-05-09T09:00:00',
         "allDay": false,
@@ -245,7 +245,7 @@ var eventos = [{
     {
         "title": 'Banho',
         "pet": 'Burtie',
-        "url": 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
+        "foto": 'http://petshopbigdogsbrasil.com.br/site/uploads/banho-e-tosa/banho-medicamentoso/banho-cachorro-petitobi.jpg',
         "start": '2017-05-12T12:00:00',
         "end": '2017-05-12T13:00:00',
         "allDay": false,

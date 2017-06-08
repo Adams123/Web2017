@@ -10,6 +10,17 @@ function addServ() {
     var foto = imagem;
     var descricao = document.getElementById('addDescServ').value;
     var preco = document.getElementById('addPrecoServ').value;
+
+    if (preco < 0) {
+        alert("Preco inválido");
+        return;
+    }
+
+    if (!checkIfNull(nome, foto, descricao, preco)) {
+        alert("Todos os valores são obrigatórios");
+        return;
+    }
+
     var serv = {
         nome: nome,
         foto: foto,

@@ -71,3 +71,12 @@ function checkInTableh2(table, key) {
     });
     return exists;
 }
+
+
+//verifica se algum elemento é null ou vazio. Uso pra verificar os inputs
+function checkIfNull(...names) {
+    for (var i = 0; i < names.length; i++)
+        if (names[i] === "" && names[i] != null || names[i] === "undefined")
+            return 0;
+    return 1;
+}

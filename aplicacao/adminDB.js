@@ -13,6 +13,15 @@ function addAdmin() {
     var telefone = document.getElementById('TelAdm').value;
     var email = document.getElementById('EmailAdm').value;
 
+    if (cpf < 0) {
+        alert("CPF inválido");
+        return;
+    }
+    if (!checkIfNull(nome, cpf, foto, telefone, email)) {
+        alert("Todos os valores são obrigatórios");
+        return;
+    }
+
     requestDB = db.transaction(["admins"], "readwrite")
         .objectStore("admins")
         .add({
@@ -35,21 +44,22 @@ function addAdmin() {
 
 //verifica se o usuario fazendo login é admin. caso contrário, verifica se o usuário é cliente
 function checkAdmin() {
+    var achou = 0;
     var nomeCliente = $('#user').val();
     var senhaCliente = $('#senha').val();
     var objectStore = db.transaction("admins").objectStore("admins");
-    objectStore.openCursor().onsuccess = function (event) {
+    object = objectStore.openCursor();
+    object.onsuccess = function (event) {
         var cursor = event.target.result;
         if (cursor) {
             if (nomeCliente == cursor.value.name && senhaCliente == cursor.value.pass) {
                 var cpf = cursor.value.cpf;
+                achou = 1;
                 logon(cpf, 1);
-                return false;
             }
             cursor.continue();
         } else {
-            checkCliente(nomeCliente, senhaCliente);
-            return false;
+            checkCliente(nomeCliente, senhaCliente, achou);
         }
     };
 }
@@ -85,7 +95,11 @@ function updateAdm() {
     var foto = imagem;
     var tel = document.getElementById("TelAdm").value;
     var email = document.getElementById("emailAdm").value;
-    console.log(tel);
+
+    if (!checkIfNull(nome, pass, foto, tel, email)) {
+        alert("Todos os valores são obrigatórios");
+        return;
+    }
     requestDB = db.transaction(["admins"], "readwrite")
         .objectStore("admins")
         .put({

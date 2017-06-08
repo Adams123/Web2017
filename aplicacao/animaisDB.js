@@ -16,6 +16,12 @@ function addPet() {
     var idade = document.getElementById('addIdadePet').value;
     var foto = imagem;
 
+
+    if (!checkIfNull(nome, foto, idade, raca)) {
+        alert("Todos os valores são obrigatórios");
+        return;
+    }
+
     requestDB = db.transaction(["animais"], "readwrite")
         .objectStore("animais")
         .add({

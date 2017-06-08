@@ -3,19 +3,28 @@ Adams Vietro Codignotto da Silva - 6791943
 Antonio Pedro Lavezzo Mazzarolo - 8626232
 Gustavo Dutra Santana - 8532040
 Veronica Vannini - 8517369 */
-
 var carrinho = []; //carrinho de compras do cliente
 var row; //usado para acessar qual item ele esta comprando, gambi pra facilitar
 
 
 //adiciona um cliente à bd
 function addCliente() {
-    var nome = document.getElementById('NomeCli').value;
-    var cpf = document.getElementById('CPFCli').value;
-    var endereco = document.getElementById('EnderecoCli').value;
-    var foto = document.getElementById('FotoCli').value;
-    var telefone = document.getElementById('TelCli').value;
-    var email = document.getElementById('EmailCli').value;
+    var nome = document.getElementById('cadNomeCli').value;
+    var cpf = document.getElementById('cadCPFCli').value;
+    var endereco = document.getElementById('cadEnderecoCli').value;
+    var foto = imagem;
+    var telefone = document.getElementById('cadTelCli').value;
+    var email = document.getElementById('cadEmailCli').value;
+
+    if (cpf < 1) {
+        alet("CPF inválido");
+        return;
+    }
+
+    if (!checkIfNull(nome, cpf, endereco, foto, telefone, email)) {
+        alert("Todos os valores são obrigatórios");
+        return;
+    }
 
     requestDB = db.transaction(["clientes"], "readwrite")
         .objectStore("clientes")
@@ -40,23 +49,24 @@ function addCliente() {
 }
 
 //verifica se um dado cliente já existe na bd e faz login se existir
-function checkCliente(nomeCliente, senhaCliente) {
-    var objectStore = db.transaction("clientes").objectStore("clientes");
+function checkCliente(nomeCliente, senhaCliente, achou) {
+    if (!achou) {
+        var objectStore = db.transaction("clientes").objectStore("clientes");
+        var object = objectStore.openCursor()
+        object.onsuccess = function (event) {
+            var cursor = event.target.result;
+            if (cursor) {
+                if (nomeCliente == cursor.value.name && senhaCliente == cursor.value.pass) {
+                    var cpf = cursor.value.cpf;
+                    achou = 1;
+                    logon(cpf, 0);
+                }
+                cursor.continue();
+            } else {
 
-    objectStore.openCursor().onsuccess = function (event) {
-        var cursor = event.target.result;
-        if (cursor) {
-            if (nomeCliente == cursor.value.name && senhaCliente == cursor.value.pass) {
-                var cpf = cursor.value.cpf;
-                logon(cpf, 0);
-                return false;
             }
-            cursor.continue();
-        } else {
-            alert("Cadastro não encontrado, favor cadastrar através de um admin.");
-            return false;
-        }
-    };
+        };
+    }
 }
 
 //atualiza um cliente
@@ -68,6 +78,10 @@ function updateCliente() {
     var tel = document.getElementById("telCli").value;
     var email = document.getElementById("emailCli").value;
     var pass = document.getElementById("passCli").value;
+    if (!checkIfNull(nome, cpf, endereco, foto, telefone, email)) {
+        alert("Todos os valores são obrigatórios");
+        return;
+    }
     requestDB = db.transaction(["clientes"], "readwrite").objectStore("clientes").put({
         "cpf": CPF,
         "email": email,
