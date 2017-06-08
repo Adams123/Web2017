@@ -56,7 +56,7 @@ function checkCliente(nomeCliente, senhaCliente, achou) {
         object.onsuccess = function (event) {
             var cursor = event.target.result;
             if (cursor) {
-                if (nomeCliente == cursor.value.name && senhaCliente == cursor.value.pass) {
+                if (strcmp(nomeCliente, cursor.value.nome) == 0 && strcmp(senhaCliente, cursor.value.pass) == 0) {
                     var cpf = cursor.value.cpf;
                     achou = 1;
                     logon(cpf, 0);
