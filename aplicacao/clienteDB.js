@@ -15,7 +15,6 @@ function addCliente() {
     var foto = imagem;
     var telefone = document.getElementById('cadTelCli').value;
     var email = document.getElementById('cadEmailCli').value;
-
     if (cpf < 1) {
         alet("CPF inválido");
         return;
@@ -40,11 +39,9 @@ function addCliente() {
 
     requestDB.onsuccess = function () {
         console.log("Adicionado " + nome);
-        alert(nome + " foi adicionado com sucesso!");
     }
     requestDB.onerror = function () {
         console.log("Erro");
-        alert("Falha ao adicionar " + nome + ".");
     }
 }
 
@@ -77,20 +74,33 @@ function updateCliente() {
     var foto = imagem;
     var tel = document.getElementById("telCli").value;
     var email = document.getElementById("emailCli").value;
-    var pass = document.getElementById("passCli").value;
-    if (!checkIfNull(nome, cpf, endereco, foto, telefone, email)) {
+    var senha = document.getElementById("passCli").value;
+    var telefone = document.getElementById('telCli').value;
+
+    console.log(CPF);
+    console.log(email);
+    console.log(endereco);
+    console.log(foto);
+    console.log(nome);
+    console.log(senha);
+    console.log(tel);
+
+    if (!checkIfNull(nome, CPF, endereco, foto, telefone, email)) {
         alert("Todos os valores são obrigatórios");
         return;
     }
     requestDB = db.transaction(["clientes"], "readwrite").objectStore("clientes").put({
-        "cpf": CPF,
+        cpf: CPF,
         "email": email,
         "endereco": endereco,
         "foto": foto,
         "nome": nome,
-        "pass": pass,
+        "pass": senha,
         "telefone": tel
     });
+    requestDB.onerror = function (error) {
+        console.log(error);
+    };
 
 }
 
@@ -206,23 +216,26 @@ function checkCarrinho(code) {
 
 //adiciona um produto com id code e quantidade qnt ao carrinho
 function addToCart(code, qnt) {
-    code = code.replace("prod", "");
-    var transaction = db.transaction(["produtos"], "readwrite");
-    var objectStore = transaction.objectStore("produtos");
-    requestDB = objectStore.get(Number(code));
-    requestDB.onsuccess = function (event) {
-        if (requestDB.result) {
-            var pos = checkCarrinho(code);
-            if (Number(pos) == -1) {
-                carrinho.push({
-                    "produto": requestDB.result,
-                    "qnt": qnt
-                });
-            } else {
-                carrinho[Number(pos)].qnt = Number(Number(carrinho[pos].qnt) + Number(qnt));
+    if (qnt > 0) {
+        code = code.replace("prod", "");
+        var transaction = db.transaction(["produtos"], "readwrite");
+        var objectStore = transaction.objectStore("produtos");
+        requestDB = objectStore.get(Number(code));
+        requestDB.onsuccess = function (event) {
+            if (requestDB.result) {
+                var pos = checkCarrinho(code);
+                if (Number(pos) == -1) {
+                    carrinho.push({
+                        "produto": requestDB.result,
+                        "qnt": qnt
+                    });
+                } else {
+                    carrinho[Number(pos)].qnt = Number(Number(carrinho[pos].qnt) + Number(qnt));
+                }
             }
-        }
-    };
+        };
+    }
+
 
 }
 

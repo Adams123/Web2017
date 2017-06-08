@@ -32,11 +32,9 @@ function addServ() {
         .add(serv);
     requestDB.onsuccess = function () {
         console.log("Adicionado " + nome);
-        alert(nome + " foi adicionado com sucesso!");
     }
     requestDB.onerror = function () {
         console.log("Erro");
-        alert("Falha ao adicionar " + nome + ".");
     }
     addToServicos(serv);
 }
