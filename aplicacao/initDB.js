@@ -79,8 +79,6 @@ requestDB.onsuccess = function (event) {
                 db.transaction(["servicosAtivos"], "readwrite").objectStore("servicosAtivos").add(eventos[i]);
             }
     };
-    renderAllEvents();
-
 }
 //criacao de todas as tabelas
 requestDB.onupgradeneeded = function (event) {

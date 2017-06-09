@@ -51,7 +51,7 @@
                     <br> <label>Senha:</label>
                     <input class="inputText" type="password" id="senha">
                     <br>
-                    <button class="submits" type="submit" onclick="checkAdmin()">Entrar</button>
+                    <button class="submits" id="loginButton" type="submit" onclick="checkAdmin()">Entrar</button>
                 </form>
             </div>
         </div>
@@ -62,7 +62,7 @@
         <ul class="navBarSup">
             <li><a data-toggle href="#homeAdm">Home</a></li>
             <li><a data-toggle href="#produtosAdm">Produtos</a></li>
-            <li><a data-toggle href="#calendarioAdm">Calendário</a></li>
+            <li><a data-toggle class="calendarHeader" href="#calendarioAdm">Calendário</a></li>
             <li><a data-toggle href="#cadastrar">Usuários</a></li>
             <li><a data-toggle href="#servicosAdm">Serviços</a></li>
             <li><a data-toggle href="#profileAdm">Profile</a></li>
@@ -378,7 +378,7 @@
             <li><a data-toggle href="#homeCliente">Home</a></li>
             <li><a data-toggle href="#produtosCli" onclick="renderProdutos()">Produtos</a></li>
             <li><a data-toggle href="#carrinhoCli" onclick="renderCarrinho()">Carrinho</a></li>
-            <li><a data-toggle href="#calendarioCli">Calendário</a></li>
+            <li><a data-toggle class="calendarHeader" href="#calendarioCli">Calendário</a></li>
             <li><a data-toggle href="#profileCli">Profile</a></li>
             <li><a data-toggle href="#logoutCli" onclick="$('.confirm').show()">Logout</a></li>
         </ul>

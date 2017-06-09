@@ -75,7 +75,30 @@ $(document).ready(function () {
             start: '08:00',
             end: '18:00',
         },
-        allDaySlot: false
+        allDaySlot: false,
+        eventMouseover: function (data, event, view) {
+
+            tooltip = '<div class="tooltiptopicevent" style="width:auto;height:auto;background:#feb811;position:absolute;z-index:10001;padding:10px 10px 10px 10px ;  line-height: 200%;">' + 'Servico: ' + data.title + '</br>' + 'Pet: ' + data.pet + '<br><img class="imagem" src="' + data.foto + '"/img></div>';
+
+
+            $("body").append(tooltip);
+            $(this).mouseover(function (e) {
+                $(this).css('z-index', 10000);
+                $('.tooltiptopicevent').fadeIn('500');
+                $('.tooltiptopicevent').fadeTo('10', 1.9);
+            }).mousemove(function (e) {
+                $('.tooltiptopicevent').css('top', e.pageY + 10);
+                $('.tooltiptopicevent').css('left', e.pageX + 20);
+            });
+
+
+        },
+        eventMouseout: function (data, event, view) {
+            $(this).css('z-index', 8);
+
+            $('.tooltiptopicevent').remove();
+
+        }
     });
 
     //------------------adicionando listener ao dropdown de servico
@@ -84,6 +107,12 @@ $(document).ready(function () {
         var selecionada = this.options[this.selectedIndex];
         var url = selecionada.getAttribute('value');
         setValuesServ(url);
+    });
+
+
+    //------------chamando calendar render so uma vez quando clica no calendario
+    $('#loginButton').one("click", function () {
+        renderAllEvents();
     });
 });
 
