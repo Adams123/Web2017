@@ -18,13 +18,13 @@
     width: 100%;
 }
 
-#contentLeft {
+.contentLeft {
     width: 70%;
     float: left;
     display: inline-block;
 }
 
-#imgRight {
+.imgRight {
     width: 30%;
     vertical-align: top;
     display: inline-block;
@@ -159,7 +159,6 @@ img {
     border: 1px solid #333333;
     border-bottom: none;
 }
-.logout label {}
 .divTables {
     float: left;
 }
@@ -176,9 +175,6 @@ img {
 
     border: none;
     color: #fff;
-}
-.forms {
-    /*todas as div contendo um form*/
 }
 .formSubmit label {
     display: inline-block;
@@ -319,4 +315,11 @@ th {
 }
 #popup {
     display: none;
+}
+#lucroTotal,
+#lucroProd,
+#lucroServ {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
