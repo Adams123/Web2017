@@ -1,3 +1,6 @@
 /relatorio/*
 !/relatorio/relatorio.pdf
+!/relatorio/relatoriot2.pdf
+!/relatorio/relatorio.tex
+!/relatorio/relatoriot2.tex
 npm-debug.log
