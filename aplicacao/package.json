@@ -1,12 +1,13 @@
-
 {
   "name": "petchopp",
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "main": "index.html",
   "dependencies": {
+    "connect": "^3.6.2",
     "fullcalendar": "^3.3.1",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "serve-static": "^1.12.3"
   },
   "devDependencies": {},
   "scripts": {
