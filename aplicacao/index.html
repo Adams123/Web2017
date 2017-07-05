@@ -1,25 +1,559 @@
+<!-- Membros do Grupo: -->
+<!-- * Adams Vietro Codignotto da Silva - 6791943 -->
+<!-- * Antonio Pedro Lavezzo Mazzarolo - 8626232 -->
+<!-- * Gustavo Dutra Santana - 8532040 -->
+<!-- * Veronica Vannini - 8517369 -->
+
 <!DOCTYPE html>
 <html>
-    <head>
-    </head>
-    <body>
-        <div id="login">
-            <form id="formLogin">
-                Login:
-                <input type="text" name="login" id="user">
-                <br>
-                Senha:
-                <input type="password" id="senha">
-                <br>
-                <button onclick="logon(document.getElementById('user').value, document.getElementById('senha').value)">Entrar</button>
-            </form>
-        </div>
+<html lang="en-us">
 
-        <div id="admin">
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href='node_modules/fullcalendar/dist/fullcalendar.css' />
+    <script src='node_modules/jquery/dist/jquery.min.js'></script>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.3/jquery-ui.css' rel='stylesheet' />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='node_modules/moment/min/moment.min.js'></script>
+    <script src='node_modules/fullcalendar/dist/fullcalendar.js'></script>
+    <script src='dadosTeste.js'></script>
+    <script src='initDB.js'></script>
+    <script src='index.js'></script>
+    <script src='generalDB.js'></script>
+    <script src='blobbuilder.js'></script>
+    <script src='adminDB.js'></script>
+    <script src='clienteDB.js'></script>
+    <script src='animaisDB.js'></script>
+    <script src='produtosDB.js'></script>
+    <script src='servicosDB.js'></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
 
-        <div id="cliente">
+<body>
+    <!-- Navegação antes de login -->
+    <div id="navBarHome" style="display:block">
+        <ul class="navBarSup">
+            <li><a data-toggle href="#home">Home</a></li>
+            <li><a data-toggle href="#login">Login</a></li>
+        </ul>
+        <div>
+            <!-- Home -->
+            <div data-toggable id="home" class="welcome">
+                Olá! Bem vindo ao nosso site!
+            </div>
+            <!-- Login -->
+            <div data-toggable id="login" class="formSubmit">
+                <form onsubmit="return false" id="formLogin">
+                    <label>Login:</label>
+                    <input class="inputText" type="text" name="login" id="user">
+                    <br> <label>Senha:</label>
+                    <input class="inputText" type="password" id="senha">
+                    <br>
+                    <button class="submits" id="loginButton" type="submit" onclick="checkAdmin()">Entrar</button>
+                </form>
+            </div>
         </div>
-        <script type="text/javascript" src="index.js"></script>
-    </body>
+    </div>
+
+    <!-- Navegação do Administrador -->
+    <div id="navBarAdmin" style="display:none">
+        <ul class="navBarSup">
+            <li><a data-toggle href="#homeAdm">Home</a></li>
+            <li><a data-toggle href="#produtosAdm">Produtos</a></li>
+            <li><a data-toggle class="calendarHeader" href="#calendarioAdm">Calendário</a></li>
+            <li><a data-toggle href="#cadastrar">Usuários</a></li>
+            <li><a data-toggle href="#servicosAdm">Serviços</a></li>
+            <li><a data-toggle href="#profileAdm">Profile</a></li>
+            <li><a data-toggle href="#logoutAdm" onclick="$('.confirm').show()">Logout</a></li>
+        </ul>
+        <div>
+            <!-- Home -->
+            <div data-toggable id="homeAdm">
+                Olá! Bem vindo ao nosso site!
+            </div>
+            <!-- Produtos -->
+            <div class="navBarInf" data-toggable id="produtosAdm">
+                <h2> O que deseja fazer? </h2>
+                <li><a data-toggle2 href="#addProd">Adicionar Produto</a></li>
+                <li><a data-toggle2 href="#attProd">Atualizar Produto</a></li>
+                <li><a data-toggle2 href="#delProd">Apagar Produto</a></li>
+                <li><a data-toggle2 href="#listProd" onclick="readAllProds()">Consultar Produto</a></li>
+
+                <!-- Adicionar Produto -->
+                <div data-toggable2 id="addProd" class="formSubmit longform">
+                    <form onsubmit="return false" id="formAddProd">
+                        <div class="contentLeft">
+                            <br>
+                            <h2>Adicionar produto:</h2>
+                            <label>Nome:</label><input class="inputText" id="nomeProdAdd" type="text" name="nomeProdAdd" Placeholder="Ração">
+                            <br><label>ID:</label>
+                            <input class="inputText" id="idProdAdd" type="number" name="idProdAdd" Placeholder="1">
+                            <br><label>Foto:</label>
+                            <input class="inputFile" id="fotoProdAdd" type="file" name="fotoProdAdd" onchange="previewFile(document.getElementById('fotoProdAdd'),document.getElementById('imgProdAdd'));encodeImageFileAsURL(this);" accept=".png,.jpeg,.jpg">
+                            <br>
+                            <br><label>Descricao:</label>
+                            <input class="inputText" id="descricaoProdAdd" type="textarea" name="descricaoProdAdd" Placeholder="Ração pra porco" style="width: 300px;">
+                            <br><label>Preço:</label>
+                            <input class="inputText" id="precoProdAdd" type="number" name="precoProdAdd" step="0.01" Placeholder="3.54">
+                            <br><label>Quantidade em estoque:</label>
+                            <input class="inputText" id="quantProdAdd" type="number" name="quantProdAdd" Placeholder="23">
+                            <br><label>Quantidade vendida:</label>
+                            <input class="inputText" id="vendasProdAdd" type="number" name="vendasProdAdd" Placeholder="11">
+                            <br><br><label></label>
+                            <input class="submits" type="submit" value="Cadastrar" onclick="addProd()">
+                        </div>
+                        <div class="imgRight">
+                            <br><img src="" id="imgProdAdd" class="imagem">
+                        </div>
+
+                    </form>
+                </div>
+                <!-- Atualizar Produto -->
+                <div data-toggable2 id="attProd" class="formSubmit longform">
+                    <form onsubmit="return false" id="formAttProd">
+                        <div class="contentLeft">
+                            <br>
+                            <h2>Atualizar produto:</h2>
+                            <label>Código de barras:</label>
+                            <input class="inputText pesquisarField" type="number" name="idProdAtt" id="idProdAtt" Placeholder="1">
+                            <br>
+                            <input class="submits pesquisarButton" type="submit" value="Pesquisar" onclick="getProdInfo('att')"> <br>
+                            <br><label>Nome:</label>
+                            <input class="inputText" type="text" name="nomeProdAtt" id="nomeProdAtt" Placeholder="Ração">
+                            <br><label>Foto:</label>
+                            <input class="inputFile" id="fotoProdAtt" type="file" name="fotoProdAtt" onchange="previewFile(document.getElementById('fotoProdAtt'),document.getElementById('imgProdAtt'));encodeImageFileAsURL(this);" accept=".png,.jpeg,.jpg">
+                            <br><label>Descricao:</label>
+                            <input class="inputText" id="descricaoProdAtt" type="textarea" name="descricaoProdAtt" Placeholder="Ração pra porco" style="width: 300px;">
+                            <br><label>Preço:</label>
+                            <input class="inputText" id="precoProdAtt" type="number" name="precoProdAtt" step="0.01" Placeholder="3.54">
+                            <br><label>Quantidade em estoque:</label>
+                            <input class="inputText" id="quantProdAtt" type="number" name="quantProdAtt" Placeholder="23">
+                            <br><label>Quantidade vendida:</label>
+                            <input class="inputText" id="vendasProdAtt" type="number" name="vendasProdAtt" Placeholder="11">
+                            <br><br><label></label>
+                            <input class="submits" type="submit" value="Atualizar" onclick="updateProd()">
+                        </div>
+                        <div class="imgRight">
+                            <br><img id="imgProdAtt" class="imagem" src="">
+                        </div>
+                    </form>
+                </div>
+                <!-- Remover Produto -->
+                <div data-toggable2 id="delProd" class="formSubmit longform">
+                    <form onsubmit="return false" id="formDelProd">
+                        <div class="contentLeft">
+                            <br>
+                            <h2>Apagar produto:</h2>
+                            <div class="fieldwrapper">
+                                <label>ID:</label>
+                                <input class="inputText pesquisarField" type="number" name="idProdDel" Placeholder="1" id="idProdDel">
+                                <input class="submits pesquisarButton" type="submit" value="Pesquisar" onclick="getProdInfo('del');">
+                            </div>
+                            <br><label>Nome:</label>
+                            <input class="inputText" type="text" name="nomeProdDel" Placeholder="Ração" id="nomeProdDel" disabled><br>
+                            <br><label>Descricao:</label>
+                            <input class="inputText" type="textarea" name="descricaoProdDel" Placeholder="Ração pra porco" style="width: 300px;" id="descricaoProdDel" disabled>
+                            <br><label>Preço:</label>
+                            <input class="inputText" type="number" name="precoProdDel" step="0.01" Placeholder="3.54" id="precoProdDel" disabled>
+                            <br><label>Quantidade em estoque:</label>
+                            <input class="inputText" type="number" name="quantProdDel" id="quantProdDel" Placeholder="23" disabled>
+                            <br><label>Quantidade vendida:</label>
+                            <input class="inputText" type="number" name="vendasProdDel" id="vendasProdDel" Placeholder="11" disabled>
+                            <br><label></label>
+                            <input class="submits" type="submit" value="Remover" onclick="removeProd();">
+                        </div>
+                        <div class="imgRight">
+                            <br><img src="" id="imgProdDel" class="imagem">
+                        </div>
+                    </form>
+                </div>
+                <!-- Listar Produtos -->
+                <div data-toggable2 id="listProd">
+                    <table class="tabelas tableProd">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Foto</th>
+                                <th>Nome</th>
+                                <th>Descricao</th>
+                                <th>Preço</th>
+                                <th>Quantidade disponível</th>
+                                <th>Quantidade vendida</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableProd">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Calendário -->
+            <div class="navBarInf" data-toggable id="calendarioAdm">
+                <div id="Agenda">
+                    <div class="calendar"></div>
+                </div>
+            </div>
+
+            <!-- Cadastrar -->
+            <div class="navBarInf" data-toggable id="cadastrar">
+                <h2> O que deseja fazer? </h2>
+                <li><a data-toggle2 href="#cadastrarCli">Cadastrar Cliente</a></li>
+                <li><a data-toggle2 href="#cadastrarAdm">Cadastrar Administrador</a></li>
+
+                <!-- Cadastrar Cliente -->
+                <div data-toggable2 id="cadastrarCli" class="formSubmit longform">
+                    <form onsubmit="return false" id="formAddCliente">
+                        <div class="contentLeft">
+                            <br>
+                            <h2> Cadastrar Cliente: </h2>
+                            <label>Nome:</label>
+                            <input class="inputText" type="text" name="NomeCli" id="cadNomeCli" placeholder="Ex: Giovane Medusa Mocellin">
+                            <br><label>CPF:</label>
+                            <input class="inputText" type="text" name="CPFCli" id="cadCPFCli" placeholder="Ex: 13552134360">
+                            <br><label>Endereço:</label>
+                            <input class="inputText" type="text" name="EnderecoCli" id="cadEnderecoCli" placeholder="Ex: Av. São Carlos 1200">
+                            <br><label>Foto:</label>
+                            <input class="inputFile" type="file" name="FotoCli" id="cadFotoCli" onchange="previewFile(document.getElementById('cadFotoCli'),document.getElementById('showFotoCadCli'));encodeImageFileAsURL(this);" accept=".png,.jpeg,.jpg">
+                            <br><label>Telefone:</label>
+                            <input class="inputText" type="tel" name="TelCli" id="cadTelCli" placeholder="Ex: (16) 3418-2341">
+                            <br><label>Email:</label>
+                            <input class="inputText" type="email" name="EmailCli" id="cadEmailCli" placeholder="Ex: didiomedusa@gmail.com">
+                            <br><br><label></label>
+                            <input class="submits" type="submit" value="Cadastrar" onclick="addCliente()">
+                        </div>
+                        <div class="imgRight">
+                            <br><img id="showFotoCadCli" class="imagem" src="">
+                        </div>
+                    </form>
+                </div>
+                <!-- Cadastrar Administrador -->
+                <div data-toggable2 id="cadastrarAdm" class="formSubmit longform">
+                    <form onsubmit="return false" id="formAddAdmin">
+                        <div class="contentLeft">
+                            <br>
+                            <h2> Cadastrar Administrador: </h2>
+                            <label>Nome:</label>
+                            <input class="inputText" type="text" name="NomeAdm" id="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin">
+                            <br><label>CPF:</label>
+                            <input class="inputText" type="text" name="CPFAdm" id="CPFAdm" placeholder="Ex: 13552134360">
+                            <br><label>Foto:</label>
+                            <input class="inputFile" type="file" id="FotoAdm" accept=".png,.jpeg,.jpg" name="FotoAdm" onchange="previewFile(document.getElementById('FotoAdm'),document.getElementById('showFotoAdm'));encodeImageFileAsURL(this);">
+
+                            <br><label>Telefone:</label>
+                            <input class="inputText" type="tel" id="TelAdm" name="TelAdm" placeholder="Ex: (16) 3418-2341">
+                            <br><label>Email:</label>
+                            <input class="inputText" type="email" name="EmailAdm" id="EmailAdm" placeholder="Ex: didiomedusa@gmail.com">
+                            <br><br><label></label>
+                            <input class="submits" type="submit" value="Cadastrar" onclick="addAdmin()">
+                        </div>
+                        <div class="imgRight">
+                            <br><img class="imagem" src="" id="showFotoAdm">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!-- Serviços -->
+            <div class="navBarInf" data-toggable id="servicosAdm">
+                <h2> O que deseja fazer? </h2>
+                <li><a data-toggle2 href="#cadastrarSer">Cadastrar Serviço</a></li>
+                <li><a data-toggle2 href="#assocServ" onclick="renderServicos(); renderPets()">Associar serviço a horário</a></li>
+                <li><a data-toggle2 href="#releaseServ" onclick="renderServsAtivos()">Liberar horário reservado</a></li>
+
+                <!-- Cadastrar Serviço -->
+                <div data-toggable2 id="cadastrarSer" class="formSubmit longform">
+                    <form onsubmit="return false" id="formAddServ">
+                        <div class="contentLeft">
+                            <br>
+                            <h2> Cadastrar Serviço: </h2>
+                            <label>Nome:</label>
+                            <input class="inputText" type="text" name="NomeServ" id="addNomeServ" placeholder="Ex: Banho">
+                            <br><label>Foto:</label>
+                            <input class="inputFile" type="file" name="FotoServ" id="addFotoServ" onchange="previewFile(document.getElementById('addFotoServ'),document.getElementById('imgServAdd'));encodeImageFileAsURL(this);" accept=".png,.jpeg,.jpg">
+
+                            <br><label>Descrição:</label>
+                            <textarea name="DescServ" rows="4" cols="50" id="addDescServ" placeholder="Ex: Uma incrível chuva de limpeza que deixará seu animal limpinho e cheiroso."></textarea>
+                            <br><label>Preço:</label>
+                            <input class="inputText" type="number" step="0.01" id="addPrecoServ" name="PrecServ" placeholder="Ex: 15.00">
+                            <br><br><label></label>
+                            <input class="submits" type="submit" value="Cadastrar" onclick="addServ()">
+                        </div>
+                        <div class="imgRight">
+                            <br><img id="imgServAdd" src="" class="imagem">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Associar Serviço -->
+                <div data-toggable2 id="assocServ" class="formSubmit longform">
+                    <form onsubmit="return false" id="formAssServ">
+                        <br>
+                        <h2> Associar Serviço: </h2>
+                        <label>Serviço:</label>
+                        <select id="dropdownServicosAdd">
+                        </select>
+                        <br><label>Pet:</label>
+                        <select id="petsServicos"></select>
+                        <br><label>Data:</label>
+                        <input class="inputText" type="date" name="DataServ" id="dataServ">
+                        <br><label>Horário:</label>
+                        <input class="inputText" type="time" name="TempServ" id="tempServ">
+                        <br><br><label></label>
+                        <input class="submits" type="submit" value="Reservar" onclick="adicionarServAssoc()">
+                    </form>
+                </div>
+                <!-- Liberar Reserva -->
+                <div data-toggable2 id="releaseServ" class="formSubmit longform">
+                    <form onsubmit="return false" id="formRelServ">
+                        <br>
+                        <h2> Desmarcar Serviço: </h2>
+                        <label>Nome:</label>
+                        <select id="dropdownServicosDel">
+                            <option disabled selected value> -- escolha uma opção -- </option>
+                        </select>
+                        <br><label>Data:</label>
+                        <input class="inputText" type="date" name="DataServ" id="dataServDel" disabled>
+                        <br><label>Horário:</label>
+                        <input class="inputText" type="time" name="TempServ" id="tempServDel" disabled>
+                        <br><br><label></label>
+                        <input class="submits" type="submit" value="Desmarcar" onclick="desmarcarServico()">
+                    </form>
+                </div>
+            </div>
+            <!-- Perfil Administrador -->
+            <div class="navBarInf" data-toggable id="profileAdm">
+                <h2> O que deseja fazer? </h2>
+                <li><a data-toggle2 href="#editPerfilAdm" onclick="getAdmInfo()">Editar Perfil</a></li>
+                <li><a data-toggle2 href="#listGainsAdm" onclick="listarGanhos()">Listar Ganhos</a></li>
+
+                <!-- Editar Perfil -->
+                <div class="formSubmit longform" data-toggable2 id="editPerfilAdm"><br>
+                    <form onsubmit="return false" id="formEditAdmin">
+                        <div class="contentLeft">
+                            <br>
+                            <h2> Editar Perfil: </h2>
+                            <label>Nome:</label>
+                            <input class="inputText" type="text" name="NomeAdm" placeholder="Ex: Giovane Medusa Mocellin" id="nomeAdm">
+                            <label>Senha:</label>
+                            <input class="inputText" type="text" name="passAdm" placeholder="***" id="passAdm">
+                            <br><label>CPF:</label>
+                            <input class="inputText" type="text" name="CPFAdmEdit" id="CPFAdmEdit" disabled>
+                            <br><label>Foto:</label>
+                            <input class="inputFile" type="file" name="FotoAdm" id="FotoAdm" onchange="previewFile(document.getElementById('FotoAdm'),document.getElementById('imgAdm'));encodeImageFileAsURL(this);" accept=".png,.jpeg,.jpg">
+
+                            <br><label>Telefone:</label>
+                            <input class="inputText" type="text" name="TelAdm" id="TelAdmEdit">
+                            <br><label>Email:</label>
+                            <input class="inputText" type="email" name="emailAdm" placeholder="Ex: didiomedusa@gmail.com" id="emailAdm">
+                            <br><br><label></label>
+                            <input class="submits" type="submit" value="Salvar" onclick="updateAdm()">
+                        </div>
+                        <div class="imgRight">
+                            <br><img id="imgAdm" src="" class="imagem">
+                        </div>
+                    </form>
+                </div>
+                <!-- Listar Ganhos -->
+                <div data-toggable2 id="listGainsAdm">
+                    <div id="multTabelas">
+                        <div class="divTables">
+                            <table class="tabelas">
+                                <thead>
+                                    <tr>
+                                        <th>Serviços</th>
+                                        <th>Lucro</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelaGanhosServicos">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="divTables">
+                            <table class="tabelas">
+                                <thead>
+                                    <tr>
+                                        <th>ID Produto</th>
+                                        <th>Lucro</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelaGanhosProdutos">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="forms" style="position: absolute; bottom: 0;">
+                            Lucro serviços: R$<input type="text" id="lucroServ" value="0.00" disabled> Lucro produtos: R$<input type="text" value="0.00" id="lucroProd" disabled> Lucro total: R$<input type="text" value="0.00" id="lucroTotal" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Logout -->
+            <div class="logout" data-toggable id="logoutAdm">
+                <div id="confirmacao" class="confirm">
+                    <label>Tem certeza?</label>
+                    <br>
+                    <button class="submits" onclick="confirmLogout(true)">Sim</button>
+                    <button class="submits" onclick="confirmLogout(false)">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navegação Cliente -->
+    <div id="navBarCliente" style="display:none">
+        <ul class="navBarSup">
+            <li><a data-toggle href="#homeCliente">Home</a></li>
+            <li><a data-toggle href="#produtosCli" onclick="renderProdutos()">Produtos</a></li>
+            <li><a data-toggle href="#carrinhoCli" onclick="renderCarrinho()">Carrinho</a></li>
+            <li><a data-toggle class="calendarHeader" href="#calendarioCli">Calendário</a></li>
+            <li><a data-toggle href="#profileCli">Profile</a></li>
+            <li><a data-toggle href="#logoutCli" onclick="$('.confirm').show()">Logout</a></li>
+        </ul>
+        <div>
+            <!-- Home -->
+            <div data-toggable id=homeCliente>
+                Olá! Bem vindo ao nosso site!
+            </div>
+            <!-- Produtos -->
+            <div data-toggable id="produtosCli">
+                <table class="tabelas tableProd">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Produto</th>
+                            <th>Valor unitário</th>
+                            <th>Quantidade</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableProdutosCli">
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- Carrinho -->
+            <div data-toggable id="carrinhoCli">
+                <table class="tabelas tableProd">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nome</th>
+                            <th>Quantidade</th>
+                            <th>Valor unitário</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableCarrinhoCli">
+
+                    </tbody>
+                </table>
+                <div style="float:right">Total: R$<input id="totalCart" type="text" disabled value="0.00"></div><br>
+                <div class="formSubmit" style="clear: right; float: right"><input type="submit" value="Esvaziar Carrinho" style="margin-right:10px" onclick="emptyCart()"><input class="formSubmit" type="submit" value="Comprar" onclick="comprar()"></div>
+
+            </div>
+            <!-- Calendário -->
+            <div data-toggable id="calendarioCli">
+                <div class="calendar"></div>
+            </div>
+            <!-- Perfil Cliente -->
+            <div class="navBarInf" data-toggable id="profileCli">
+                <br>
+
+                <h2> O que deseja fazer? </h2>
+                <li><a data-toggle2 href="#editPetsCli">Cadastrar Animais</a></li>
+                <li><a data-toggle2 href="#listPetsCli" onclick="getClientPets()">Listar Animais</a></li>
+                <li><a data-toggle2 href="#editPerfilCli" onclick="renderPerfilCli()">Editar Perfil</a></li>
+
+                <!-- Cadastrar Pets -->
+                <div data-toggable2 id="editPetsCli" class="formSubmit longform">
+                    <form onsubmit="return false" id="formEditPet">
+                        <div class="contentLeft">
+                            <br>
+                            <h2> Cadastro de Pets: </h2>
+                            <label>Nome do Pet: </label>
+                            <input class="inputText" type="text" name="NomePet" id="addNomePet" placeholder="Ex: Pipoca">
+                            <br> <label>Raça: </label>
+                            <input class="inputText" type="text" name="RacaPet" id="addRacaPet" placeholder="Ex: Dalmata">
+                            <br><label>Idade: </label>
+                            <input class="inputText" id="addIdadePet" type="number" name="IdadePet" placeholder="7">
+                            <br><label>Foto: </label>
+                            <input class="inputFile" id="addFotoPet" type="file" name="FotoPet" onchange="previewFile(document.getElementById('addFotoPet'),document.getElementById('showFotoPet'));encodeImageFileAsURL(this);" accept=".png,.jpeg,.jpg">
+
+                            <br><br><label></label>
+                            <input class="inputSubmit" type="submit" value="Salvar" onclick="addPet()">
+                        </div>
+                        <div class="imgRight">
+                            <br><img class="imagem" id="showFotoPet" src="">
+                        </div>
+                    </form>
+                </div>
+                <!-- Listar Pets -->
+                <div data-toggable2 id="listPetsCli" class="formSubmit">
+                    <div style="float:left; width:100%;">
+                        <div style="float: left">
+                            <h1>Seus pets</h1>
+                            <table class="tabelas tableProd">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Raça</th>
+                                        <th>Idade</th>
+                                        <th>Foto</th>
+                                        <th>Serviços reservados</th>
+                                        <th>Despesas</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableListPetsCli">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Editar Perfil -->
+                <div data-toggable2 id="editPerfilCli" class="formSubmit longform">
+                    <form onsubmit="return false" id="formEditCli">
+                        <div class="contentLeft">
+                            <br>
+                            <h2> Editar Perfil: </h2>
+                            <label>Nome:</label>
+                            <input type="text" id="ProfileNomeCli" name="NomeCli">
+                            <br><label>CPF:</label>
+                            <input type="text" id="ProfileCPFCli" name="CPFCli" disabled>
+                            <br><label>Senha:</label>
+                            <input type="text" id="passCli" name="passCli">
+                            <br><label>Endereço:</label>
+                            <input type="text" id="enderecoCli" name="EnderecoCli">
+                            <br><label>Foto:</label>
+                            <input class="inputFile" type="file" name="FotoCli" id="FotoCli" onchange="previewFile(document.getElementById('FotoCli'),document.getElementById('showFotoCli'));encodeImageFileAsURL(this);" accept=".png,.jpeg,.jpg">
+
+                            <br><label>Telefone:</label>
+                            <input type="text" name="TelCli" id="telCli">
+                            <br><label>Email:</label>
+                            <input type="email" id="emailCli" name="emailCli">
+                            <br><br><label></label>
+                            <input class="submits" type="submit" value="Salvar" onclick="updateCliente()">
+                        </div>
+                        <div class="imgRight">
+                            <br><img id="showFotoCli" class="imagem" src="">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Logout -->
+            <div class="logout" data-toggable id="logoutCli">
+                <div id="confirmacao" class="confirm">
+                    Tem certeza?
+                    <br>
+                    <button class="submits" onclick="confirmLogout(true)">Sim</button>
+                    <button class="submits" onclick="confirmLogout(false)">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>

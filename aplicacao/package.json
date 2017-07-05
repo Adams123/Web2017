@@ -1,0 +1,27 @@
+{
+  "name": "petchopp",
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.html",
+  "dependencies": {
+    "connect": "^3.6.2",
+    "fullcalendar": "^3.3.1",
+    "jquery": "^3.2.1",
+    "serve-static": "^1.12.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Adams Vietro Codignotto da Silva <adamsvcs@gmail.com>, Antonio Pedro Lavezzo Mazzarolo <antoniop.lm@hotmail.com>, Gustavo Dutra Santana <gustavod.santana@gmail.com>, Veronica Vannini <veronica.vannini@usp.br>",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Adams123/Web2017.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Adams123/Web2017/issues"
+  },
+  "homepage": "https://github.com/Adams123/Web2017#readme"
+}

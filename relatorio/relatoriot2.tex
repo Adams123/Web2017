@@ -1,0 +1,155 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{indentfirst}
+\usepackage{amsthm,amsfonts,amsmath,amssymb}
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\usepackage[usenames,dvipsnames]{xcolor} 
+\usepackage{pgf,tikz}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{xcolor,colortbl}
+\usepackage{changepage}
+\usepackage{geometry}
+\usepackage[pdftex]{hyperref}
+\usepackage{listings}
+\usepackage[normalem]{ulem}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{multirow,array,varwidth}
+\usepackage{tabularx}
+\usepackage{makeidx}
+\usepackage[nottoc]{tocbibind}
+\usepackage{caption}
+\usepackage{etoolbox}
+\usepackage[pdftex]{hyperref}
+\usepackage{longtable}
+\usepackage{calc}
+\geometry{a4paper,inner=2.0cm,outer=2.0cm,top=2.0cm,bottom=2.0cm}
+\setenumerate[1]{label=\thesubsection.\arabic*.}
+\setenumerate[2]{label*=\arabic*.}
+
+\setlength{\tabcolsep}{6pt}
+
+\newcommand*\NewPage{\newpage\null\thispagestyle{empty}\newpage}
+\newcommand{\Barra}{\ensuremath{\backslash}}
+
+\newcommand\Data[3]{\ensuremath{#1\backslash #2\backslash #3}}
+
+\newcounter{magicrownumbers}
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+
+\setlength{\columnsep}{1cm}
+\addto\captionsbrazilian{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {Tabela de Conteúdo}%
+}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{center}
+	UNIVERSIDADE DE SÃO PAULO – USP
+	
+	INSTITUTO DE CIÊNCIAS MATEMÁTICAS E DE COMPUTAÇÃO
+	
+	DEPARTAMENTO DE SISTEMAS DE COMPUTAÇÃO
+	
+	\vspace{7cm}
+	
+	\Large{\textbf{Introdução a Sistemas WEB}}\\
+	\small{\textbf{Projeto 2}}
+	
+	\vspace{6cm}
+	
+	Adams Vietro Codignotto da Silva - $6791943$ \\ 
+	Antônio Pedro Lavezzo Mazzarolo - $8626232$ \\
+	Gustavo Dutra Santana - $8532040$\\
+	Veronica Vannini - $8517369$\\
+	
+	\vspace{6cm}
+	
+	São Carlos
+	
+	2017
+\end{center}
+
+\NewPage
+\pagenumbering{arabic}
+
+\tableofcontents
+
+\newpage
+
+\section{Descrição}
+Ao abrir o site, há uma tela home e uma tela de login. Todos os dados são persistentes em uma base \textit{indexeddb}, então ao limpar a cache do navegador ou reiniciar o servidor, os dados são perdidos. O projeto contém um arquivo \textit{index.html}, onde é feita toda a interface, e um \textit{index.css} contendo as customizações. Os arquivos \textit{index.js} e \textit{initDB.js} contém, em sua maioria, funções de inicialização do servidor e chamadas iniciais de funções, como criação da bd, verificação se ela está populada, entre outras. Os arquivos .js contém funções referentes à manipulação da base respectiva. O arquivo \textit{generalDB.js} contém funções de uso comum entre as bases, e o \textit{dadosteste.js} contém os dados inicias usados para popular a base de dados, gerados por um gerador de dados. Existem 5 cadastros de cada tabela, exceto de serviços associados (existem 10) e de admin, que existe apenas um.
+
+\section{Inicialização do sistema e dependências}
+Foi utilizado um pequeno servidor em \textit{node.js} apenas para a execução do projeto, implementado no arquivo \textit{server.js}, então é necessário instalar o \textit{node.js} (link \href{https://nodejs.org/en/}{aqui}). Após isso, dentro da pasta \textbf{aplicação}, é necessário rodar o comando \textit{npm install} e \textit{npm start} em um terminal (windows ou linux). A página está rodando no endereço \textit{localhost:8080}. Caso a página não seja exibida, pode ser necessário usar o comando \textit{npm install connect serve-static} e novamente o \textit{npm start} (houveram casos que foi preciso e outros não).
+
+\textbf{Todo o conteúdo do trabalho está disponível no \href{https://github.com/Adams123/Web2017}{github}.}
+
+\section{Descrição das páginas}
+Ao abrir o site, há uma barra de navegação superior contendo apenas duas abas: home e login.
+\subsection{Home}
+A aba home apenas apresenta uma mensagem de bem vindo, não importando em qual área ela se encontra (admin, cliente ou login).
+\subsection{Login}
+A aba login mostra um formulário para login, sendo que se o usuário e senha utilizados forem \textit{admin} e \textit{admin}, irá ser redirecionado para a página de administração. Este é o único \textit{admin} cadastrado. Temos 5 clientes pré cadastrados para testes.
+\subsection{Área da administração}
+\subsubsection{Produtos}
+Ao clicar na aba Produtos, algumas opções são oferecidas ao administrador:
+\begin{itemize}
+\item \textbf{Adicionar produto:} ao clicar em \textbf{Adicionar produto}, é exibido um formulário contendo todas as informações necessárias para cadastro de produtos, de acordo com as especificações. Ao clicar em cadastrar, o produto é cadastrado de acordo com os campos preenchidos. A ID (código de barras) é escolhida pelo usuário, mas deve ser numérica e única. Todos os campos são obrigatórios.
+\item \textbf{Atualizar produto:} o primeiro campo \textbf{ID} contém a chave de busca de qual produto será atualizado, e após clicar em pesquisar, os campos abaixo exibem os dados do produto daquela ID específica, e o administrador edita qualquer campo exceto a ID. Ao clicar em atualizar, os dados no servidor são atualizados. Todos os campos são obrigatórios.
+\item \textbf{Apagar produto:} Funcionamento parecido com o \textbf{Atualizar produto}, com a diferença que nenhum campo é editável e o botão Remover exclui o produto referente aquela ID da base de dados.
+\item \textbf{Consultar produto:} Uma listagem com todos os produtos cadastrados na base de dados, contendo, em ordem, a ID, foto, nome do produto, descrição, preço por unidade, quantidade em estoque e quantidade vendidos.
+\end{itemize}
+\subsubsection{Calendário}
+Nesta aba há no canto superior esquerdo há um botão \textit{today} e duas setas. Ao clicar em qualquer um deles, um calendário com os serviços e horários cadastrados e disponíveis é exibido, e a navegação é feita utilizando as setas superiores. Não há iteração do admin com o calendário, mas ao passar o mouse por um horário reservado, uma \textit{tooltip} exibe os dados daquele horário, contendo o serviço e o pet alocado aquele horário.
+\subsubsection{Usuários}
+A aba usuários contém opções de cadastro de clientes e administradores. Ao clicar em qualquer uma das opções, um formulário contendo todas as informações necessárias para cada tipo de cadastro é exibido, e ao clicar em salvar, o formulário é enviado à base de dados e cadastrado sob sua respectiva categoria. Note que todos os admins são cadastrados com a senha padrão "admin" e os clientes são cadastrados com a senha padrão "cliente", cabendo a cada um alterar posteriormente sua senha.
+\subsubsection{Serviços}
+\begin{itemize}
+\item \textbf{Cadastra servioço:} aqui temos o cadastro de serviços, pedindo as informações para o cadastro de um novo serviço. Todos os dados são necessários.
+\item \textbf{Associar serviço a horário:} nesta aba há um formulário contendo as informações para cadastro de um novo serviço em um horário. Como precisamos de serviços e pets cadastrados, dois menus \textit{dropdown} oferecem as possíveis opções. Ao clicar em Salvar, o serviço seria adicionado à base de dados e atualizado no Calendário. É possível cadastrar mais de um serviço à um mesmo horário, uma vez que numa pet shop podem ser feitos vários serviços num mesmo horário.
+\item \textbf{Liberar horário reservado: } nesta aba há um formulário contendo as informações para liberar serviço de um horário específico. Como precisamos de serviços e pets cadastrados, um menu \textit{dropdown} lista todos os serviços existentes, preenchendo a data e horário respectivos. Ao clicar em Salvar, o horário seria liberado e removido do Calendário.
+\end{itemize}
+\subsubsection{Profile}
+\begin{itemize}
+\item \textbf{Editar perfil:} Aqui é exibido um formulário preenchido com as informações já cadastradas do usuário. Note que o CPF, como é chave do perfil, não pode ser alterado. Ao alterar e salvar o formulário, as informações seriam atualizadas na base de dados e no perfil.
+\item \textbf{Listar Ganhos:} Duas tabelas são exibidas: a de serviços e a de produtos. Na tabela de serviços, cada linha contém o nome do serviço e o lucro gerado por aquele respectivo serviço. Na tabela de produtos, cada linha contém a ID do produto e o valor ganho pelas vendas daquele produto. Na parte inferior, há o lucro total, somando todos os campos de lucro das duas tabelas,e os lucros totais por categoria.
+\end{itemize}
+\subsubsection{Logout}
+Na seção de logout, apenas existe a confirmação de logout. Caso clique em não, o usuário é redirecionado à home. Caso contrário, é redirecionado à página inicial do site.
+\newpage
+\subsection{Área do cliente}
+\subsubsection{Produtos}
+Na aba Produtos, todos os produtos da loja são exibidos, com uma foto, nome e descrição, preço por unidade, quantidade disponível e um botão de Adicionar ao Carrinho a quantidade selecionada. A quantidade nunca irá exceder o número disponível em estoque daquele produto.
+\subsubsection{Carrinho}
+Aqui mostra todos os produtos adicionados ao carrinho, com as respectivas quantidades e valores unitários e valores totais na tabela. Abaixo, temos o total da compra, com as opções de comprar (onde o usuário seria levado à uma tela de pagamento, mas no caso apenas é deduzido da quantidade em estoque daquele produto a quantidade da compra do produto) ou esvaziar o carrinho, limpando a tabela e todas as operações feitas no carrinho de compras.
+\subsubsection{Calendário}
+Nesta aba há no canto superior direito há um botão \textit{today} e duas setas. Ao clicar em qualquer um deles, um calendário com os serviços e horários cadastrados e disponíveis é exibido, e a navegação é feita utilizando as setas. Não há iteração do cliente com o calendário, mas ao passar o mouse por um horário reservado, uma \textit{tooltip} exibe os dados daquele horário, contendo o serviço e o pet alocado aquele horário.
+\subsubsection{Profile}
+\begin{itemize}
+\item \textbf{Cadastrar animais:} aqui há um formulário contendo as informações necessárias para cadastrar um novo pet, que será associado àquela conta. A id do animal é gerado pelo sistema.
+\item \textbf{Listar animais:} é exibido uma lista de todos os pets associados à conta, com nome, raça, idade, foto, serviços associados ao pet, e o valor dos serviços daquele pet.
+\item \textbf{Editar perfil:} Aqui é exibido um formulário preenchido com as informações já cadastradas do usuário. Ao alterar e salvar o formulário, as informações são atualizadas na base de dados. O CPF, como é chave do sistema, não pode ser alterado.
+\end{itemize}
+\subsubsection{Logout}
+Na seção de logout, apenas existe a confirmação de logout. Caso clique em não, o usuário é redirecionado à home. Caso contrário, é redirecionado à página inicial do site.
+
+\section{Testes}
+Em sua maioria, foram feitos testes de consistência e de aceitação de valores nos campos, utilizando os dados de teste já inseridos e novos dados através do cadastro. Foi testado nos navegadores \textit{chrome} e \textit{firefox}. Em poucos casos, a \textit{indexeddb} mostrou problemas no \textit{firefox}, devido à funções não existentes no navegador. Tais bugs não foram corrigidos, pois algumas dessas funções, se trocadas, resultariam na refatoração quase completa do código. Algumas imagens utilizadas podem não estar disponíveis, caso o site fonte da imagem esteja indisponível.\\
+Uma tabela de testes foi feita \href{https://docs.google.com/spreadsheets/d/1ymmLQnk6MgIuYaloi86u5KE8QKyGibvhmmrdeVOYmfQ/edit?usp=sharing}{aqui}, disponível para visualização, cobrindo todas as entrada e o funcionamento do sistema.
+\end{document}
