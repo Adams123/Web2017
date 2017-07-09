@@ -1,3 +1,66 @@
+body{
+	font-family: sans-serif;
+	padding: 15px;
+}
+
+.content{
+	margin-left: 15px;
+}
+
 .active {
   color: green;
+  background-color: #111;
+}
+
+.main-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.main-menu li {
+    float: left;
+}
+
+.main-menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.main-menu li a:hover {
+    background-color: #111;
+}
+
+.new-product-button{
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.product-component{
+	border: 2px solid black;
+	border-radius: 10px;	
+	width: 400px;
+	margin: 15px 0px;
+	padding: 15px;
+}
+
+.product-detail{
+	position: absolute;
+	top: 75px;
+	left: 500px;
+}
+
+#form-new-product ul{
+    list-style-type: none;
+}
+
+#form-new-product ul li{
+    display: block;
+    padding-top:10px;
 }
