@@ -61,11 +61,17 @@ export default class App extends React.Component{
             </form>
           </div>
       )
+    }else{
+      return (
+        <div>
+          <p>Bem-vindo ao Petchoop! O Melhor petshop da web!</p>
+        </div>
+      )
     }
   }
 
   render() {
-    return (
+    return (  
       <div >
         <div className="main-menu">
           <ul role="nav">
@@ -75,8 +81,7 @@ export default class App extends React.Component{
         </div>
         <div className="content">
           { this.isLogged() }
-          
-          {this.props.children}
+          { this.props.children }
         </div>
       </div>
     )
