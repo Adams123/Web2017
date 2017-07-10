@@ -95,11 +95,16 @@
 \section{Descrição}
 Ao abrir o site, há uma tela home, com as abas de login, produtos e serviços. É necessário ter o CouchDB instalado previamente. Foi utilizado a api React Routes para fluxo de dados e gerenciamento de páginas. Inicialmente há um script de criação da base, e para popular a mesma.
 
+
+
+O sistema começa no arquivo \textit{index.html}, onde o \textit{bundle.js} criado pelo webpack é usado. O arquivo \textit{server.js} redireciona todas as requisições das páginas (produtos, serviços e login) bem como cuida da inicialização do sistema, populando e criando a base de dados.
+
+Cada página tem seu arquivo .js, que cuida de todos os \textit{Gets e posts} de cada página.
+
 \section{Inicialização do sistema e dependências}
 Foi utilizado um servidor em \textit{node.js} apenas para a execução do projeto, implementado no arquivo \textit{server.js}, então é necessário instalar o \textit{node.js} (link \href{https://nodejs.org/en/}{aqui}). Após isso, dentro da pasta \textbf{aplicação}, é necessário rodar o comando \textit{npm install} e \textit{npm start} em um terminal (windows ou linux). A página está rodando no endereço \textit{localhost:8080}.
 
 \textbf{Todo o conteúdo do trabalho está disponível no \href{https://github.com/Adams123/Web2017}{github}.}
-
 \section{Descrição das páginas}
 Ao abrir o site, há uma barra de navegação superior contendo quatro abas: home, produtos, serviços e login.
 \subsection{Home}
@@ -109,6 +114,7 @@ Na aba produtos, há um botão para inserir os dados novos, diretamente no Couch
 \subsection{Serviços}
 Na aba serviços, há um formulário para inserção de novos serviços e uma tabela exibindo todo o conteúdo da tabela de serviços.
 \subsection{Login}
-A aba login mostra um formulário para login, sendo que se o usuário e senha utilizados forem \textit{admin} e \textit{admin}, irá ser redirecionado para a página de administração. Este é o único \textit{admin} cadastrado. Temos 5 clientes pré cadastrados para testes.
-\section{Testes}
+A aba login mostra um formulário para login, sendo que se o usuário e senha utilizados forem \textit{admin} e \textit{admin}, irá ser redirecionado para a página de administração. Este é o único \textit{admin} cadastrado.
+\section{Observações e dificuldades}
+Tentamos aproveitar o T2, mas tivemos problemas enormes em portar para o CouchDB com o front-end do jeito que estava. Optamos por utilizar React, pois é uma tecnologia que é mais recente, e várias empresas a utiliza, como Facebook e YouTube. Notamos que apesar de ser versátil, ela é bem complexa e apresentou novos problemas para comunicação com o CouchDB, sendo esse um ponto onde houve a estagnação do projeto. Tentamos trabalhar com o que conseguimos para criar o máximo possível de fluxo de dados.
 \end{document}
