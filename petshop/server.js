@@ -88,6 +88,19 @@ router.route('/products/:product_id').get((req, res) => {
     })
 });
 
+router.route('/login')
+.get((req, res) => {
+	petchoop.view('users','allUsers',function(err, body) {
+	  if (!err) {
+	  	console.log({'result': body['rows']})
+	  	res.json({'users': body['rows']})
+	  }else{
+	  	console.log("Error: ", err.message);
+	  	return;
+	  }
+	});
+});
+
 // serve our static stuff like index.css
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -95,6 +108,103 @@ app.use(express.static(path.join(__dirname, 'public')))
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
+
+nano.db.create("petchoop");
+console.log("Database created");
+
+var petchoop = nano.db.use("petchoop");
+
+console.log("Creating products");
+petchoop.insert({
+	type: 'product',
+	name: 'Coleira',
+	stock: 10,
+	sold: 0,
+	price: 23.90,
+	description: "Coleira canina anti-carrapatos"
+}, (err, body, header) => {
+	if(err){
+		console.log("Error: ", err.message);
+		return;
+	}
+  return;
+});
+
+petchoop.insert({
+	type: 'product',
+	name: 'Shampoo',
+	stock: 15,
+	sold: 0,
+	price: 14.90,
+	description: "Shampoo canino"
+}, (err, body, header) => {
+	if(err){
+		console.log("Error: ", err.message);
+		return;
+	}
+  return;
+});
+
+petchoop.insert({
+	type: 'product',
+	name: 'Focinheira',
+	stock: 5,
+	sold: 0,
+	price: 17.00,
+	description: "Focinheira para cachorros"
+}, (err, body, header) => {
+	if(err){
+		console.log("Error: ", err.message);
+		return;
+	}
+  return;
+});
+
+console.log("Creating admin");
+petchoop.insert({
+	type: 'user',
+	login: 'admin',
+	password: "admin"
+}, (err, body, header) => {
+	if(err){
+		console.log("Error: ", err.message);
+		return;
+	}
+  return;
+});
+
+console.log("Creating views");
+petchoop.insert({
+		"views":
+    { "allProducts":
+    	{ "map": function(doc) {
+    			if(doc.type){
+						if(doc.type=='product'){
+							emit(doc._id, doc);
+						}
+					}
+    		}
+    	}
+    }
+  },'_design/products', function (error, response) {
+    console.log("View created");
+});
+
+petchoop.insert({
+		"views":
+    { "allUsers":
+    	{ "map": function(doc) {
+    			if(doc.type){
+						if(doc.type=='user'){
+							emit(doc._id, doc);
+						}
+					}
+    		}
+    	}
+    }
+  },'_design/users', function (error, response) {
+    console.log("View created");
+});
 
 // START THE SERVER
 // =============================================================================
