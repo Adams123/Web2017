@@ -1,37 +1,41 @@
+// Adams Vietro Codignotto da Silva - 6791943
+// Antônio Pedro Lavezzo Mazzarolo - 8626232
+// Gustavo Dutra Santana - 8532040
+// Veronica Vannini - 8517369
+
 // server.js
 
 // BASE SETUP
 // =============================================================================
 
 // call the packages we need
-var express = require('express'); // call express
-var app = express(); // define our app using express
+var express    = require('express');        // call express
+var app        = express();                 // define our app using express
 var path = require('path')
 var bodyParser = require('body-parser');
 var nano = require('nano')('http://localhost:5984');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // ROUTES FOR OUR API
 // =============================================================================
-var router = express.Router(); // get an instance of the express Router
+var router = express.Router();              // get an instance of the express Router
 var petchoop = nano.db.use('petchoop');
 
 // middleware to use for all requests
-router.use(function (req, res, next) {
+router.use(function(req, res, next) {
     // do logging
+    console.log('Something is happening.');
     next(); // make sure we go to the next routes and don't stop here
 });
 
 // more routes for our API will happen here
 
-router.route('/products')
-    .post((req, res) => {
+	router.route('/products')
+  .post((req, res) => {
         let p = {};
         p.name = req.body.name;
         p.stock = parseInt(req.body.stock);
@@ -282,9 +286,10 @@ nano.db.destroy("petchoop", function(){
 
 	});
 });
+
 // START THE SERVER
 // =============================================================================
 var PORT = process.env.PORT || 8080
-app.listen(PORT, function () {
-    console.log('Production Express server running at localhost:' + PORT)
+app.listen(PORT, function() {
+  console.log('Production Express server running at localhost:' + PORT)
 })

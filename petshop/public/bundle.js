@@ -85,7 +85,10 @@
 	    ),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/services', component: _Services2.default })
 	  )
-	), document.getElementById('app'));
+	), document.getElementById('app')); // Adams Vietro Codignotto da Silva - 6791943
+	// Antônio Pedro Lavezzo Mazzarolo - 8626232
+	// Gustavo Dutra Santana - 8532040
+	// Veronica Vannini - 8517369
 
 /***/ }),
 /* 1 */
@@ -25467,7 +25470,10 @@
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Adams Vietro Codignotto da Silva - 6791943
+	// Antônio Pedro Lavezzo Mazzarolo - 8626232
+	// Gustavo Dutra Santana - 8532040
+	// Veronica Vannini - 8517369
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -25674,7 +25680,12 @@
 	  value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // modules/NavLink.js
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // Adams Vietro Codignotto da Silva - 6791943
+	// Antônio Pedro Lavezzo Mazzarolo - 8626232
+	// Gustavo Dutra Santana - 8532040
+	// Veronica Vannini - 8517369
+
+	// modules/NavLink.js
 
 
 	var _react = __webpack_require__(1);
@@ -27255,7 +27266,10 @@
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Adams Vietro Codignotto da Silva - 6791943
+	// Antônio Pedro Lavezzo Mazzarolo - 8626232
+	// Gustavo Dutra Santana - 8532040
+	// Veronica Vannini - 8517369
 
 	var Products = function (_React$Component) {
 	  _inherits(Products, _React$Component);
@@ -27487,6 +27501,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// Adams Vietro Codignotto da Silva - 6791943
+	// Antônio Pedro Lavezzo Mazzarolo - 8626232
+	// Gustavo Dutra Santana - 8532040
+	// Veronica Vannini - 8517369
+
 	exports.default = _react2.default.createClass({
 	      displayName: 'Product',
 
@@ -27581,7 +27600,10 @@
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Adams Vietro Codignotto da Silva - 6791943
+	// Antônio Pedro Lavezzo Mazzarolo - 8626232
+	// Gustavo Dutra Santana - 8532040
+	// Veronica Vannini - 8517369
 
 	var Products = function (_React$Component) {
 	  _inherits(Products, _React$Component);
@@ -27712,7 +27734,11 @@
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Adams Vietro Codignotto da Silva - 6791943
+	// Antônio Pedro Lavezzo Mazzarolo - 8626232
+	// Gustavo Dutra Santana - 8532040
+	// Veronica Vannini - 8517369
+
 
 	var Services = function (_React$Component) {
 	  _inherits(Services, _React$Component);
@@ -27851,7 +27877,7 @@
 	          _react2.default.createElement(
 	            'button',
 	            { onClick: this._showNewServiceForm, className: 'new-product-button' },
-	            'Novo Produto'
+	            'Novo Servi\xE7o'
 	          ),
 	          this._handleServices()
 	        );
