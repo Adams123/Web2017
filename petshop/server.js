@@ -104,6 +104,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // all of our routes will be prefixed with /api
 app.use('/api', router);
 
+nano.db.destroy("petchoop");
 nano.db.create("petchoop");
 console.log("Database created");
 
