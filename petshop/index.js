@@ -1,3 +1,8 @@
+// Adams Vietro Codignotto da Silva - 6791943
+// Antônio Pedro Lavezzo Mazzarolo - 8626232
+// Gustavo Dutra Santana - 8532040
+// Veronica Vannini - 8517369
+
 import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
