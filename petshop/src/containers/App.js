@@ -17,7 +17,10 @@ export default class App extends React.Component{
   _getLogin(){
     if(this.state.logged){
       return(
-          <li><NavLink to="/products">Produtos</NavLink></li>
+          <div>
+            <li><NavLink to="/products">Produtos</NavLink></li>
+            <li><NavLink to="/services">Serviços</NavLink></li>
+          </div>
       );
     }
   }
@@ -42,7 +45,6 @@ export default class App extends React.Component{
               logged: true 
             });
         }
-        console.log("Produtos:", users);
       }
     );
   }

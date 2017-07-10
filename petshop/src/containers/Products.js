@@ -24,6 +24,8 @@ export default class Products extends React.Component {
   										id: p['value']['_id'],
   										stock: p['value']['stock'],
                       price: p['value']['price'],
+                      sold: p['value']['sold'],
+                      description: p['value']['description'],
   				});
   			}
 				this.setState({show: true,
@@ -51,6 +53,9 @@ export default class Products extends React.Component {
   							 name={prod['name']} 
   							 stock={prod['stock']}
                  price={prod['price']}
+                 sold={prod['sold']}
+                 description={prod['description']}
+
         />
   		);
   	}

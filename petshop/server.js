@@ -47,16 +47,13 @@ router.route('/products')
             description: p.description
         }, (err, body, header) => {
             if (err) {
-                console.log("Deu ruim", err.message);
+                console.log("Error", err.message);
                 return;
             }
-            console.log('you have inserted the product.');
-            console.log(body);
             res.json(body);
             return;
         });
     }).get((req, res) => {
-        console.log("Making a get");
         petchoop.view('products', 'allProducts', function (err, body) {
             if (!err) {
                 console.log({
@@ -66,26 +63,48 @@ router.route('/products')
                     'products': body['rows']
                 })
             } else {
-                console.log("Deu ruim", err.message);
+                console.log("Error", err.message);
                 return;
             }
         });
     });
 
-router.route('/products/:product_id').get((req, res) => {
-    let param = req.params.product_id
-    console.log("Trying to fetch product with id " + param)
-    petchoop.get(param, (err, body) => {
-        if (!err) {
-            res.json(body)
-            return
-        }
-
-        console.log("Not found")
-        res.json("{}")
-        return;
-    })
-});
+ 	router.route('/services')
+	.post((req, res) => {
+	    let s = {};
+	    s.name = req.body.name;
+	    s.stock = parseInt(req.body.stock);
+	    s.sold = parseInt(req.body.sold);
+	    s.price = parseFloat(req.body.price);
+	    s.description = req.body.description;
+	    petchoop.insert({
+	        type: 'service',
+	        name: s.name,
+	        price: s.price,
+	        description: s.description
+	    }, (err, body, header) => {
+	        if (err) {
+	            console.log("Error", err.message);
+	            return;
+	        }
+	        res.json(body);
+	        return;
+	    });
+	}).get((req, res) => {
+	    petchoop.view('services', 'allServices', function (err, body) {
+	        if (!err) {
+	            console.log({
+	                'result': body['rows']
+	            })
+	            res.json({
+	                'services': body['rows']
+	            })
+	        } else {
+	            console.log("Error", err.message);
+	            return;
+	        }
+	    });
+	});
 
 router.route('/login')
 .get((req, res) => {
@@ -107,6 +126,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
+
+// CREATE DATABASE AND POPULATE
 var petchoop;
 nano.db.destroy("petchoop", function(){
 	nano.db.create("petchoop", function(){
@@ -158,6 +179,45 @@ nano.db.destroy("petchoop", function(){
 		  return;
 		});
 
+		petchoop.insert({
+			type: 'service',
+			name: 'Banho',
+			price: 24.99,
+			description: "Banho com shampoo"
+		}, (err, body, header) => {
+			if(err){
+				console.log("Error: ", err.message);
+				return;
+			}
+		  return;
+		});
+
+		petchoop.insert({
+			type: 'service',
+			name: 'Tosa',
+			price: 24.99,
+			description: "Tosa de pêlos"
+		}, (err, body, header) => {
+			if(err){
+				console.log("Error: ", err.message);
+				return;
+			}
+		  return;
+		});
+
+		petchoop.insert({
+			type: 'service',
+			name: 'Hotel',
+			price: 30.99,
+			description: "Pernoite e cuidados para animais que precisam de um lar esporádico"
+		}, (err, body, header) => {
+			if(err){
+				console.log("Error: ", err.message);
+				return;
+			}
+		  return;
+		});
+
 		console.log("Creating admin");
 		petchoop.insert({
 			type: 'user',
@@ -185,6 +245,22 @@ nano.db.destroy("petchoop", function(){
 		    	}
 		    }
 		  },'_design/products', function (error, response) {
+		    console.log("View created");
+		});
+
+		petchoop.insert({
+				"views":
+		    { "allServices":
+		    	{ "map": function(doc) {
+		    			if(doc.type){
+								if(doc.type=='service'){
+									emit(doc._id, doc);
+								}
+							}
+		    		}
+		    	}
+		    }
+		  },'_design/services', function (error, response) {
 		    console.log("View created");
 		});
 

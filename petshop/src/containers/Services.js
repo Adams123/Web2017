@@ -1,17 +1,92 @@
-import React from 'react';
-import NavLink from '../util/NavLink';
+import React from 'react'
+import NavLink from '../util/NavLink'
+import axios from 'axios'
+import Service from '../components/Service'
 
-export default React.createClass({
+export default class Services extends React.Component {
+  state: {};
+  constructor(props){
+    super(props);
+    this.state = {
+      services: [],
+      show: false,
+      create: false,
+    } 
+    this._showNewServiceForm = this._showNewServiceForm.bind(this);
+  }
+
+  componentDidMount(){
+    let prods = [];
+    axios.get("/api/services").then(
+      (response) => {
+        for(let p of response['data']['services']){
+          prods.push({name: p['value']['name'],
+                      id: p['value']['_id'],
+                      price: p['value']['price'],
+                      description: p['value']['description'],
+          });
+        }
+        this.setState({show: true,
+          create: false, services: prods});
+      }
+    );
+  }
+
+  contextTypes: {
+    router: React.PropTypes.object
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    const id = event.target.elements[0].value
+    const path = `/services/${id}`
+    this.context.router.push(path)
+  }
+  _handleServices(){
+    let prods = [];
+    for(let prod of this.state.services){
+      prods.push(
+        <Service id={prod['id']} 
+                 name={prod['name']} 
+                 price={prod['price']}
+                 description={prod['description']}
+        />
+      );
+    }
+    return <div>{prods}</div>;
+  }
+  _showNewServiceForm(){
+    this.setState({show: false, create: true});
+  }
+  _handleNewService(event){
+    event.preventDefault()
+    const name = event.target.elements[0].value
+    const description = event.target.elements[1].value
+    const price = event.target.elements[2].value
+    axios.post('/api/services', {
+      name: name,
+      description: description,
+      price: price,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
   render() {
-    return(
+    let container;
+    if(this.state.show){
+      container = (
         <div>
-        <div className="service-menu">
-        <ul role="nav">
-            <li><NavLink to="/services/insert">Inserir</NavLink></li>
-            <li><NavLink to="/services/show">Exibir</NavLink></li>
-        </ul>
+          <button onClick={this._showNewServiceForm} className="new-product-button">Novo Serviço</button>
+          { this._handleServices() }
         </div>
-    <form id="form-new-service" className="formSubmit" onSubmit={this._handleNewService}>
+      );
+    }else if(this.state.create){
+      container = (
+        <form id="form-new-product" onSubmit={this._handleNewService}>
           <ul>
             <li>
               <input type="text" placeholder="Nome do Serviço"/>{' '}
@@ -22,22 +97,16 @@ export default React.createClass({
             <li>
               <input type="number" placeholder="Preço"/>{' '}
             </li>
-            <li>
-              <input type="file" placeholder="Foto"/>{' '}
-            </li>
-          <button type="submit">Inserir</button>
+          <button type="submit">Cadastrar</button>
           </ul>
-    </form>
-    <table id="services-table" className="tabelas">
-        <thead>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-            <th>Foto</th>
-        </thead>
-        <tbody id="services-table-body">
-        </tbody>
-    </table>
-        </div>
-    );
-}})
+        </form>
+      );
+    }
+    return(
+      <div> 
+        { container }
+        { this.props.children }
+      </div>
+    )
+  }
+}
