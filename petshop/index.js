@@ -11,14 +11,12 @@ import ProductDetail from './src/containers/ProductDetail'
 import Services from './src/containers/Services'
 import Login from './src/containers/Login'
 
-
 render((
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Home}/>
-        <Route path="/login" component={Login}/>
         <Route path="/products" component={Products}>
-          <Route path="/products/:id" component={ProductDetail}/> 
+          <Route path="/products/:id" component={ProductDetail}/>
         </Route>
         <Route path="/services" component={Services}/>
         <Route path="/repos" component={Repos}>

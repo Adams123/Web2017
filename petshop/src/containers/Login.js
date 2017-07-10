@@ -17,17 +17,9 @@ export default React.createClass({
 
   render() {
     return (
-      <div>
-				<form id="form-login" onSubmit={this.handleSubmit}>
-						<label>Login:</label>
-						<input type="text"/>
-						<br/> <label>Senha:</label>
-						<input type="password"/>
-						<br/>
-						<button class="submits" id="loginButton" type="submit" onclick="checkAdmin()">Entrar</button>
-				</form>
-        {this.props.children}
-      </div>
+    	<div>
+	    	<h2>Login</h2>
+	    </div>
     )
   }
 })
