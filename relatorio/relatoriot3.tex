@@ -1,0 +1,114 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{indentfirst}
+\usepackage{amsthm,amsfonts,amsmath,amssymb}
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\usepackage[usenames,dvipsnames]{xcolor} 
+\usepackage{pgf,tikz}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{xcolor,colortbl}
+\usepackage{changepage}
+\usepackage{geometry}
+\usepackage[pdftex]{hyperref}
+\usepackage{listings}
+\usepackage[normalem]{ulem}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{multirow,array,varwidth}
+\usepackage{tabularx}
+\usepackage{makeidx}
+\usepackage[nottoc]{tocbibind}
+\usepackage{caption}
+\usepackage{etoolbox}
+\usepackage[pdftex]{hyperref}
+\usepackage{longtable}
+\usepackage{calc}
+\geometry{a4paper,inner=2.0cm,outer=2.0cm,top=2.0cm,bottom=2.0cm}
+\setenumerate[1]{label=\thesubsection.\arabic*.}
+\setenumerate[2]{label*=\arabic*.}
+
+\setlength{\tabcolsep}{6pt}
+
+\newcommand*\NewPage{\newpage\null\thispagestyle{empty}\newpage}
+\newcommand{\Barra}{\ensuremath{\backslash}}
+
+\newcommand\Data[3]{\ensuremath{#1\backslash #2\backslash #3}}
+
+\newcounter{magicrownumbers}
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+
+\setlength{\columnsep}{1cm}
+\addto\captionsbrazilian{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {Tabela de Conteúdo}%
+}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{center}
+	UNIVERSIDADE DE SÃO PAULO – USP
+	
+	INSTITUTO DE CIÊNCIAS MATEMÁTICAS E DE COMPUTAÇÃO
+	
+	DEPARTAMENTO DE SISTEMAS DE COMPUTAÇÃO
+	
+	\vspace{7cm}
+	
+	\Large{\textbf{Introdução a Sistemas WEB}}\\
+	\small{\textbf{Projeto 3}}
+	
+	\vspace{6cm}
+	
+	Adams Vietro Codignotto da Silva - $6791943$ \\ 
+	Antônio Pedro Lavezzo Mazzarolo - $8626232$ \\
+	Gustavo Dutra Santana - $8532040$\\
+	Veronica Vannini - $8517369$\\
+	
+	\vspace{6cm}
+	
+	São Carlos
+	
+	2017
+\end{center}
+
+\NewPage
+\pagenumbering{arabic}
+
+\tableofcontents
+
+\newpage
+
+\section{Descrição}
+Ao abrir o site, há uma tela home, com as abas de login, produtos e serviços. É necessário ter o CouchDB instalado previamente. Foi utilizado a api React Routes para fluxo de dados e gerenciamento de páginas. Inicialmente há um script de criação da base, e para popular a mesma.
+
+\section{Inicialização do sistema e dependências}
+Foi utilizado um servidor em \textit{node.js} apenas para a execução do projeto, implementado no arquivo \textit{server.js}, então é necessário instalar o \textit{node.js} (link \href{https://nodejs.org/en/}{aqui}). Após isso, dentro da pasta \textbf{aplicação}, é necessário rodar o comando \textit{npm install} e \textit{npm start} em um terminal (windows ou linux). A página está rodando no endereço \textit{localhost:8080}.
+
+\textbf{Todo o conteúdo do trabalho está disponível no \href{https://github.com/Adams123/Web2017}{github}.}
+
+\section{Descrição das páginas}
+Ao abrir o site, há uma barra de navegação superior contendo quatro abas: home, produtos, serviços e login.
+\subsection{Home}
+A aba home apenas apresenta uma mensagem de bem vindo, não importando em qual área ela se encontra (admin, cliente ou login).
+\subsection{Produtos}
+Na aba produtos, há um botão para inserir os dados novos, diretamente no CouchDB, e uma tabela exibindo todos os produtos existentes.
+\subsection{Serviços}
+Na aba serviços, há um formulário para inserção de novos serviços e uma tabela exibindo todo o conteúdo da tabela de serviços.
+\subsection{Login}
+A aba login mostra um formulário para login, sendo que se o usuário e senha utilizados forem \textit{admin} e \textit{admin}, irá ser redirecionado para a página de administração. Este é o único \textit{admin} cadastrado. Temos 5 clientes pré cadastrados para testes.
+\section{Testes}
+\end{document}

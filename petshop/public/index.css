@@ -64,3 +64,37 @@ body{
     display: block;
     padding-top:10px;
 }
+
+.tabelas {
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.tabelas td,
+th {
+    border: 1px solid transparent;
+    height: 30px;
+    transition: all 0.3s;
+}
+.tabelas td {
+    background: #FAFAFA;
+    text-align: center;
+}
+.tabelas th {
+    background: #DFDFDF;
+    /* Darken header a bit */
+
+    font-weight: bold;
+}
+.tabelas tr:nth-child(even) td {
+    background: #F1F1F1;
+}
+.tabelas tr:nth-child(odd) td {
+    background: #FEFEFE;
+}
+.tabelas tr td:hover {
+    background: #666;
+    color: #FFF;
+}
