@@ -15,11 +15,11 @@ render((
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Home}/>
+        <Route path="/login" component={Login}/>
         <Route path="/products" component={Products}>
-        	<Route path="/products/:id" component={ProductDetail}/>	
+          <Route path="/products/:id" component={ProductDetail}/> 
         </Route>
         <Route path="/services" component={Services}/>
-        <Route path="/login" component={Login}/>
         <Route path="/repos" component={Repos}>
           <Route path="/repos/:userName/:repoName" component={Repo}/>
         </Route>

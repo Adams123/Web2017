@@ -61,7 +61,20 @@ router.route('/products')
 	  	console.log({'result': body['rows']})
 	  	res.json({'products': body['rows']})
 	  }else{
-	  	console.log("Deu ruim", err.message);
+	  	console.log("Error: ", err.message);
+	  	return;
+	  }
+	});
+});
+
+router.route('/login')
+.get((req, res) => {
+	petchoop.view('users','allUsers',function(err, body) {
+	  if (!err) {
+	  	console.log({'result': body['rows']})
+	  	res.json({'users': body['rows']})
+	  }else{
+	  	console.log("Error: ", err.message);
 	  	return;
 	  }
 	});

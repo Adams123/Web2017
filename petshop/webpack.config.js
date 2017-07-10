@@ -4,9 +4,8 @@ module.exports = {
   entry: './index.js',
 
   output: {
-    path: 'public',
     filename: 'bundle.js',
-    publicPath: '/'
+    path: __dirname + '/public',
   },
 
   plugins: process.env.NODE_ENV === 'production' ? [
